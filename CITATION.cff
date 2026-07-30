@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this analytical code, please cite the accompanying manuscript."
 title: "Basal UTUC spatial ecosystems"
 type: software
-version: 0.3.0
+version: 0.3.1
 date-released: 2026-07-30
 repository-code: "https://github.com/zzzqi123/Basal-UTUC-spatial-ecosystems"
 authors:
