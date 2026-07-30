@@ -1,0 +1,24 @@
+name: basal-utuc-spatial
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.9
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - statsmodels
+  - pyyaml
+  - anndata
+  - scanpy
+  - jupyter
+  - pip:
+      - cell2location
+      - scvi-tools
+      - squidpy
+      - lifelines
+

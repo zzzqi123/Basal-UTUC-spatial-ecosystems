@@ -1,0 +1,20 @@
+module: SuppFig08
+title: "Lymphoid heterogeneity and spatial organisation"
+panels: "A-E"
+workflow: precomputed_results
+input_file: SuppFig08_lymphoid_results.tsv
+group_columns:
+  - analysis
+  - cell_state
+required_columns:
+  - analysis
+  - value
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: analysis
+y: value
+color: null
+title: "Lymphoid heterogeneity and spatial organisation"
+plot_output: figure_panels.pdf
+width: 7
+height: 5

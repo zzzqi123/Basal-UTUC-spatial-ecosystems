@@ -1,0 +1,20 @@
+module: SuppFig06
+title: "Malignant trajectories and clinical relevance"
+panels: "A-H"
+workflow: precomputed_results
+input_file: SuppFig06_malignant_validation.tsv
+group_columns:
+  - analysis
+  - cell_state
+required_columns:
+  - analysis
+  - value
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: analysis
+y: value
+color: null
+title: "Malignant trajectories and clinical relevance"
+plot_output: figure_panels.pdf
+width: 7
+height: 5

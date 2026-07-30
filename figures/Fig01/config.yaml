@@ -1,0 +1,20 @@
+module: Fig01
+title: "Subtype-stage relationships and cellular landscape"
+panels: "A-F"
+workflow: group_summary
+input_file: Fig01_bulk_and_cellular_input.tsv
+group_columns:
+  - subtype
+  - stage
+required_columns:
+  - subtype
+  - ImmuneScore
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: stage
+y: ImmuneScore
+color: null
+title: "Subtype-stage relationships and cellular landscape"
+plot_output: figure_panels.pdf
+width: 7
+height: 5

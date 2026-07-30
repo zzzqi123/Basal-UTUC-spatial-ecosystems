@@ -1,0 +1,27 @@
+module: SuppFig03
+title: "GWAS integration with scRNA-seq"
+panels: "A-C"
+workflow: precomputed_results
+input_file: SuppFig03_scpagwas_results.tsv
+group_columns:
+  - cell_type
+  - panel
+required_columns:
+  - cell_type
+  - fdr
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: cell_type
+y: fdr
+color: null
+title: "GWAS integration with scRNA-seq"
+plot_output: figure_panels.pdf
+width: 7
+height: 5
+method_script: methods/scPagwas/01_run_scpagwas.R
+table_script: methods/scPagwas/02_prepare_figure_tables.R
+entrypoint: scPagwas_main
+cell_level_fdr: Random_Correct_BG_adjp
+celltype_fdr: bootstrap_results.bp_value
+iterations_singlecell: 100
+iterations_celltype: 200

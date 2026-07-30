@@ -1,0 +1,16 @@
+public_module	original_analysis_source	reuse_action
+methods/cell2location	cell2location.ipynb	reconstructed against manuscript parameters and official API
+methods/single_cell	二轮返修/常用代码/连贯版单细胞.R	curated QC integration and annotation workflow
+Fig01;SuppFig01;SuppFig11;Fig11	二轮返修/Fig10_临床相关性验证/scripts/source_rna-seqUTUC下游.R	curated bulk subtype survival and validation functions
+Fig02;SuppFig04	二轮返修/常用代码/UTUC空转代码.R	curated spatial mapping and niche workflow
+Fig03;SuppFig07	二轮返修/常用代码/连贯版单细胞.R	curated myeloid subcluster analyses
+Fig04;SuppFig10	二轮返修/常用代码/连贯版单细胞.R	curated mesenchymal and endothelial analyses
+Fig05;Fig09	二轮返修/常用代码/CTM 返修代码.R	curated CellChat analyses
+Fig06	二轮返修/NicheNet/MI_FAP_CAF 重塑/UTUC_NicheNet_MI_target_intersection.R	curated NicheNet sender-receiver analysis
+Fig08	二轮返修/SPP1虚拟敲除_癌细胞/UTUC/01_分析代码	curated epithelial SPP1 perturbation and enrichment
+Fig10	二轮返修/Fig10_临床相关性验证/scripts/23_server_multiscale_pair_enrichment.py	curated multiscale q05 pair analysis
+Fig10	二轮返修/Fig10_临床相关性验证/scripts/37_local_plot_final_continuous_interface_profiles.R	curated section-resolved posterior-mean profiles
+Fig10;SuppFig13	二轮返修/Fig10_临床相关性验证/scripts/47_local_highrisk_component_clinical_models.R	curated Japan-UTUC component models
+SuppFig05	二轮返修/inferCNV_immune_stromal_ref/infercnv_within_sample_non_epi_ref.R	curated non-epithelial reference inferCNV workflow
+SuppFig03	official dengchunyu/scPagwas R/scPagwas_main.R	wrapper only; third-party source not copied
+

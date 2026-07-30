@@ -1,0 +1,23 @@
+module: Fig05
+title: "Global communication and candidate interactions"
+panels: "A-H"
+workflow: precomputed_results
+input_file: cellchat_interactions.tsv
+group_columns:
+  - source
+  - target
+required_columns:
+  - source
+  - probability
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: source
+y: probability
+color: null
+title: "Global communication and candidate interactions"
+plot_output: figure_panels.pdf
+width: 7
+height: 5
+method_script: methods/communication_and_perturbation/01_cellchat.R
+database: CellChatDB.human
+min_cells: 10

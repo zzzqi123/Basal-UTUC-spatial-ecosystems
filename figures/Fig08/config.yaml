@@ -1,0 +1,23 @@
+module: Fig08
+title: "Epithelial-intrinsic SPP1 perturbation and functional validation"
+panels: "A-G"
+workflow: precomputed_results
+input_file: Fig08_spp1_perturbation_results.tsv
+group_columns:
+  - analysis
+  - term
+required_columns:
+  - analysis
+  - value
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: analysis
+y: value
+color: null
+title: "Epithelial-intrinsic SPP1 perturbation and functional validation"
+plot_output: figure_panels.pdf
+width: 7
+height: 5
+virtual_knockout_script: methods/communication_and_perturbation/03_spp1_virtual_knockout.R
+target: SPP1
+compartment: malignant_epithelial

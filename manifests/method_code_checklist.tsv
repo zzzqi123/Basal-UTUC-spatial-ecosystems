@@ -1,0 +1,25 @@
+method	manuscript_specification	code_location	locked_value	check
+scRNA QC	min 300 and max 6000 detected genes	config/parameters.yaml	300;6000	PASS
+scRNA QC	mitochondrial transcripts <30%	config/parameters.yaml	30	PASS
+scRNA QC	hemoglobin transcripts <3%	config/parameters.yaml	3	PASS
+scRNA normalisation	scale factor 10000	config/parameters.yaml	10000	PASS
+scRNA feature selection	2000 highly variable genes	config/parameters.yaml	2000	PASS
+scRNA embedding	first 20 PCs	config/parameters.yaml	20	PASS
+cell2location reference	batch field	methods/cell2location/01_reference_signatures.py	orig.ident	PASS
+cell2location reference	cell-state field	methods/cell2location/01_reference_signatures.py	second_celltype_byhand	PASS
+cell2location reference	training epochs	methods/cell2location/01_reference_signatures.py	250	PASS
+cell2location spatial	expected cells per location	methods/cell2location/02_spatial_mapping.py	30	PASS
+cell2location spatial	detection alpha	methods/cell2location/02_spatial_mapping.py	20	PASS
+cell2location spatial	training epochs	methods/cell2location/02_spatial_mapping.py	50000	PASS
+cell2location posterior	conservative abundance	methods/cell2location/03_export_abundance.py	q05_cell_abundance_w_sf	PASS
+cell2location niches	kNN neighbours	methods/cell2location/04_spatial_niches.py	15	PASS
+cell2location niches	Leiden resolution	methods/cell2location/04_spatial_niches.py	0.3	PASS
+Fig10 pair burden	posterior summary	figures/Fig10/config.yaml	q05	PASS
+Fig10 boundary profile	posterior summary	figures/Fig10/config.yaml	posterior_mean	PASS
+scPagwas	entrypoint	methods/scPagwas/01_run_scpagwas.R	scPagwas_main	PASS
+scPagwas	cell-type bootstrap iterations	methods/scPagwas/01_run_scpagwas.R	200	PASS
+scPagwas	single-cell background iterations	methods/scPagwas/01_run_scpagwas.R	100	PASS
+scPagwas	multiple testing	methods/scPagwas/01_run_scpagwas.R	BH/FDR	PASS
+scPagwas cell map	FDR source	supplementary/SuppFig03/config.yaml	Random_Correct_BG_adjp	PASS
+scPagwas cell-type table	FDR source	supplementary/SuppFig03/config.yaml	bootstrap_results.bp_value	PASS
+

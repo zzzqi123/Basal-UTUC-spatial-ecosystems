@@ -1,0 +1,54 @@
+# Patient-level and large analytical objects
+data/raw/
+data/processed/
+data/private/
+outputs/
+results/
+*.fastq
+*.fastq.gz
+*.bam
+*.bai
+*.h5
+*.h5ad
+*.loom
+*.rds
+*.RData
+*.Rdata
+*.mtx
+*.mtx.gz
+
+# Spatial images and proprietary figure sources
+*.tif
+*.tiff
+*.svs
+*.ndpi
+*.ai
+
+# Local environments and caches
+.Rproj.user/
+.Rhistory
+.RData
+.venv/
+venv/
+Rlib/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Local configuration and credentials
+config/project.yaml
+.env
+*.pem
+*.key
+secrets.*
+
+# Temporary and editor files
+tmp/
+temp/
+*.log
+*.swp
+*~
+

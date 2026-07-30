@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this analytical code, please cite the accompanying manuscript."
+title: "Basal UTUC spatial ecosystems"
+type: software
+version: 0.1.0
+date-released: 2026-07-30
+repository-code: "https://github.com/zzzqi123/Basal-UTUC-spatial-ecosystems"
+authors:
+  - family-names: Zhang
+    given-names: Qi
+  - family-names: Wen
+    given-names: Zhipeng
+  - family-names: Yang
+    given-names: Ziyang
+  - family-names: Long
+    given-names: Xuezhi
+  - family-names: Huang
+    given-names: Tuxiong
+  - family-names: Gu
+    given-names: Di
+preferred-citation:
+  type: article
+  title: "SPP1-driven spatial niche remodeling defines aggressive progression in the Basal subtype of upper tract urothelial carcinoma"
+  authors:
+    - family-names: Zhang
+      given-names: Qi
+    - family-names: Wen
+      given-names: Zhipeng
+    - family-names: Yang
+      given-names: Ziyang
+    - family-names: Long
+      given-names: Xuezhi
+  year: 2026
+

@@ -1,0 +1,24 @@
+module: Fig06
+title: "SPP1+ TAM-FAP+ myCAF coupling"
+panels: "A-F"
+workflow: precomputed_results
+input_file: Fig06_tam_mycaf_results.tsv
+group_columns:
+  - analysis
+  - panel
+required_columns:
+  - analysis
+  - value
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: analysis
+y: value
+color: null
+title: "SPP1+ TAM-FAP+ myCAF coupling"
+plot_output: figure_panels.pdf
+width: 7
+height: 5
+nichenet_script: methods/communication_and_perturbation/02_nichenet_tam_to_mycaf.R
+sender: Macro_c0_SPP1
+receiver: CAF_c3_POSTN
+interpretation: multi-ligand candidate network

@@ -1,0 +1,20 @@
+module: Fig11
+title: "Clinical SPP1-FAP validation"
+panels: "A-E"
+workflow: group_summary
+input_file: Fig11_clinical_results.tsv
+group_columns:
+  - analysis
+  - group
+required_columns:
+  - analysis
+  - value
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: group
+y: value
+color: null
+title: "Clinical SPP1-FAP validation"
+plot_output: figure_panels.pdf
+width: 7
+height: 5

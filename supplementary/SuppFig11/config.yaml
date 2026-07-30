@@ -1,0 +1,20 @@
+module: SuppFig11
+title: "BLCA bulk validation"
+panels: "A-E"
+workflow: group_summary
+input_file: SuppFig11_blca_bulk.tsv
+group_columns:
+  - dataset
+  - subtype
+required_columns:
+  - dataset
+  - value
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: subtype
+y: value
+color: null
+title: "BLCA bulk validation"
+plot_output: figure_panels.pdf
+width: 7
+height: 5

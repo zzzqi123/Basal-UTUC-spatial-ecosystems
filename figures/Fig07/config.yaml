@@ -1,0 +1,20 @@
+module: Fig07
+title: "External spatial validation of the myeloid-stromal program"
+panels: "A-I"
+workflow: group_summary
+input_file: Fig07_external_blca_results.tsv
+group_columns:
+  - dataset
+  - basal_luminal_group
+required_columns:
+  - dataset
+  - niche_score
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: basal_luminal_group
+y: niche_score
+color: null
+title: "External spatial validation of the myeloid-stromal program"
+plot_output: figure_panels.pdf
+width: 7
+height: 5

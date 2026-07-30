@@ -1,0 +1,24 @@
+module: SuppFig05
+title: "Malignant epithelial states and spatial distribution"
+panels: "A-J"
+workflow: precomputed_results
+input_file: SuppFig05_malignant_results.tsv
+group_columns:
+  - analysis
+  - cell_state
+required_columns:
+  - analysis
+  - value
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: analysis
+y: value
+color: null
+title: "Malignant epithelial states and spatial distribution"
+plot_output: figure_panels.pdf
+width: 7
+height: 5
+infercnv_script: methods/single_cell/02_infercnv_non_epi_reference.R
+trajectory_script: methods/single_cell/03_trajectory_analysis.R
+pyscenic_script: methods/single_cell/04_pyscenic.sh
+enrichment_script: methods/single_cell/05_functional_enrichment.R

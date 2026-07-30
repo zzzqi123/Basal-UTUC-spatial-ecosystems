@@ -1,0 +1,25 @@
+module: SuppFig04
+title: "Spatial analysis of Basal UTUC"
+panels: "A-D"
+workflow: precomputed_results
+input_file: SuppFig04_spatial_results.tsv
+group_columns:
+  - sample
+  - panel
+required_columns:
+  - sample
+  - value
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: sample
+y: value
+color: null
+title: "Spatial analysis of Basal UTUC"
+plot_output: figure_panels.pdf
+width: 7
+height: 5
+method_workflow: methods/cell2location
+n_cells_per_location: 30
+detection_alpha: 20
+max_epochs: 50000
+abundance_summary: q05_cell_abundance_w_sf

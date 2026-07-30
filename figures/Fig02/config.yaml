@@ -1,0 +1,24 @@
+module: Fig02
+title: "Basal UTUC spatial landscape across stages"
+panels: "A-C"
+workflow: precomputed_results
+input_file: Fig02_spatial_summary.tsv
+group_columns:
+  - sample
+  - stage
+required_columns:
+  - sample
+  - basal_score
+analysis_output: analysis_results.tsv
+plot_input: analysis_results.tsv
+x: stage
+y: basal_score
+color: null
+title: "Basal UTUC spatial landscape across stages"
+plot_output: figure_panels.pdf
+width: 7
+height: 5
+method_workflow: methods/cell2location
+abundance_summary: q05_cell_abundance_w_sf
+neighbors: 15
+leiden_resolution: 0.3

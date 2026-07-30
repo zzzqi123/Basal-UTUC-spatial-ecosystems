@@ -1,0 +1,57 @@
+random_seed: 20260730
+
+single_cell:
+  min_features: 300
+  max_features: 6000
+  max_mito_percent: 30
+  max_hemoglobin_percent: 3
+  normalization_scale_factor: 10000
+  highly_variable_genes: 2000
+  pca_dimensions: 20
+  integration_method: Harmony
+
+cell2location:
+  reference_batch_key: orig.ident
+  reference_label_key: second_celltype_byhand
+  reference_max_epochs: 250
+  n_cells_per_location: 30
+  detection_alpha: 20
+  spatial_max_epochs: 50000
+  batch_size: null
+  train_size: 1
+  posterior_samples: 1000
+  conservative_abundance_key: q05_cell_abundance_w_sf
+  mean_abundance_key: means_cell_abundance_w_sf
+  neighbors: 15
+  leiden_resolution: 0.3
+
+scPagwas:
+  entrypoint: scPagwas_main
+  assay: RNA
+  genome_build: GRCh38
+  gwas_release: FinnGen_R12
+  marg: 10000
+  maf_filter: 0.01
+  min_cluster_cells: 10
+  min_pathway_size: 5
+  max_pathway_size: 300
+  iterations_celltype: 200
+  iterations_singlecell: 100
+  top_genes: 1000
+  singlecell: true
+  celltype: true
+  remove_outlier: true
+  multiple_testing: BH
+
+spatial_multiscale:
+  abundance_summary_pair_burden: q05
+  abundance_summary_boundary_profile: posterior_mean
+  ring_distances:
+    ring0: 0
+    ring1: 1
+    ring2: 2
+  center_distance_um:
+    ring0: 55
+    ring1: 100
+    ring2: 173-200
+
