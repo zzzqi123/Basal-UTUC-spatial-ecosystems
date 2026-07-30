@@ -17,8 +17,8 @@ plot_plan <- list(
     geometry = "point",
     x = "x",
     y = "y",
-    colour = "q05_abundance",
-    facet = "component",
+    colour = "colocalization_score",
+    facet = "pair_id",
     output = "panel_A.pdf",
     width = 5.5,
     height = 4.2
@@ -30,8 +30,8 @@ plot_plan <- list(
     geometry = "point",
     x = "x",
     y = "y",
-    colour = "q05_abundance",
-    facet = "component",
+    colour = "colocalization_score",
+    facet = "pair_id",
     output = "panel_B.pdf",
     width = 5.5,
     height = 4.2

@@ -10,6 +10,20 @@ single_cell:
   pca_dimensions: 20
   cluster_resolution: 0.5
   integration_method: Harmony
+  marker_min_percent: 0.25
+  marker_log2fc: 0.25
+  marker_fdr: 0.05
+  infercnv_cutoff: 0.1
+  infercnv_min_cells_per_gene: 10
+  cnv_score_threshold: 0.0005
+  cnv_correlation_threshold: 0.2
+  cnv_high_score_fraction: 0.10
+  monocle2_min_mean_expression: 0.1
+  monocle2_min_cells: 10
+  monocle2_top_ordering_genes: 1000
+  monocle2_reduction: DDRTree
+  monocle3_dimensions: 20
+  roe_inference: negative_binomial
 
 cell2location:
   reference_batch_key: orig.ident
@@ -44,6 +58,17 @@ scPagwas:
   remove_outlier: true
   multiple_testing: BH
 
+phewas_mr:
+  target_gene: SPP1
+  outcome_source: UK_Biobank
+  outcome_sample_size: 456348
+  total_binary_phenotypes: 1403
+  min_cases_exclusive: 500
+  expected_eligible_phenotypes: 679
+  heidi_p_threshold: 0.1
+  fdr_threshold: 0.05
+  multiple_testing: BH
+
 spatial_multiscale:
   abundance_summary_pair_burden: q05
   abundance_summary_boundary_profile: posterior_mean
@@ -62,3 +87,46 @@ spatial_multiscale:
     ring0: 55
     ring1: 100
     ring2: 173-200
+
+spatial_colocalization:
+  abundance_key: q05_cell_abundance_w_sf
+  ordinal_levels: 3
+  ordinal_breaks: equal_width
+  correlation_method: spearman
+  spagene_knn: 8
+  spagene_top_fraction: 0.20
+  spagene_max_quantile: 0.95
+
+spatial_cellchat:
+  database: CellChatDB.human
+  probability_type: truncatedMean
+  trim: 0.1
+  distance_use: true
+  interaction_range_um: 250
+  scale_distance: 3.65
+  contact_dependent: true
+  contact_range_um: 100
+  min_cells: 10
+
+rctd:
+  min_spot_umi: 500
+  gse299573_mode: doublet
+  gse319536_mode: full
+  epithelial_anchor_fraction: 0.20
+  normalize_weights: true
+
+external_spatial_validation:
+  expected_sections: 22
+  neighborhood_rings: [0, 1, 2]
+  basal_genes: [KRT5, KRT6A, KRT6B, KRT14, TP63, CD44, EGFR]
+  luminal_genes: [UPK1A, UPK2, UPK3A, KRT20, FOXA1, GATA3, PPARG]
+  basal_axis_trim_quantiles: [0.05, 0.95]
+  section_bootstraps: 5000
+
+bulk_clinical:
+  base47_basal_label: Basal
+  base47_luminal_label: Luminal
+  subtype_interaction_scores: [ImmuneScore, StromalScore]
+  survival_time_horizon: 60
+  survival_time_unit: months
+  maximally_selected_min_fraction: 0.10

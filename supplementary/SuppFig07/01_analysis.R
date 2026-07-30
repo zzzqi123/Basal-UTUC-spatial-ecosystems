@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Canonical marker dot plot",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig07_A.tsv",
     required = c("cell_state", "gene", "average_expression", "percent_expressing"),
@@ -40,8 +40,8 @@ panel_plan <- list(
   ),
   list(
     panel = "D",
-    title = "CCR2-SPP1 and M2 spatial maps",
-    workflow = "workflows/spatial/cell2location/",
+    title = "CCR2-SPP1 co-localization and M2 spatial scores",
+    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R -> workflows/spatial/09_spacet_gene_set_scores.R",
     operation = "select",
     input = "SuppFig07_D.tsv",
     required = c("sample", "x", "y", "feature", "value"),
@@ -50,7 +50,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "Dendritic-cell DSS",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig07_E.tsv",
     required = c("time", "survival", "signature"),

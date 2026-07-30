@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Within-section cell-state correlations",
-    workflow = "workflows/spatial/cell2location/",
+    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
     operation = "select",
     input = "Fig02_B.tsv",
     required = c("sample", "state_1", "state_2", "spearman_rho"),

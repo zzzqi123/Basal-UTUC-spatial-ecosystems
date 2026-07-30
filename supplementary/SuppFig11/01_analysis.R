@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Immune and stromal scores",
-    workflow = "workflows/bulk_clinical_validation/03_external_blca_validation.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R",
     operation = "select",
     input = "SuppFig11_A.tsv",
     required = c("stage", "subtype", "score_name", "score_value"),
@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "FAP and SPP1 expression",
-    workflow = "workflows/bulk_clinical_validation/03_external_blca_validation.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R",
     operation = "select",
     input = "SuppFig11_B.tsv",
     required = c("stage", "subtype", "gene", "expression"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "SPP1 correlations",
-    workflow = "workflows/bulk_clinical_validation/03_external_blca_validation.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R",
     operation = "select",
     input = "SuppFig11_C.tsv",
     required = c("score_name", "score_value", "SPP1"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "Subtype-classification ROC",
-    workflow = "workflows/bulk_clinical_validation/03_external_blca_validation.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R",
     operation = "select",
     input = "SuppFig11_D.tsv",
     required = c("marker", "fpr", "tpr", "auc"),
@@ -50,7 +50,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "External survival validation",
-    workflow = "workflows/bulk_clinical_validation/03_external_blca_validation.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R",
     operation = "select",
     input = "SuppFig11_E.tsv",
     required = c("time", "survival", "dataset", "group"),

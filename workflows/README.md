@@ -7,19 +7,25 @@ data, large intermediate objects and exploratory notebooks.
 ## Overall order
 
 1. `single_cell/`: quality control, integration, annotation, lineage
-   reclustering, inferCNV, trajectory and functional programs.
+   reclustering, primary and sensitivity inferCNV, Monocle2/SCOP-Monocle3
+   trajectories, SCENIC, marker visualization, composition and functional
+   programs.
 2. `genetics/`: FinnGen GWAS integration using the original `scPagwas_main`
-   workflow.
+   workflow and SPP1 PheW-MR/SMR-HEIDI result processing.
 3. `spatial/`: Visium processing, cell2location, spatial neighborhoods,
-   multiscale pair burden, permutation O/E and signed-distance profiles.
-4. `communication/`: CellChat and the TAM-to-myCAF NicheNet candidate network.
-5. `perturbation/`: malignant-epithelial SPP1 virtual knockout.
-6. `bulk_clinical_validation/`: subtype/TME analyses and independent
-   Japan-UTUC clinical models.
+   correlation/co-localization, SpaGene, SpaCET, spatial CellChat, external
+   RCTD, multiscale pair burden, permutation O/E and signed-distance profiles.
+4. `communication/`: single-cell and spatial CellChat plus the TAM-to-myCAF
+   NicheNet candidate network.
+5. `perturbation/`: malignant-epithelial and TME scTenifoldKnk analyses.
+6. `bulk_clinical_validation/`: ESTIMATE/BASE47 scores, subtype/TME
+   interaction models, survival/ROC analyses and independent Japan-UTUC
+   clinical models.
 
 The spatial and Japan-UTUC branches are intentionally separate. Japan-UTUC
 bulk scores quantify patient-level cellular-program abundance and clinical
 association; they do not measure spatial adjacency.
 
 See `00_pipeline_overview.R` for the input-output hand-off between these
-workflows and the figure folders.
+workflows and the figure folders. The line-by-line comparison against the
+current manuscript is in `../manifests/manuscript_method_audit.tsv`.

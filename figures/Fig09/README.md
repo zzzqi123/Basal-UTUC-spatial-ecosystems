@@ -4,12 +4,12 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | NMI-Basal component maps | `workflows/spatial/cell2location/` |
-| B | MI-Basal component maps | `workflows/spatial/cell2location/` |
+| A | NMI-Basal component co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
+| B | MI-Basal component co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
 | C | Multiplex immunofluorescence | `non-computational source panel; code not applicable` |
 | D | Selected CellChat interactions | `workflows/communication/01_cellchat.R` |
-| E | VEGFA-VEGFR1 spatial signal | `workflows/spatial/01_visium_preprocessing.R` |
-| F | NAMPT-INSR spatial signal | `workflows/spatial/01_visium_preprocessing.R` |
+| E | VEGFA-VEGFR1 spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
+| F | NAMPT-INSR spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

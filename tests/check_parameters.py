@@ -8,6 +8,10 @@ ROOT = Path(__file__).resolve().parents[1]
 with (ROOT / "config" / "parameters.yaml").open(encoding="utf-8") as handle:
     cfg = yaml.safe_load(handle)
 
+environment_text = (ROOT / "environment.yml").read_text(encoding="utf-8")
+if "python=3.10.11" not in environment_text or "r-base=4.3.1" not in environment_text:
+    raise SystemExit("R/Python versions do not match the manuscript Methods")
+
 c2l = cfg["cell2location"]
 expected_c2l = {
     "reference_max_epochs": 250,
@@ -34,6 +38,69 @@ expected_scpagwas = {
 for key, value in expected_scpagwas.items():
     if scpagwas.get(key) != value:
         raise SystemExit(f"scPagwas mismatch: {key}={scpagwas.get(key)!r}, expected {value!r}")
+
+single_cell = cfg["single_cell"]
+expected_single_cell = {
+    "min_features": 300,
+    "max_features": 6000,
+    "max_mito_percent": 30,
+    "max_hemoglobin_percent": 3,
+    "normalization_scale_factor": 10000,
+    "highly_variable_genes": 2000,
+    "pca_dimensions": 20,
+    "infercnv_cutoff": 0.1,
+    "cnv_score_threshold": 0.0005,
+    "cnv_correlation_threshold": 0.2,
+    "monocle2_min_mean_expression": 0.1,
+    "monocle2_min_cells": 10,
+    "monocle2_top_ordering_genes": 1000,
+    "monocle2_reduction": "DDRTree",
+}
+for key, value in expected_single_cell.items():
+    if single_cell.get(key) != value:
+        raise SystemExit(
+            f"Single-cell mismatch: {key}={single_cell.get(key)!r}, expected {value!r}"
+        )
+
+spatial_cellchat = cfg["spatial_cellchat"]
+expected_spatial_cellchat = {
+    "database": "CellChatDB.human",
+    "interaction_range_um": 250,
+    "scale_distance": 3.65,
+    "contact_range_um": 100,
+    "min_cells": 10,
+}
+for key, value in expected_spatial_cellchat.items():
+    if spatial_cellchat.get(key) != value:
+        raise SystemExit(
+            f"Spatial CellChat mismatch: {key}={spatial_cellchat.get(key)!r}, "
+            f"expected {value!r}"
+        )
+
+rctd = cfg["rctd"]
+if rctd.get("gse299573_mode") != "doublet":
+    raise SystemExit("GSE299573 must use RCTD doublet mode")
+if rctd.get("gse319536_mode") != "full":
+    raise SystemExit("GSE319536 must use RCTD full mode")
+if cfg["external_spatial_validation"].get("expected_sections") != 22:
+    raise SystemExit("GSE319536 must declare the 22-section contract")
+
+phewas = cfg["phewas_mr"]
+expected_phewas = {
+    "target_gene": "SPP1",
+    "outcome_sample_size": 456348,
+    "total_binary_phenotypes": 1403,
+    "min_cases_exclusive": 500,
+    "expected_eligible_phenotypes": 679,
+    "heidi_p_threshold": 0.1,
+    "fdr_threshold": 0.05,
+    "multiple_testing": "BH",
+}
+for key, value in expected_phewas.items():
+    if phewas.get(key) != value:
+        raise SystemExit(
+            f"PheW-MR mismatch: {key}={phewas.get(key)!r}, expected {value!r}"
+        )
 
 spatial_script = (
     ROOT / "workflows" / "spatial" / "cell2location" / "02_spatial_mapping.py"

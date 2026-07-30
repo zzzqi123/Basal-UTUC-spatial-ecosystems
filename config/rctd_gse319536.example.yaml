@@ -1,0 +1,24 @@
+random_seed: 20260730
+
+rctd:
+  min_spot_umi: 500
+  normalize_weights: true
+  epithelial_anchor_fraction: 0.20
+  gse319536_mode: full
+
+external_dataset:
+  id: GSE319536_Visium
+  spatial_object: gse319536_visium_section.rds
+  reference_object: external_blca_reference.rds
+  spatial_assay: Spatial
+  reference_assay: RNA
+  reference_label: NN_celltype
+  rctd_mode: full
+
+external_spatial_validation:
+  expected_sections: 22
+  neighborhood_rings: [0, 1, 2]
+  basal_genes: [KRT5, KRT6A, KRT6B, KRT14, TP63, CD44, EGFR]
+  luminal_genes: [UPK1A, UPK2, UPK3A, KRT20, FOXA1, GATA3, PPARG]
+  basal_axis_trim_quantiles: [0.05, 0.95]
+  section_bootstraps: 5000

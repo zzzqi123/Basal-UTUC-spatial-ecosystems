@@ -1,0 +1,10 @@
+phewas_mr:
+  target_gene: SPP1
+  outcome_source: UK_Biobank
+  outcome_sample_size: 456348
+  total_binary_phenotypes: 1403
+  min_cases_exclusive: 500
+  expected_eligible_phenotypes: 679
+  heidi_p_threshold: 0.1
+  fdr_threshold: 0.05
+  multiple_testing: BH

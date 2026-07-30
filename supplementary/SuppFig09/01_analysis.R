@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "CD4 T-cell UMAP",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R",
     operation = "select",
     input = "SuppFig09_A.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "CD4 relative enrichment",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/09_roe_composition.R",
     operation = "select",
     input = "SuppFig09_C.tsv",
     required = c("sample_group", "cell_state", "roe"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "CD8 T-cell UMAP",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R",
     operation = "select",
     input = "SuppFig09_D.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state"),
@@ -68,7 +68,7 @@ panel_plan <- list(
   list(
     panel = "G",
     title = "B-cell DSS",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig09_G.tsv",
     required = c("time", "survival", "signature"),
@@ -77,7 +77,7 @@ panel_plan <- list(
   list(
     panel = "H",
     title = "Lymphoid-marker correlations",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig09_H.tsv",
     required = c("signature", "marker", "rho"),

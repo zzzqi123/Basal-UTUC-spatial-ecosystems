@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
 
 source(file.path("core", "R", "cli.R"))
 opts <- parse_common_args()
-object <- readRDS(require_input(opts$input_dir, "utuc_scrna_annotated.rds"))
+object <- readRDS(require_input(opts$input_dir, "utuc_annotated_scrna.rds"))
 if (!inherits(object, "Seurat")) stop("Input must be a Seurat object")
 if (!"second_celltype_byhand" %in% names(object[[]])) {
   stop("Missing cell-state annotation: second_celltype_byhand")
@@ -42,4 +42,3 @@ write_run_metadata(
   opts,
   list(database = "CellChatDB.human", min_cells = 10)
 )
-

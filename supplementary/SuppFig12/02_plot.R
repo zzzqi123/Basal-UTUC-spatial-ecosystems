@@ -66,8 +66,8 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "B", "Canonical lineage-marker dot plot", "workflows/single_cell/01_process_scrna.R",
-  "C", "Neutrophil-marker audit", "workflows/single_cell/01_process_scrna.R"
+  "B", "Canonical lineage-marker dot plot", "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
+  "C", "Neutrophil-marker audit", "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R"
 )
 readr::write_tsv(
   package_native_panels,

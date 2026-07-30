@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Mesenchymal UMAP",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R",
     operation = "select",
     input = "Fig04_A.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state"),

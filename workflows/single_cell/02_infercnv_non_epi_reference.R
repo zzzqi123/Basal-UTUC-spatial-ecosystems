@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
 
 source(file.path("core", "R", "cli.R"))
 opts <- parse_common_args()
-object <- readRDS(require_input(opts$input_dir, "utuc_scrna_annotated.rds"))
+object <- readRDS(require_input(opts$input_dir, "utuc_annotated_scrna.rds"))
 gene_order_file <- require_input(opts$input_dir, "grch38_gene_order.tsv")
 annotation <- object[[]]
 required <- c("orig.ident", "major_celltype", "second_celltype_byhand")
@@ -66,4 +66,3 @@ write_run_metadata(
     reference_strategy = "within-sample immune, stromal and endothelial cells"
   )
 )
-

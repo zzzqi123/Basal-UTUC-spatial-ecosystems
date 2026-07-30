@@ -7,6 +7,9 @@ and 9.
   `CellChatDB.human`.
 - `02_nichenet_tam_to_mycaf.R`: multi-ligand candidate network from
   `Macro_c0_SPP1` sender cells to `CAF_c3_POSTN` receiver cells.
+- `03_cellchat_spatial.R`: CellChat spatial mode with Visium coordinates,
+  image scale factors, 250-µm interaction range, 100-µm contact range,
+  distance scale 3.65 and at least 10 locations per group.
 
 The NicheNet workflow treats SPP1 as one candidate ligand within a multi-ligand
 network. Epithelial perturbation is deliberately kept in `../perturbation/`.

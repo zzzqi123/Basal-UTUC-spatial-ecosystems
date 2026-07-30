@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Subtype distribution across stages",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig01_A.tsv",
     required = c("stage", "subtype", "n", "proportion"),
@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Tumor purity within stage",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig01_B.tsv",
     required = c("stage", "subtype", "purity"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "Immune, myeloid and stromal marker expression",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig01_C.tsv",
     required = c("stage", "subtype", "gene", "expression"),

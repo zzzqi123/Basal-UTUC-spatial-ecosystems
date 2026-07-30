@@ -12,26 +12,26 @@ opts <- parse_common_args()
 plot_plan <- list(
   list(
     panel = "A",
-    title = "NMI-Basal component maps",
+    title = "NMI-Basal component co-localization",
     input = "panel_A_data.tsv",
     geometry = "point",
     x = "x",
     y = "y",
-    colour = "q05_abundance",
-    facet = "component",
+    colour = "colocalization_score",
+    facet = "pair_id",
     output = "panel_A.pdf",
     width = 5.5,
     height = 4.2
   ),
   list(
     panel = "B",
-    title = "MI-Basal component maps",
+    title = "MI-Basal component co-localization",
     input = "panel_B_data.tsv",
     geometry = "point",
     x = "x",
     y = "y",
-    colour = "q05_abundance",
-    facet = "component",
+    colour = "colocalization_score",
+    facet = "pair_id",
     output = "panel_B.pdf",
     width = 5.5,
     height = 4.2

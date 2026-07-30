@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Tumor threshold, boundary and signed-distance definition",
-    workflow = "workflows/spatial/03_prepare_boundary_input.py -> 04_infer_boundary_stgrads.R -> 05_boundary_profiles.R",
+    workflow = "workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R",
     operation = "select",
     input = "SuppFig13_A.tsv",
     required = c("sample", "x", "y", "tumor_type", "tumor_interface_zone", "signed_distance"),
@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Section-specific Cancer_c3 boundary profiles",
-    workflow = "workflows/spatial/03_prepare_boundary_input.py -> 04_infer_boundary_stgrads.R -> 05_boundary_profiles.R",
+    workflow = "workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R",
     operation = "select",
     input = "SuppFig13_B.tsv",
     required = c("sample", "cell_state", "signed_distance", "fitted_z", "se"),

@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "Section-specific signed-distance profiles",
-    workflow = "workflows/spatial/03_prepare_boundary_input.py -> 04_infer_boundary_stgrads.R -> 05_boundary_profiles.R",
+    workflow = "workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R",
     operation = "select",
     input = "Fig10_C.tsv",
     required = c("sample", "cell_state", "signed_distance", "fitted_z", "se"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "GSE319536 continuous Basal-luminal validation",
-    workflow = "workflows/spatial/06_external_rctd.R",
+    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
     operation = "select",
     input = "Fig10_D.tsv",
     required = c("basal_luminal_percentile", "ring", "pair_score", "mean_curve", "ci_low", "ci_high"),

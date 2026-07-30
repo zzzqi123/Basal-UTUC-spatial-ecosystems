@@ -8,6 +8,9 @@ R	safe_z	core/R/analysis_helpers.R	Zero-safe numeric standardization
 R	cell_proportions	core/R/analysis_helpers.R	Calculate group-wise cell-type proportions
 R	signature_score	core/R/analysis_helpers.R	Mean expression of available signature genes
 R	pair_burden	core/R/analysis_helpers.R	Product or geometric-mean pair burden
+R	ordinal_abundance	core/R/analysis_helpers.R	Convert a continuous abundance vector to equal-width ordinal levels
+R	ordinal_colocalization	core/R/analysis_helpers.R	Multiply two ordinal abundance vectors for manuscript co-localization maps
+R	pairwise_spearman	core/R/analysis_helpers.R	Calculate a tidy all-pairs Spearman correlation table
 R	summarise_numeric_by_group	core/R/analysis_helpers.R	Group-wise mean, median and sample count
 R	read_panel_input	core/R/figure_assembly.R	Read a panel table and enforce its column schema
 R	run_panel_operation	core/R/figure_assembly.R	Run transparent light panel statistics

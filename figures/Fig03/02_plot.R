@@ -49,13 +49,13 @@ plot_plan <- list(
   ),
   list(
     panel = "D",
-    title = "CCR2 monocyte and SPP1 TAM spatial maps",
+    title = "CCR2 monocyte and SPP1 TAM spatial co-localization",
     input = "panel_D_data.tsv",
     geometry = "point",
     x = "x",
     y = "y",
-    colour = "q05_abundance",
-    facet = "cell_state",
+    colour = "colocalization_score",
+    facet = "pair_id",
     output = "panel_D.pdf",
     width = 5.5,
     height = 4.2
@@ -87,13 +87,13 @@ plot_plan <- list(
   ),
   list(
     panel = "G",
-    title = "VEGFA TAN and Cancer_c3 spatial maps",
+    title = "VEGFA TAN and Cancer_c3 spatial co-localization",
     input = "panel_G_data.tsv",
     geometry = "point",
     x = "x",
     y = "y",
-    colour = "q05_abundance",
-    facet = "cell_state",
+    colour = "colocalization_score",
+    facet = "pair_id",
     output = "panel_G.pdf",
     width = 5.5,
     height = 4.2

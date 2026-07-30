@@ -67,25 +67,60 @@ def wet(panel: str, title: str) -> Panel:
     )
 
 
-BULK = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R"
+BULK = (
+    "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> "
+    "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R"
+)
 JAPAN = "workflows/bulk_clinical_validation/02_japan_utuc_validation.R"
-BLCA = "workflows/bulk_clinical_validation/03_external_blca_validation.R"
+BLCA = (
+    "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> "
+    "workflows/bulk_clinical_validation/03_external_blca_validation.R"
+)
 SCRNA = "workflows/single_cell/01_process_scrna.R"
+MARKERS = (
+    "workflows/single_cell/01b_annotation_and_markers.R -> "
+    "workflows/single_cell/08_marker_visualization.R"
+)
+SUBCLUSTER = "workflows/single_cell/01c_lineage_subclustering.R"
+INFER_CNV_PRIMARY = "workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R"
 INFER_CNV = "workflows/single_cell/02_infercnv_non_epi_reference.R"
 TRAJECTORY = "workflows/single_cell/03_trajectory_analysis.R"
+MONOCLE3 = "workflows/single_cell/03b_monocle3_robustness.R"
 CYTOTRACE = "workflows/single_cell/04_cytotrace2.R"
 SCENIC = "workflows/single_cell/05_pyscenic.sh"
 ENRICHMENT = "workflows/single_cell/06_functional_enrichment.R"
 PATHWAYS = "workflows/single_cell/07_pathway_activity.R"
+ROE = "workflows/single_cell/09_roe_composition.R"
 VISIUM = "workflows/spatial/01_visium_preprocessing.R"
 C2L = "workflows/spatial/cell2location/"
 PAIR = "workflows/spatial/02_multiscale_pair_burden.py"
-BOUNDARY = "workflows/spatial/03_prepare_boundary_input.py -> 04_infer_boundary_stgrads.R -> 05_boundary_profiles.R"
+BOUNDARY = (
+    "workflows/spatial/03_prepare_boundary_input.py -> "
+    "workflows/spatial/04_infer_boundary_stgrads.R -> "
+    "workflows/spatial/05_boundary_profiles.R"
+)
 RCTD = "workflows/spatial/06_external_rctd.R"
+SPATIAL_COLOC = "workflows/spatial/07_cellstate_correlation_colocalization.R"
+SPAGENE = "workflows/spatial/08_spagene_lr_colocalization.R"
+SPACET = "workflows/spatial/09_spacet_gene_set_scores.R"
+VISIUMHD = (
+    "workflows/spatial/06_external_rctd.R -> "
+    "workflows/spatial/10_visiumhd_niche_colocalization.R"
+)
+EXTERNAL_VISIUM = (
+    "workflows/spatial/06_external_rctd.R -> "
+    "workflows/spatial/11a_prepare_external_visium_scores.R -> "
+    "workflows/spatial/11_external_visium_basal_axis.R"
+)
+GEOMX = "workflows/spatial/12_geomx_roi_validation.R"
 CELLCHAT = "workflows/communication/01_cellchat.R"
 NICHENET = "workflows/communication/02_nichenet_tam_to_mycaf.R"
+SPATIAL_CELLCHAT = "workflows/communication/03_cellchat_spatial.R"
 PERTURB = "workflows/perturbation/01_spp1_virtual_knockout.R"
-SCPAGWAS = "workflows/genetics/01_scpagwas.R -> 02_prepare_scpagwas_tables.R"
+SCPAGWAS = (
+    "workflows/genetics/01_scpagwas.R -> "
+    "workflows/genetics/02_prepare_scpagwas_tables.R"
+)
 
 
 MODULES = (
@@ -101,9 +136,9 @@ MODULES = (
               "stage,subtype,score_name,score_value", "box", x="subtype", y="score_value", fill="subtype", facet="score_name"),
             p("D", "Single-cell UMAP of major lineages", SCRNA,
               "UMAP_1,UMAP_2,major_celltype", "point", x="UMAP_1", y="UMAP_2", colour="major_celltype"),
-            native("E", "Representative lineage-marker dot plot", SCRNA,
+            native("E", "Representative lineage-marker dot plot", MARKERS,
                    "cell_type,gene,average_expression,percent_expressing"),
-            p("F", "Relative enrichment of major cell types", SCRNA,
+            p("F", "Relative enrichment of major cell types", ROE,
               "sample_group,cell_type,roe", "heatmap", x="sample_group", y="cell_type", fill="roe"),
         ),
     ),
@@ -113,7 +148,7 @@ MODULES = (
         (
             p("A", "cell2location major-cell-type maps", C2L,
               "sample,x,y,cell_type,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="cell_type"),
-            p("B", "Within-section cell-state correlations", C2L,
+            p("B", "Within-section cell-state correlations", SPATIAL_COLOC,
               "sample,state_1,state_2,spearman_rho", "heatmap", x="state_1", y="state_2", fill="spearman_rho", facet="sample"),
             wet("C", "CK5/6, GATA3, FAP and SPP1 immunohistochemistry"),
         ),
@@ -122,20 +157,20 @@ MODULES = (
         "figures/Fig03",
         "Stage-associated remodeling of the myeloid compartment",
         (
-            p("A", "Myeloid UMAP", SCRNA,
+            p("A", "Myeloid UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
-            p("B", "Myeloid relative enrichment by tissue group", SCRNA,
+            p("B", "Myeloid relative enrichment by tissue group", ROE,
               "sample_group,cell_state,roe", "heatmap", x="sample_group", y="cell_state", fill="roe"),
             p("C", "Monocyte-macrophage pseudotime", TRAJECTORY,
               "pseudotime,cell_state,density", "line", x="pseudotime", y="density", group="cell_state", colour="cell_state"),
-            p("D", "CCR2 monocyte and SPP1 TAM spatial maps", C2L,
-              "sample,x,y,cell_state,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="cell_state"),
-            p("E", "Spatial TAM M2 signature", VISIUM,
+            p("D", "CCR2 monocyte and SPP1 TAM spatial co-localization", SPATIAL_COLOC,
+              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
+            p("E", "Spatial TAM M2 signature", SPACET,
               "sample,x,y,m2_score", "point", x="x", y="y", colour="m2_score", facet="sample"),
-            p("F", "Neutrophil UMAP", SCRNA,
+            p("F", "Neutrophil UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
-            p("G", "VEGFA TAN and Cancer_c3 spatial maps", C2L,
-              "sample,x,y,cell_state,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="cell_state"),
+            p("G", "VEGFA TAN and Cancer_c3 spatial co-localization", SPATIAL_COLOC,
+              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
             p("H", "Myeloid-state survival curves", BULK,
               "time,survival,signature", "line", x="time", y="survival", group="signature", colour="signature"),
             p("I", "Neu_c2_VEGFA Hallmark enrichment", ENRICHMENT,
@@ -146,7 +181,7 @@ MODULES = (
         "figures/Fig04",
         "Stromal and endothelial cell states",
         (
-            p("A", "Mesenchymal UMAP", SCRNA,
+            p("A", "Mesenchymal UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
             p("B", "Mesenchymal pseudotime branches", TRAJECTORY,
               "pseudotime,cell_state,density", "line", x="pseudotime", y="density", group="cell_state", colour="cell_state"),
@@ -170,15 +205,15 @@ MODULES = (
                    "source,target,weight"),
             p("C", "Outgoing and incoming communication centrality", CELLCHAT,
               "cell_state,outgoing,incoming", "point", x="outgoing", y="incoming", colour="cell_state"),
-            native("D", "SPP1 signaling network by stage", CELLCHAT,
+            native("D", "SPP1 spatial signaling network by stage", SPATIAL_CELLCHAT,
                    "stage,source,target,probability,p_value"),
-            native("E", "TGF-beta signaling network by stage", CELLCHAT,
+            native("E", "TGF-beta spatial signaling network by stage", SPATIAL_CELLCHAT,
                    "stage,source,target,probability,p_value"),
-            native("F", "VEGF signaling network by stage", CELLCHAT,
+            native("F", "VEGF spatial signaling network by stage", SPATIAL_CELLCHAT,
                    "stage,source,target,probability,p_value"),
             p("G", "Selected ligand-receptor probabilities", CELLCHAT,
               "stage,interaction,probability,p_value", "bar", x="interaction", y="probability", fill="stage"),
-            p("H", "Stage-level communication summary", CELLCHAT,
+            p("H", "Stage-level spatial communication summary", SPATIAL_CELLCHAT,
               "stage,pathway,total_probability", "heatmap", x="stage", y="pathway", fill="total_probability"),
         ),
     ),
@@ -186,16 +221,16 @@ MODULES = (
         "figures/Fig06",
         "SPP1 TAM-myCAF spatial coupling and candidate signaling",
         (
-            p("A", "NMI-Basal spatial co-localization", C2L,
-              "sample,x,y,component,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="component"),
-            p("B", "MI-Basal spatial co-localization", C2L,
-              "sample,x,y,component,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="component"),
+            p("A", "NMI-Basal spatial co-localization", SPATIAL_COLOC,
+              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
+            p("B", "MI-Basal spatial co-localization", SPATIAL_COLOC,
+              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
             wet("C", "Multiplex immunofluorescence"),
             native("D", "NicheNet multi-ligand candidate network", NICHENET,
                    "ligand,aupr_corrected,receiver_target"),
-            p("E", "TGF-beta ligand-receptor spatial signal", VISIUM,
+            p("E", "TGF-beta ligand-receptor spatial signal", SPAGENE,
               "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score"),
-            p("F", "SPP1-integrin spatial signal", VISIUM,
+            p("F", "SPP1-integrin spatial signal", SPAGENE,
               "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score"),
         ),
     ),
@@ -203,23 +238,23 @@ MODULES = (
         "figures/Fig07",
         "External bladder cancer validation of the myeloid-stromal program",
         (
-            p("A", "Visium HD RCTD embedding", RCTD,
+            p("A", "Visium HD RCTD embedding", VISIUMHD,
               "UMAP_1,UMAP_2,cell_type", "point", x="UMAP_1", y="UMAP_2", colour="cell_type"),
-            p("B", "Visium HD inferred cell-type map", RCTD,
+            p("B", "Visium HD inferred cell-type map", VISIUMHD,
               "x,y,cell_type,proportion", "point", x="x", y="y", colour="cell_type"),
-            p("C", "External SPP1 TAM-myCAF score", RCTD,
+            p("C", "External SPP1 TAM-myCAF score", VISIUMHD,
               "x,y,pair_score", "point", x="x", y="y", colour="pair_score"),
-            p("D", "Basal, luminal and component maps", RCTD,
+            p("D", "Basal, luminal and component maps", VISIUMHD,
               "x,y,feature,value", "point", x="x", y="y", colour="value", facet="feature"),
-            p("E", "GeoMx component-score correlation", BLCA,
+            p("E", "GeoMx component-score correlation", GEOMX,
               "spp1_tam_score,fap_mycaf_score,region", "point", x="spp1_tam_score", y="fap_mycaf_score", colour="region"),
-            p("F", "GeoMx cytotoxic-program associations", BLCA,
+            p("F", "GeoMx cytotoxic-program associations", GEOMX,
               "program,estimate,FDR", "bar", x="program", y="estimate", fill="estimate"),
-            p("G", "GeoMx suppressive-program associations", BLCA,
+            p("G", "GeoMx suppressive-program associations", GEOMX,
               "program,estimate,FDR", "bar", x="program", y="estimate", fill="estimate"),
-            p("H", "Paired Basal-high versus luminal-high comparison", RCTD,
+            p("H", "Paired Basal-high versus luminal-high comparison", EXTERNAL_VISIUM,
               "sample,region_group,component,proportion", "box", x="region_group", y="proportion", fill="region_group", facet="component"),
-            p("I", "Paired Visium validation maps", RCTD,
+            p("I", "Paired Visium validation maps", EXTERNAL_VISIUM,
               "sample,x,y,feature,value", "point", x="x", y="y", colour="value", facet="feature"),
         ),
     ),
@@ -241,16 +276,16 @@ MODULES = (
         "figures/Fig09",
         "VEGFA TAN-CXCR4 tip EC angiogenic program",
         (
-            p("A", "NMI-Basal component maps", C2L,
-              "sample,x,y,component,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="component"),
-            p("B", "MI-Basal component maps", C2L,
-              "sample,x,y,component,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="component"),
+            p("A", "NMI-Basal component co-localization", SPATIAL_COLOC,
+              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
+            p("B", "MI-Basal component co-localization", SPATIAL_COLOC,
+              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
             wet("C", "Multiplex immunofluorescence"),
             native("D", "Selected CellChat interactions", CELLCHAT,
                    "source,target,ligand,receptor,probability,p_value"),
-            p("E", "VEGFA-VEGFR1 spatial signal", VISIUM,
+            p("E", "VEGFA-VEGFR1 spatial signal", SPAGENE,
               "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score"),
-            p("F", "NAMPT-INSR spatial signal", VISIUM,
+            p("F", "NAMPT-INSR spatial signal", SPAGENE,
               "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score"),
         ),
     ),
@@ -264,7 +299,7 @@ MODULES = (
               "section,program,ring,spatial_oe,permutation_p_upper", "line", x="ring", y="spatial_oe", group="section", colour="section", facet="program"),
             p("C", "Section-specific signed-distance profiles", BOUNDARY,
               "sample,cell_state,signed_distance,fitted_z,se", "line", x="signed_distance", y="fitted_z", group="cell_state", colour="cell_state", facet="sample"),
-            p("D", "GSE319536 continuous Basal-luminal validation", RCTD,
+            p("D", "GSE319536 continuous Basal-luminal validation", EXTERNAL_VISIUM,
               "basal_luminal_percentile,ring,pair_score,mean_curve,ci_low,ci_high", "line", x="basal_luminal_percentile", y="mean_curve", group="ring", colour="ring"),
             p("E", "Japan-UTUC cellular-program clinical models", JAPAN,
               "score,endpoint,model,effect,CI_low,CI_high,p_value,FDR_BH", "forest", effect="effect", term="score", lower="CI_low", upper="CI_high", facet="endpoint"),
@@ -306,7 +341,7 @@ MODULES = (
         (
             p("A", "Single-cell quality-control metrics", SCRNA,
               "sample,metric,value", "box", x="sample", y="value", fill="sample", facet="metric"),
-            p("B", "Lineage-marker density maps", SCRNA,
+            p("B", "Lineage-marker density maps", MARKERS,
               "UMAP_1,UMAP_2,gene,expression", "point", x="UMAP_1", y="UMAP_2", colour="expression", facet="gene"),
             p("C", "Major-cell-type proportions", SCRNA,
               "sample_group,cell_type,proportion", "bar", x="sample_group", y="proportion", fill="cell_type"),
@@ -343,11 +378,11 @@ MODULES = (
         (
             native("A", "Non-epithelial-reference inferCNV heatmap", INFER_CNV,
                    "cell_id,chromosome,position,cnv_value"),
-            p("B", "Malignant epithelial UMAP", SCRNA,
+            p("B", "Malignant epithelial UMAP", INFER_CNV_PRIMARY,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
-            p("C", "CytoTRACE2 and Monocle3 trajectories", CYTOTRACE,
+            p("C", "CytoTRACE2 and Monocle3 trajectories", f"{CYTOTRACE} -> {MONOCLE3}",
               "embedding_1,embedding_2,analysis,value,cell_state", "point", x="embedding_1", y="embedding_2", colour="value", facet="analysis"),
-            p("D", "Basal-marker density", SCRNA,
+            p("D", "Basal-marker density", MARKERS,
               "UMAP_1,UMAP_2,gene,expression", "point", x="UMAP_1", y="UMAP_2", colour="expression", facet="gene"),
             p("E", "Malignant-state spatial maps", C2L,
               "sample,x,y,cell_state,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="cell_state"),
@@ -369,9 +404,9 @@ MODULES = (
         (
             p("A", "Top markers and GO terms", ENRICHMENT,
               "cell_state,gene_or_term,value,kind", "heatmap", x="cell_state", y="gene_or_term", fill="value", facet="kind"),
-            native("B", "PCA-based malignant trajectory", TRAJECTORY,
+            native("B", "Monocle2 DDRTree malignant trajectory", TRAJECTORY,
                    "PCA_1,PCA_2,cell_state,pseudotime"),
-            p("C", "Monocle3 pseudotime embeddings", TRAJECTORY,
+            p("C", "Monocle3 robustness embeddings", MONOCLE3,
               "embedding_1,embedding_2,embedding,pseudotime", "point", x="embedding_1", y="embedding_2", colour="pseudotime", facet="embedding"),
             p("D", "Representative regulon activities", SCENIC,
               "cell_state,regulon,auc", "box", x="cell_state", y="auc", fill="cell_state", facet="regulon"),
@@ -389,13 +424,13 @@ MODULES = (
         "supplementary/SuppFig07",
         "Myeloid subcluster characterization",
         (
-            native("A", "Canonical marker dot plot", SCRNA,
+            native("A", "Canonical marker dot plot", MARKERS,
                    "cell_state,gene,average_expression,percent_expressing"),
             p("B", "Markers and GO terms", ENRICHMENT,
               "cell_state,gene_or_term,value,kind", "heatmap", x="cell_state", y="gene_or_term", fill="value", facet="kind"),
             p("C", "Subcluster density along pseudotime", TRAJECTORY,
               "pseudotime,cell_state,density", "line", x="pseudotime", y="density", group="cell_state", colour="cell_state"),
-            p("D", "CCR2-SPP1 and M2 spatial maps", C2L,
+            p("D", "CCR2-SPP1 co-localization and M2 spatial scores", f"{SPATIAL_COLOC} -> {SPACET}",
               "sample,x,y,feature,value", "point", x="x", y="y", colour="value", facet="feature"),
             p("E", "Dendritic-cell DSS", BULK,
               "time,survival,signature", "line", x="time", y="survival", group="signature", colour="signature"),
@@ -405,15 +440,15 @@ MODULES = (
         "supplementary/SuppFig08",
         "Lymphoid heterogeneity and spatial organization",
         (
-            p("A", "Lymphoid UMAP", SCRNA,
+            p("A", "Lymphoid UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
             p("B", "CD4 functional programs", PATHWAYS,
               "cell_state,program,score", "heatmap", x="cell_state", y="program", fill="score"),
             p("C", "Lymphoid-state DSS", BULK,
               "time,survival,signature", "line", x="time", y="survival", group="signature", colour="signature"),
-            p("D", "CD8 relative enrichment", SCRNA,
+            p("D", "CD8 relative enrichment", ROE,
               "sample_group,cell_state,roe", "heatmap", x="sample_group", y="cell_state", fill="roe"),
-            p("E", "Spatial T-cell program scores", VISIUM,
+            p("E", "Spatial T-cell program scores", SPACET,
               "sample,x,y,program,score", "point", x="x", y="y", colour="score", facet="program"),
         ),
     ),
@@ -421,13 +456,13 @@ MODULES = (
         "supplementary/SuppFig09",
         "Lymphoid subcluster programs",
         (
-            p("A", "CD4 T-cell UMAP", SCRNA,
+            p("A", "CD4 T-cell UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
             p("B", "CD4 markers and functions", ENRICHMENT,
               "cell_state,gene_or_term,value,kind", "heatmap", x="cell_state", y="gene_or_term", fill="value", facet="kind"),
-            p("C", "CD4 relative enrichment", SCRNA,
+            p("C", "CD4 relative enrichment", ROE,
               "sample_group,cell_state,roe", "heatmap", x="sample_group", y="cell_state", fill="roe"),
-            p("D", "CD8 T-cell UMAP", SCRNA,
+            p("D", "CD8 T-cell UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
             p("E", "CD8 markers and functions", ENRICHMENT,
               "cell_state,gene_or_term,value,kind", "heatmap", x="cell_state", y="gene_or_term", fill="value", facet="kind"),
@@ -445,13 +480,13 @@ MODULES = (
         (
             p("A", "Mesenchymal markers and GO terms", ENRICHMENT,
               "cell_state,gene_or_term,value,kind", "heatmap", x="cell_state", y="gene_or_term", fill="value", facet="kind"),
-            p("B", "Spatial myogenesis score", VISIUM,
+            p("B", "Spatial myogenesis score", SPACET,
               "sample,x,y,myogenesis_score", "point", x="x", y="y", colour="myogenesis_score"),
             p("C", "CAF_c3_FAP Hallmark enrichment", ENRICHMENT,
               "pathway,NES,FDR", "bar", x="pathway", y="NES", fill="NES"),
-            p("D", "Endothelial UMAP", SCRNA,
+            p("D", "Endothelial UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
-            native("E", "Endothelial marker dot plot", SCRNA,
+            native("E", "Endothelial marker dot plot", MARKERS,
                    "cell_state,gene,average_expression,percent_expressing"),
             p("F", "Endo_c1_CXCR4 enrichment", ENRICHMENT,
               "pathway,NES,FDR", "bar", x="pathway", y="NES", fill="NES"),
@@ -481,15 +516,15 @@ MODULES = (
         (
             p("A", "Major-lineage UMAP", SCRNA,
               "UMAP_1,UMAP_2,cell_type", "point", x="UMAP_1", y="UMAP_2", colour="cell_type"),
-            native("B", "Canonical lineage-marker dot plot", SCRNA,
+            native("B", "Canonical lineage-marker dot plot", MARKERS,
                    "cell_type,gene,average_expression,percent_expressing"),
-            native("C", "Neutrophil-marker audit", SCRNA,
+            native("C", "Neutrophil-marker audit", MARKERS,
                    "cell_type,gene,average_expression,percent_expressing"),
-            p("D", "Myeloid reclustering and SPP1 density", SCRNA,
+            p("D", "Myeloid reclustering and SPP1 density", f"{SUBCLUSTER} -> {MARKERS}",
               "UMAP_1,UMAP_2,cell_state,SPP1", "point", x="UMAP_1", y="UMAP_2", colour="SPP1"),
-            p("E", "Fibroblast reclustering and FAP density", SCRNA,
+            p("E", "Fibroblast reclustering and FAP density", f"{SUBCLUSTER} -> {MARKERS}",
               "UMAP_1,UMAP_2,cell_state,FAP", "point", x="UMAP_1", y="UMAP_2", colour="FAP"),
-            p("F", "Endothelial reclustering and CXCR4 density", SCRNA,
+            p("F", "Endothelial reclustering and CXCR4 density", f"{SUBCLUSTER} -> {MARKERS}",
               "UMAP_1,UMAP_2,cell_state,CXCR4", "point", x="UMAP_1", y="UMAP_2", colour="CXCR4"),
         ),
     ),
@@ -549,6 +584,7 @@ def analysis_script(module: Module) -> str:
                 }
             )
         records.append(r_list(values))
+    joined_records = ",\n  ".join(records)
     return f'''#!/usr/bin/env Rscript
 
 # {Path(module.path).name}: {module.title}
@@ -562,7 +598,7 @@ opts <- parse_common_args()
 set.seed(opts$seed)
 
 panel_plan <- list(
-  {",\n  ".join(records)}
+  {joined_records}
 )
 
 audit <- run_figure_analysis("{Path(module.path).name}", panel_plan, opts)
@@ -620,6 +656,7 @@ def plot_script(module: Module) -> str:
             "  panel = character(), title = character(), workflow = character()\n"
             ")\n"
         )
+    joined_plot_records = ",\n  ".join(plot_records)
     return f'''#!/usr/bin/env Rscript
 
 # {Path(module.path).name} panel rendering.
@@ -632,7 +669,7 @@ source(file.path("core", "R", "figure_assembly.R"))
 opts <- parse_common_args()
 
 plot_plan <- list(
-  {",\n  ".join(plot_records)}
+  {joined_plot_records}
 )
 
 if (length(plot_plan)) {{
@@ -743,7 +780,7 @@ def main() -> None:
                     "plot_script": f"{module.path}/02_plot.R",
                     "source_workflow": panel.workflow,
                     "panel_type": panel_type,
-                    "status": "implemented_v0.2",
+                    "status": "implemented_v0.3",
                 }
             )
 

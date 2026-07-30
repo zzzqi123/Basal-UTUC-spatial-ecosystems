@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Malignant epithelial UMAP",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R",
     operation = "select",
     input = "SuppFig05_B.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "CytoTRACE2 and Monocle3 trajectories",
-    workflow = "workflows/single_cell/04_cytotrace2.R",
+    workflow = "workflows/single_cell/04_cytotrace2.R -> workflows/single_cell/03b_monocle3_robustness.R",
     operation = "select",
     input = "SuppFig05_C.tsv",
     required = c("embedding_1", "embedding_2", "analysis", "value", "cell_state"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "Basal-marker density",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig05_D.tsv",
     required = c("UMAP_1", "UMAP_2", "gene", "expression"),
@@ -68,7 +68,7 @@ panel_plan <- list(
   list(
     panel = "G",
     title = "Cancer_c0 and Cancer_c3 DSS",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig05_G.tsv",
     required = c("time", "survival", "signature"),
