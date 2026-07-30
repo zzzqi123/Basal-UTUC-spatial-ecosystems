@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "DSS in Basal NMI versus Basal MI",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig11_A.tsv",
     required = c("time", "survival", "stage"),
@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "SPP1 and FAP correlations with Basal score",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig11_B.tsv",
     required = c("gene", "expression", "basal_score"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "Subtype-classification ROC curves",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig11_C.tsv",
     required = c("marker", "fpr", "tpr", "auc"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "Joint SPP1-FAP survival stratification",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig11_D.tsv",
     required = c("time", "survival", "group"),
@@ -50,7 +50,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "Time-dependent DSS AUC",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig11_E.tsv",
     required = c("year", "model", "auc"),

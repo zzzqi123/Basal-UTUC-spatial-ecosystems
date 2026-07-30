@@ -46,6 +46,57 @@ pair_burden <- function(first, second, method = "geometric_mean") {
   stop("Unsupported pair burden method: ", method)
 }
 
+ordinal_abundance <- function(x, levels = 3L) {
+  values <- as.numeric(x)
+  observed <- is.finite(values)
+  result <- rep(NA_integer_, length(values))
+  if (!any(observed)) return(result)
+  span <- range(values[observed], na.rm = TRUE)
+  if (diff(span) == 0) {
+    result[observed] <- 1L
+    return(result)
+  }
+  result[observed] <- as.integer(cut(
+    values[observed],
+    breaks = levels,
+    labels = seq_len(levels),
+    include.lowest = TRUE
+  ))
+  result
+}
+
+ordinal_colocalization <- function(first, second, levels = 3L) {
+  ordinal_abundance(first, levels) * ordinal_abundance(second, levels)
+}
+
+pairwise_spearman <- function(data, id_columns = character()) {
+  feature_names <- setdiff(
+    names(data)[vapply(data, is.numeric, logical(1))],
+    id_columns
+  )
+  if (length(feature_names) < 2L) {
+    stop("At least two numeric abundance columns are required")
+  }
+  grid <- expand.grid(
+    state_1 = feature_names,
+    state_2 = feature_names,
+    stringsAsFactors = FALSE
+  )
+  grid$rho <- mapply(
+    function(first, second) {
+      suppressWarnings(cor(
+        data[[first]],
+        data[[second]],
+        method = "spearman",
+        use = "pairwise.complete.obs"
+      ))
+    },
+    grid$state_1,
+    grid$state_2
+  )
+  grid
+}
+
 summarise_numeric_by_group <- function(data, groups) {
   numeric_names <- setdiff(
     names(data)[vapply(data, is.numeric, logical(1))],

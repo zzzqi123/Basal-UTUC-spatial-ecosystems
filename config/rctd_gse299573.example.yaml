@@ -1,0 +1,17 @@
+random_seed: 20260730
+
+rctd:
+  min_spot_umi: 500
+  normalize_weights: true
+
+external_dataset:
+  id: GSE299573_VisiumHD
+  spatial_object: gse299573_visiumhd_8um.rds
+  reference_object: external_blca_reference.rds
+  spatial_assay: Spatial
+  reference_assay: RNA
+  reference_label: NN_celltype
+  rctd_mode: doublet
+  spp1_tam_column: SPP1_TAM
+  fap_mycaf_column: FAP_myCAF
+  neighborhood_k: 60

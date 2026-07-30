@@ -5,8 +5,8 @@
 | Panel | Analysis | Source workflow |
 |---|---|---|
 | A | Annotated single-cell t-SNE | `workflows/single_cell/01_process_scrna.R` |
-| B | Cell-level scPagwas adjusted FDR | `workflows/genetics/01_scpagwas.R -> 02_prepare_scpagwas_tables.R` |
-| C | Cell-type scPagwas bootstrap FDR | `workflows/genetics/01_scpagwas.R -> 02_prepare_scpagwas_tables.R` |
+| B | Cell-level scPagwas adjusted FDR | `workflows/genetics/01_scpagwas.R -> workflows/genetics/02_prepare_scpagwas_tables.R` |
+| C | Cell-type scPagwas bootstrap FDR | `workflows/genetics/01_scpagwas.R -> workflows/genetics/02_prepare_scpagwas_tables.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

@@ -40,8 +40,8 @@ panel_plan <- list(
   ),
   list(
     panel = "D",
-    title = "SPP1 signaling network by stage",
-    workflow = "workflows/communication/01_cellchat.R",
+    title = "SPP1 spatial signaling network by stage",
+    workflow = "workflows/communication/03_cellchat_spatial.R",
     operation = "select",
     input = "Fig05_D.tsv",
     required = c("stage", "source", "target", "probability", "p_value"),
@@ -49,8 +49,8 @@ panel_plan <- list(
   ),
   list(
     panel = "E",
-    title = "TGF-beta signaling network by stage",
-    workflow = "workflows/communication/01_cellchat.R",
+    title = "TGF-beta spatial signaling network by stage",
+    workflow = "workflows/communication/03_cellchat_spatial.R",
     operation = "select",
     input = "Fig05_E.tsv",
     required = c("stage", "source", "target", "probability", "p_value"),
@@ -58,8 +58,8 @@ panel_plan <- list(
   ),
   list(
     panel = "F",
-    title = "VEGF signaling network by stage",
-    workflow = "workflows/communication/01_cellchat.R",
+    title = "VEGF spatial signaling network by stage",
+    workflow = "workflows/communication/03_cellchat_spatial.R",
     operation = "select",
     input = "Fig05_F.tsv",
     required = c("stage", "source", "target", "probability", "p_value"),
@@ -76,8 +76,8 @@ panel_plan <- list(
   ),
   list(
     panel = "H",
-    title = "Stage-level communication summary",
-    workflow = "workflows/communication/01_cellchat.R",
+    title = "Stage-level spatial communication summary",
+    workflow = "workflows/communication/03_cellchat_spatial.R",
     operation = "select",
     input = "Fig05_H.tsv",
     required = c("stage", "pathway", "total_probability"),

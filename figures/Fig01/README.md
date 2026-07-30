@@ -4,12 +4,12 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Molecular subtype distribution by stage | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| B | Subtype-stratified disease-specific survival | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| C | Immune and stromal scores within stage | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| A | Molecular subtype distribution by stage | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| B | Subtype-stratified disease-specific survival | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| C | Immune and stromal scores within stage | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 | D | Single-cell UMAP of major lineages | `workflows/single_cell/01_process_scrna.R` |
-| E | Representative lineage-marker dot plot | `workflows/single_cell/01_process_scrna.R` |
-| F | Relative enrichment of major cell types | `workflows/single_cell/01_process_scrna.R` |
+| E | Representative lineage-marker dot plot | `workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R` |
+| F | Relative enrichment of major cell types | `workflows/single_cell/09_roe_composition.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

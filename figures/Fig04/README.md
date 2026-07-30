@@ -4,7 +4,7 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Mesenchymal UMAP | `workflows/single_cell/01_process_scrna.R` |
+| A | Mesenchymal UMAP | `workflows/single_cell/01c_lineage_subclustering.R` |
 | B | Mesenchymal pseudotime branches | `workflows/single_cell/03_trajectory_analysis.R` |
 | C | CAF functional-state radar summary | `workflows/single_cell/07_pathway_activity.R` |
 | D | myCAF correlations with Basal and TGF-beta scores | `workflows/single_cell/07_pathway_activity.R` |

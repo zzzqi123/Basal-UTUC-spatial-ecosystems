@@ -51,11 +51,29 @@ communication ─────┤
 perturbation ──────┘
 ```
 
-The spatial branch includes Visium processing, cell2location, spatial
-neighborhoods, multiscale pair burden, permutation O/E, stGrads boundaries,
-section-specific GAM profiles and external RCTD. The independent Japan-UTUC
-analysis is under `workflows/bulk_clinical_validation/`; it is not a spatial
-dataset and its cellular-program scores do not measure spatial adjacency.
+The single-cell branch includes QC/integration, manual marker evidence,
+lineage subclustering, primary and sensitivity inferCNV, CytoTRACE2,
+Monocle2, SCOP/Monocle3, pySCENIC, ClusterGVis/Nebulosa, enrichment,
+AUCell/PROGENy and Ro/e composition. The spatial branch includes Visium
+processing, cell2location, cell-state correlation and co-localization,
+SpaGene, SpaCET, spatial CellChat, multiscale pair burden, permutation O/E,
+stGrads boundaries, section-specific GAM profiles, Visium HD/Visium RCTD and
+GeoMx validation.
+
+The independent Japan-UTUC analysis is under
+`workflows/bulk_clinical_validation/`; it is not a spatial dataset and its
+cellular-program scores do not measure spatial adjacency.
+
+The line-by-line Methods audit is
+[`manifests/manuscript_method_audit.tsv`](manifests/manuscript_method_audit.tsv).
+It distinguishes final manuscript workflows, external vendor tools,
+sensitivity analyses, a resolved Ro/e wording mismatch and exploratory
+methods that are deliberately not represented as final analyses.
+
+The genetics branch includes both scPagwas and the SPP1 PheW-MR
+post-processing contract. Bulk workflows include ESTIMATE, BASE47/GSVA,
+subtype-by-stage linear models, DSS log-rank/Cox analysis, five-year timeROC,
+pROC and maximally selected thresholds.
 
 ### 3. Main figures
 
@@ -148,7 +166,10 @@ Public wrappers follow the documented interfaces of
 [cell2location](https://cell2location.readthedocs.io/en/latest/notebooks/cell2location_tutorial.html),
 [scPagwas](https://github.com/dengchunyu/scPagwas),
 [CytoTRACE2](https://github.com/digitalcytometry/cytotrace2) and
-[spacexr/RCTD](https://github.com/dmcable/spacexr). Study-specific parameters
-are locked in `config/parameters.yaml` and
+[spacexr/RCTD](https://github.com/dmcable/spacexr),
+[CellChat](https://github.com/jinworks/CellChat),
+[SpaGene](https://github.com/liuqivandy/SpaGene) and
+[Monocle2](https://bioconductor.org/packages/monocle/). Study-specific
+parameters are locked in `config/parameters.yaml` and
 `manifests/method_code_checklist.tsv`; third-party package source is not
 vendored into this repository.

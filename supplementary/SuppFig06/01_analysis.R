@@ -22,7 +22,7 @@ panel_plan <- list(
   ),
   list(
     panel = "B",
-    title = "PCA-based malignant trajectory",
+    title = "Monocle2 DDRTree malignant trajectory",
     workflow = "workflows/single_cell/03_trajectory_analysis.R",
     operation = "select",
     input = "SuppFig06_B.tsv",
@@ -31,8 +31,8 @@ panel_plan <- list(
   ),
   list(
     panel = "C",
-    title = "Monocle3 pseudotime embeddings",
-    workflow = "workflows/single_cell/03_trajectory_analysis.R",
+    title = "Monocle3 robustness embeddings",
+    workflow = "workflows/single_cell/03b_monocle3_robustness.R",
     operation = "select",
     input = "SuppFig06_C.tsv",
     required = c("embedding_1", "embedding_2", "embedding", "pseudotime"),
@@ -59,7 +59,7 @@ panel_plan <- list(
   list(
     panel = "F",
     title = "Cancer_c3-Basal score correlation",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig06_F.tsv",
     required = c("cancer_c3_score", "basal_score"),
@@ -68,7 +68,7 @@ panel_plan <- list(
   list(
     panel = "G",
     title = "Cancer_c4 DSS",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig06_G.tsv",
     required = c("time", "survival", "group"),

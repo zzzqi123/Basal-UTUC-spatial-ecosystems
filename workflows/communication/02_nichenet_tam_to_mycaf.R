@@ -9,7 +9,7 @@ suppressPackageStartupMessages({
 
 source(file.path("core", "R", "cli.R"))
 opts <- parse_common_args()
-object <- readRDS(require_input(opts$input_dir, "utuc_scrna_annotated.rds"))
+object <- readRDS(require_input(opts$input_dir, "utuc_annotated_scrna.rds"))
 resources <- readRDS(require_input(opts$input_dir, "nichenet_human_resources.rds"))
 
 sender <- "Macro_c0_SPP1"
@@ -54,4 +54,3 @@ write_run_metadata(
   opts,
   list(sender = sender, receiver = receiver, interpretation = "multi-ligand candidate network")
 )
-

@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Visium HD RCTD embedding",
-    workflow = "workflows/spatial/06_external_rctd.R",
+    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/10_visiumhd_niche_colocalization.R",
     operation = "select",
     input = "Fig07_A.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_type"),
@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Visium HD inferred cell-type map",
-    workflow = "workflows/spatial/06_external_rctd.R",
+    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/10_visiumhd_niche_colocalization.R",
     operation = "select",
     input = "Fig07_B.tsv",
     required = c("x", "y", "cell_type", "proportion"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "External SPP1 TAM-myCAF score",
-    workflow = "workflows/spatial/06_external_rctd.R",
+    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/10_visiumhd_niche_colocalization.R",
     operation = "select",
     input = "Fig07_C.tsv",
     required = c("x", "y", "pair_score"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "Basal, luminal and component maps",
-    workflow = "workflows/spatial/06_external_rctd.R",
+    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/10_visiumhd_niche_colocalization.R",
     operation = "select",
     input = "Fig07_D.tsv",
     required = c("x", "y", "feature", "value"),
@@ -50,7 +50,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "GeoMx component-score correlation",
-    workflow = "workflows/bulk_clinical_validation/03_external_blca_validation.R",
+    workflow = "workflows/spatial/12_geomx_roi_validation.R",
     operation = "select",
     input = "Fig07_E.tsv",
     required = c("spp1_tam_score", "fap_mycaf_score", "region"),
@@ -59,7 +59,7 @@ panel_plan <- list(
   list(
     panel = "F",
     title = "GeoMx cytotoxic-program associations",
-    workflow = "workflows/bulk_clinical_validation/03_external_blca_validation.R",
+    workflow = "workflows/spatial/12_geomx_roi_validation.R",
     operation = "select",
     input = "Fig07_F.tsv",
     required = c("program", "estimate", "FDR"),
@@ -68,7 +68,7 @@ panel_plan <- list(
   list(
     panel = "G",
     title = "GeoMx suppressive-program associations",
-    workflow = "workflows/bulk_clinical_validation/03_external_blca_validation.R",
+    workflow = "workflows/spatial/12_geomx_roi_validation.R",
     operation = "select",
     input = "Fig07_G.tsv",
     required = c("program", "estimate", "FDR"),
@@ -77,7 +77,7 @@ panel_plan <- list(
   list(
     panel = "H",
     title = "Paired Basal-high versus luminal-high comparison",
-    workflow = "workflows/spatial/06_external_rctd.R",
+    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
     operation = "select",
     input = "Fig07_H.tsv",
     required = c("sample", "region_group", "component", "proportion"),
@@ -86,7 +86,7 @@ panel_plan <- list(
   list(
     panel = "I",
     title = "Paired Visium validation maps",
-    workflow = "workflows/spatial/06_external_rctd.R",
+    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
     operation = "select",
     input = "Fig07_I.tsv",
     required = c("sample", "x", "y", "feature", "value"),

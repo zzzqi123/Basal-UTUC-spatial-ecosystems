@@ -25,7 +25,7 @@ plot_plan <- list(
   ),
   list(
     panel = "C",
-    title = "Monocle3 pseudotime embeddings",
+    title = "Monocle3 robustness embeddings",
     input = "panel_C_data.tsv",
     geometry = "point",
     x = "embedding_1",
@@ -105,7 +105,7 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "B", "PCA-based malignant trajectory", "workflows/single_cell/03_trajectory_analysis.R"
+  "B", "Monocle2 DDRTree malignant trajectory", "workflows/single_cell/03_trajectory_analysis.R"
 )
 readr::write_tsv(
   package_native_panels,

@@ -12,6 +12,29 @@ for legacy in ("functions", "methods"):
     if (ROOT / legacy).exists():
         raise SystemExit(f"Legacy top-level directory remains: {legacy}")
 
+required_workflows = (
+    "workflows/single_cell/01b_annotation_and_markers.R",
+    "workflows/single_cell/01c_lineage_subclustering.R",
+    "workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R",
+    "workflows/single_cell/03_trajectory_analysis.R",
+    "workflows/single_cell/03b_monocle3_robustness.R",
+    "workflows/single_cell/08_marker_visualization.R",
+    "workflows/single_cell/09_roe_composition.R",
+    "workflows/spatial/07_cellstate_correlation_colocalization.R",
+    "workflows/spatial/08_spagene_lr_colocalization.R",
+    "workflows/spatial/09_spacet_gene_set_scores.R",
+    "workflows/spatial/10_visiumhd_niche_colocalization.R",
+    "workflows/spatial/11a_prepare_external_visium_scores.R",
+    "workflows/spatial/11_external_visium_basal_axis.R",
+    "workflows/spatial/12_geomx_roi_validation.R",
+    "workflows/communication/03_cellchat_spatial.R",
+    "workflows/genetics/03_phewas_mr_spp1.R",
+    "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R",
+)
+for relative in required_workflows:
+    if not (ROOT / relative).is_file():
+        raise SystemExit(f"Required workflow is missing: {relative}")
+
 c2l = ROOT / "workflows" / "spatial" / "cell2location"
 if not c2l.is_dir() or len(list(c2l.glob("*.py"))) != 4:
     raise SystemExit("cell2location must contain four scripts under workflows/spatial")

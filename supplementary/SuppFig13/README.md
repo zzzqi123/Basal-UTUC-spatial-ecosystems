@@ -4,8 +4,8 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Tumor threshold, boundary and signed-distance definition | `workflows/spatial/03_prepare_boundary_input.py -> 04_infer_boundary_stgrads.R -> 05_boundary_profiles.R` |
-| B | Section-specific Cancer_c3 boundary profiles | `workflows/spatial/03_prepare_boundary_input.py -> 04_infer_boundary_stgrads.R -> 05_boundary_profiles.R` |
+| A | Tumor threshold, boundary and signed-distance definition | `workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R` |
+| B | Section-specific Cancer_c3 boundary profiles | `workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R` |
 | C | Japan-UTUC Cancer_c3 muscle-invasion models | `workflows/bulk_clinical_validation/02_japan_utuc_validation.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It

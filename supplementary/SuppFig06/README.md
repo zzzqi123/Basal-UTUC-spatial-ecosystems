@@ -5,12 +5,12 @@
 | Panel | Analysis | Source workflow |
 |---|---|---|
 | A | Top markers and GO terms | `workflows/single_cell/06_functional_enrichment.R` |
-| B | PCA-based malignant trajectory | `workflows/single_cell/03_trajectory_analysis.R` |
-| C | Monocle3 pseudotime embeddings | `workflows/single_cell/03_trajectory_analysis.R` |
+| B | Monocle2 DDRTree malignant trajectory | `workflows/single_cell/03_trajectory_analysis.R` |
+| C | Monocle3 robustness embeddings | `workflows/single_cell/03b_monocle3_robustness.R` |
 | D | Representative regulon activities | `workflows/single_cell/05_pyscenic.sh` |
 | E | Cancer_c3 Hallmark enrichment | `workflows/single_cell/06_functional_enrichment.R` |
-| F | Cancer_c3-Basal score correlation | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| G | Cancer_c4 DSS | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| F | Cancer_c3-Basal score correlation | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| G | Cancer_c4 DSS | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 | H | Cancer_c4 enrichment | `workflows/single_cell/06_functional_enrichment.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It

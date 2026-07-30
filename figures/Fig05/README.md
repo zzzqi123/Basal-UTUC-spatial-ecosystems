@@ -7,11 +7,11 @@
 | A | Number of inferred interactions | `workflows/communication/01_cellchat.R` |
 | B | Aggregated interaction strength | `workflows/communication/01_cellchat.R` |
 | C | Outgoing and incoming communication centrality | `workflows/communication/01_cellchat.R` |
-| D | SPP1 signaling network by stage | `workflows/communication/01_cellchat.R` |
-| E | TGF-beta signaling network by stage | `workflows/communication/01_cellchat.R` |
-| F | VEGF signaling network by stage | `workflows/communication/01_cellchat.R` |
+| D | SPP1 spatial signaling network by stage | `workflows/communication/03_cellchat_spatial.R` |
+| E | TGF-beta spatial signaling network by stage | `workflows/communication/03_cellchat_spatial.R` |
+| F | VEGF spatial signaling network by stage | `workflows/communication/03_cellchat_spatial.R` |
 | G | Selected ligand-receptor probabilities | `workflows/communication/01_cellchat.R` |
-| H | Stage-level communication summary | `workflows/communication/01_cellchat.R` |
+| H | Stage-level spatial communication summary | `workflows/communication/03_cellchat_spatial.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

@@ -4,12 +4,12 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | NMI-Basal spatial co-localization | `workflows/spatial/cell2location/` |
-| B | MI-Basal spatial co-localization | `workflows/spatial/cell2location/` |
+| A | NMI-Basal spatial co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
+| B | MI-Basal spatial co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
 | C | Multiplex immunofluorescence | `non-computational source panel; code not applicable` |
 | D | NicheNet multi-ligand candidate network | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
-| E | TGF-beta ligand-receptor spatial signal | `workflows/spatial/01_visium_preprocessing.R` |
-| F | SPP1-integrin spatial signal | `workflows/spatial/01_visium_preprocessing.R` |
+| E | TGF-beta ligand-receptor spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
+| F | SPP1-integrin spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

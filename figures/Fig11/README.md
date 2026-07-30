@@ -4,11 +4,11 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | DSS in Basal NMI versus Basal MI | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| B | SPP1 and FAP correlations with Basal score | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| C | Subtype-classification ROC curves | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| D | Joint SPP1-FAP survival stratification | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| E | Time-dependent DSS AUC | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| A | DSS in Basal NMI versus Basal MI | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| B | SPP1 and FAP correlations with Basal score | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| C | Subtype-classification ROC curves | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| D | Joint SPP1-FAP survival stratification | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| E | Time-dependent DSS AUC | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

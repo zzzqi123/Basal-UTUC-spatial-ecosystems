@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Cell-level scPagwas adjusted FDR",
-    workflow = "workflows/genetics/01_scpagwas.R -> 02_prepare_scpagwas_tables.R",
+    workflow = "workflows/genetics/01_scpagwas.R -> workflows/genetics/02_prepare_scpagwas_tables.R",
     operation = "select",
     input = "SuppFig03_B.tsv",
     required = c("cell_id", "tSNE_1", "tSNE_2", "Random_Correct_BG_adjp"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "Cell-type scPagwas bootstrap FDR",
-    workflow = "workflows/genetics/01_scpagwas.R -> 02_prepare_scpagwas_tables.R",
+    workflow = "workflows/genetics/01_scpagwas.R -> workflows/genetics/02_prepare_scpagwas_tables.R",
     operation = "select",
     input = "SuppFig03_C.tsv",
     required = c("cell_type", "bootstrap_bp_value", "celltype_FDR"),

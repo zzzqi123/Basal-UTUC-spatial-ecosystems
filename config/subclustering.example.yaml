@@ -1,0 +1,16 @@
+single_cell:
+  normalization_scale_factor: 10000
+  highly_variable_genes: 2000
+  pca_dimensions: 20
+  cluster_resolution: 0.5
+  marker_min_percent: 0.25
+  marker_log2fc: 0.25
+  marker_fdr: 0.05
+
+subclustering:
+  input_file: utuc_annotated_scrna.rds
+  metadata_field: major_celltype
+  include_values: [Myeloid]
+  batch_key: orig.ident
+  cluster_resolution: 0.5
+  output_prefix: myeloid

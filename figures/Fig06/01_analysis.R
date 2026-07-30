@@ -14,19 +14,19 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "NMI-Basal spatial co-localization",
-    workflow = "workflows/spatial/cell2location/",
+    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
     operation = "select",
     input = "Fig06_A.tsv",
-    required = c("sample", "x", "y", "component", "q05_abundance"),
+    required = c("sample", "x", "y", "pair_id", "colocalization_score"),
     output = "panel_A_data.tsv"
   ),
   list(
     panel = "B",
     title = "MI-Basal spatial co-localization",
-    workflow = "workflows/spatial/cell2location/",
+    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
     operation = "select",
     input = "Fig06_B.tsv",
-    required = c("sample", "x", "y", "component", "q05_abundance"),
+    required = c("sample", "x", "y", "pair_id", "colocalization_score"),
     output = "panel_B_data.tsv"
   ),
   list(
@@ -47,7 +47,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "TGF-beta ligand-receptor spatial signal",
-    workflow = "workflows/spatial/01_visium_preprocessing.R",
+    workflow = "workflows/spatial/08_spagene_lr_colocalization.R",
     operation = "select",
     input = "Fig06_E.tsv",
     required = c("sample", "x", "y", "interaction_score"),
@@ -56,7 +56,7 @@ panel_plan <- list(
   list(
     panel = "F",
     title = "SPP1-integrin spatial signal",
-    workflow = "workflows/spatial/01_visium_preprocessing.R",
+    workflow = "workflows/spatial/08_spagene_lr_colocalization.R",
     operation = "select",
     input = "Fig06_F.tsv",
     required = c("sample", "x", "y", "interaction_score"),

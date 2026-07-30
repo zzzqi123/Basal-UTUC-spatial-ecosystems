@@ -5,7 +5,7 @@
 | Panel | Analysis | Source workflow |
 |---|---|---|
 | A | cell2location major-cell-type maps | `workflows/spatial/cell2location/` |
-| B | Within-section cell-state correlations | `workflows/spatial/cell2location/` |
+| B | Within-section cell-state correlations | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
 | C | CK5/6, GATA3, FAP and SPP1 immunohistochemistry | `non-computational source panel; code not applicable` |
 
 `01_analysis.R` declares each panel's input table and required columns. It

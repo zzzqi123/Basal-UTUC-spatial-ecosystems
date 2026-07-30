@@ -5,12 +5,12 @@
 | Panel | Analysis | Source workflow |
 |---|---|---|
 | A | Non-epithelial-reference inferCNV heatmap | `workflows/single_cell/02_infercnv_non_epi_reference.R` |
-| B | Malignant epithelial UMAP | `workflows/single_cell/01_process_scrna.R` |
-| C | CytoTRACE2 and Monocle3 trajectories | `workflows/single_cell/04_cytotrace2.R` |
-| D | Basal-marker density | `workflows/single_cell/01_process_scrna.R` |
+| B | Malignant epithelial UMAP | `workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R` |
+| C | CytoTRACE2 and Monocle3 trajectories | `workflows/single_cell/04_cytotrace2.R -> workflows/single_cell/03b_monocle3_robustness.R` |
+| D | Basal-marker density | `workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R` |
 | E | Malignant-state spatial maps | `workflows/spatial/cell2location/` |
 | F | Cancer_c0 and Cancer_c3 niche distribution | `workflows/spatial/cell2location/` |
-| G | Cancer_c0 and Cancer_c3 DSS | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| G | Cancer_c0 and Cancer_c3 DSS | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 | H | Top malignant regulons | `workflows/single_cell/05_pyscenic.sh` |
 | I | Cancer_c0 enrichment | `workflows/single_cell/06_functional_enrichment.R` |
 | J | PROGENy activity | `workflows/single_cell/07_pathway_activity.R` |

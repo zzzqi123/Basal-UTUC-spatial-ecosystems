@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Lineage-marker density maps",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig02_B.tsv",
     required = c("UMAP_1", "UMAP_2", "gene", "expression"),

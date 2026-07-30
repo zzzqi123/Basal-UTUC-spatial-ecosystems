@@ -45,6 +45,13 @@ for row in rows:
             raise SystemExit(f"{row['figure']} {row['panel']} missing {key}")
     if not row["source_workflow"] or not row["panel_type"]:
         raise SystemExit(f"{row['figure']} {row['panel']} lacks method mapping")
+    if row["panel_type"] != "noncomputational":
+        for workflow in row["source_workflow"].split(" -> "):
+            if not (ROOT / workflow).exists():
+                raise SystemExit(
+                    f"{row['figure']} {row['panel']} maps to missing workflow: "
+                    f"{workflow}"
+                )
 
 print(
     f"PASS: {len(rows)} panels cover Fig01-Fig11 and "

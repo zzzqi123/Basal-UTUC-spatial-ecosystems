@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Spatial myogenesis score",
-    workflow = "workflows/spatial/01_visium_preprocessing.R",
+    workflow = "workflows/spatial/09_spacet_gene_set_scores.R",
     operation = "select",
     input = "SuppFig10_B.tsv",
     required = c("sample", "x", "y", "myogenesis_score"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "Endothelial UMAP",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R",
     operation = "select",
     input = "SuppFig10_D.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state"),
@@ -50,7 +50,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "Endothelial marker dot plot",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig10_E.tsv",
     required = c("cell_state", "gene", "average_expression", "percent_expressing"),
@@ -68,7 +68,7 @@ panel_plan <- list(
   list(
     panel = "G",
     title = "Stromal and endothelial DSS",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "SuppFig10_G.tsv",
     required = c("time", "survival", "signature"),

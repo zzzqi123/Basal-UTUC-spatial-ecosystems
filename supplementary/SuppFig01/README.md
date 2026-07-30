@@ -4,9 +4,9 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Subtype distribution across stages | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| B | Tumor purity within stage | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| C | Immune, myeloid and stromal marker expression | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| A | Subtype distribution across stages | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| B | Tumor purity within stage | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| C | Immune, myeloid and stromal marker expression | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 | D | Major-cell-type Sankey summary | `workflows/single_cell/01_process_scrna.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It

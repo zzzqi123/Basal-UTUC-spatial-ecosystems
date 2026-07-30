@@ -10,7 +10,7 @@ suppressPackageStartupMessages({
 
 source(file.path("core", "R", "cli.R"))
 opts <- parse_common_args()
-object <- readRDS(require_input(opts$input_dir, "utuc_scrna_annotated.rds"))
+object <- readRDS(require_input(opts$input_dir, "utuc_annotated_scrna.rds"))
 gene_sets <- readRDS(require_input(opts$input_dir, "curated_gene_sets.rds"))
 if (!inherits(object, "Seurat")) stop("Input must be a Seurat object")
 if (!is.list(gene_sets) || !length(gene_sets)) stop("Gene sets must be a named list")

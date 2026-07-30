@@ -5,7 +5,7 @@
 | Panel | Analysis | Source workflow |
 |---|---|---|
 | A | Single-cell quality-control metrics | `workflows/single_cell/01_process_scrna.R` |
-| B | Lineage-marker density maps | `workflows/single_cell/01_process_scrna.R` |
+| B | Lineage-marker density maps | `workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R` |
 | C | Major-cell-type proportions | `workflows/single_cell/01_process_scrna.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It

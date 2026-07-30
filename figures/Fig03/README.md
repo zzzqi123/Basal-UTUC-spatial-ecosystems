@@ -4,14 +4,14 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Myeloid UMAP | `workflows/single_cell/01_process_scrna.R` |
-| B | Myeloid relative enrichment by tissue group | `workflows/single_cell/01_process_scrna.R` |
+| A | Myeloid UMAP | `workflows/single_cell/01c_lineage_subclustering.R` |
+| B | Myeloid relative enrichment by tissue group | `workflows/single_cell/09_roe_composition.R` |
 | C | Monocyte-macrophage pseudotime | `workflows/single_cell/03_trajectory_analysis.R` |
-| D | CCR2 monocyte and SPP1 TAM spatial maps | `workflows/spatial/cell2location/` |
-| E | Spatial TAM M2 signature | `workflows/spatial/01_visium_preprocessing.R` |
-| F | Neutrophil UMAP | `workflows/single_cell/01_process_scrna.R` |
-| G | VEGFA TAN and Cancer_c3 spatial maps | `workflows/spatial/cell2location/` |
-| H | Myeloid-state survival curves | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| D | CCR2 monocyte and SPP1 TAM spatial co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
+| E | Spatial TAM M2 signature | `workflows/spatial/09_spacet_gene_set_scores.R` |
+| F | Neutrophil UMAP | `workflows/single_cell/01c_lineage_subclustering.R` |
+| G | VEGFA TAN and Cancer_c3 spatial co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
+| H | Myeloid-state survival curves | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 | I | Neu_c2_VEGFA Hallmark enrichment | `workflows/single_cell/06_functional_enrichment.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It

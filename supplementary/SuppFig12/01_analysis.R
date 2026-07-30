@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Canonical lineage-marker dot plot",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig12_B.tsv",
     required = c("cell_type", "gene", "average_expression", "percent_expressing"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "Neutrophil-marker audit",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig12_C.tsv",
     required = c("cell_type", "gene", "average_expression", "percent_expressing"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "Myeloid reclustering and SPP1 density",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R -> workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig12_D.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state", "SPP1"),
@@ -50,7 +50,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "Fibroblast reclustering and FAP density",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R -> workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig12_E.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state", "FAP"),
@@ -59,7 +59,7 @@ panel_plan <- list(
   list(
     panel = "F",
     title = "Endothelial reclustering and CXCR4 density",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R -> workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "SuppFig12_F.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state", "CXCR4"),

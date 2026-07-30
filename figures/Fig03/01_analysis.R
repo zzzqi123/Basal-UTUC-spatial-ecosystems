@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Myeloid UMAP",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R",
     operation = "select",
     input = "Fig03_A.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state"),
@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Myeloid relative enrichment by tissue group",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/09_roe_composition.R",
     operation = "select",
     input = "Fig03_B.tsv",
     required = c("sample_group", "cell_state", "roe"),
@@ -40,17 +40,17 @@ panel_plan <- list(
   ),
   list(
     panel = "D",
-    title = "CCR2 monocyte and SPP1 TAM spatial maps",
-    workflow = "workflows/spatial/cell2location/",
+    title = "CCR2 monocyte and SPP1 TAM spatial co-localization",
+    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
     operation = "select",
     input = "Fig03_D.tsv",
-    required = c("sample", "x", "y", "cell_state", "q05_abundance"),
+    required = c("sample", "x", "y", "pair_id", "colocalization_score"),
     output = "panel_D_data.tsv"
   ),
   list(
     panel = "E",
     title = "Spatial TAM M2 signature",
-    workflow = "workflows/spatial/01_visium_preprocessing.R",
+    workflow = "workflows/spatial/09_spacet_gene_set_scores.R",
     operation = "select",
     input = "Fig03_E.tsv",
     required = c("sample", "x", "y", "m2_score"),
@@ -59,7 +59,7 @@ panel_plan <- list(
   list(
     panel = "F",
     title = "Neutrophil UMAP",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01c_lineage_subclustering.R",
     operation = "select",
     input = "Fig03_F.tsv",
     required = c("UMAP_1", "UMAP_2", "cell_state"),
@@ -67,17 +67,17 @@ panel_plan <- list(
   ),
   list(
     panel = "G",
-    title = "VEGFA TAN and Cancer_c3 spatial maps",
-    workflow = "workflows/spatial/cell2location/",
+    title = "VEGFA TAN and Cancer_c3 spatial co-localization",
+    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
     operation = "select",
     input = "Fig03_G.tsv",
-    required = c("sample", "x", "y", "cell_state", "q05_abundance"),
+    required = c("sample", "x", "y", "pair_id", "colocalization_score"),
     output = "panel_G_data.tsv"
   ),
   list(
     panel = "H",
     title = "Myeloid-state survival curves",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig03_H.tsv",
     required = c("time", "survival", "signature"),

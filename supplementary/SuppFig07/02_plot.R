@@ -38,7 +38,7 @@ plot_plan <- list(
   ),
   list(
     panel = "D",
-    title = "CCR2-SPP1 and M2 spatial maps",
+    title = "CCR2-SPP1 co-localization and M2 spatial scores",
     input = "panel_D_data.tsv",
     geometry = "point",
     x = "x",
@@ -70,7 +70,7 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "A", "Canonical marker dot plot", "workflows/single_cell/01_process_scrna.R"
+  "A", "Canonical marker dot plot", "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R"
 )
 readr::write_tsv(
   package_native_panels,

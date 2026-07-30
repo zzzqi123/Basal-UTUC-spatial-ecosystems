@@ -36,7 +36,7 @@ plot_plan <- list(
   ),
   list(
     panel = "H",
-    title = "Stage-level communication summary",
+    title = "Stage-level spatial communication summary",
     input = "panel_H_data.tsv",
     geometry = "heatmap",
     x = "stage",
@@ -56,9 +56,9 @@ package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
   "A", "Number of inferred interactions", "workflows/communication/01_cellchat.R",
   "B", "Aggregated interaction strength", "workflows/communication/01_cellchat.R",
-  "D", "SPP1 signaling network by stage", "workflows/communication/01_cellchat.R",
-  "E", "TGF-beta signaling network by stage", "workflows/communication/01_cellchat.R",
-  "F", "VEGF signaling network by stage", "workflows/communication/01_cellchat.R"
+  "D", "SPP1 spatial signaling network by stage", "workflows/communication/03_cellchat_spatial.R",
+  "E", "TGF-beta spatial signaling network by stage", "workflows/communication/03_cellchat_spatial.R",
+  "F", "VEGF spatial signaling network by stage", "workflows/communication/03_cellchat_spatial.R"
 )
 readr::write_tsv(
   package_native_panels,

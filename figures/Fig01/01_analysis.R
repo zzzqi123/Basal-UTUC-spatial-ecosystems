@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Molecular subtype distribution by stage",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig01_A.tsv",
     required = c("stage", "subtype", "n", "proportion"),
@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Subtype-stratified disease-specific survival",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig01_B.tsv",
     required = c("time", "survival", "subtype", "endpoint"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "Immune and stromal scores within stage",
-    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
     operation = "select",
     input = "Fig01_C.tsv",
     required = c("stage", "subtype", "score_name", "score_value"),
@@ -50,7 +50,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "Representative lineage-marker dot plot",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "Fig01_E.tsv",
     required = c("cell_type", "gene", "average_expression", "percent_expressing"),
@@ -59,7 +59,7 @@ panel_plan <- list(
   list(
     panel = "F",
     title = "Relative enrichment of major cell types",
-    workflow = "workflows/single_cell/01_process_scrna.R",
+    workflow = "workflows/single_cell/09_roe_composition.R",
     operation = "select",
     input = "Fig01_F.tsv",
     required = c("sample_group", "cell_type", "roe"),

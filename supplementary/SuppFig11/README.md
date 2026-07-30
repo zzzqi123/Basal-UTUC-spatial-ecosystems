@@ -4,11 +4,11 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Immune and stromal scores | `workflows/bulk_clinical_validation/03_external_blca_validation.R` |
-| B | FAP and SPP1 expression | `workflows/bulk_clinical_validation/03_external_blca_validation.R` |
-| C | SPP1 correlations | `workflows/bulk_clinical_validation/03_external_blca_validation.R` |
-| D | Subtype-classification ROC | `workflows/bulk_clinical_validation/03_external_blca_validation.R` |
-| E | External survival validation | `workflows/bulk_clinical_validation/03_external_blca_validation.R` |
+| A | Immune and stromal scores | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R` |
+| B | FAP and SPP1 expression | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R` |
+| C | SPP1 correlations | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R` |
+| D | Subtype-classification ROC | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R` |
+| E | External survival validation | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in
