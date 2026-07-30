@@ -1,20 +1,6 @@
 module: SuppFig02
 title: "Single-cell QC and annotation"
-panels: "A-C"
-workflow: group_summary
-input_file: SuppFig02_scrna_qc.tsv
-group_columns:
-  - sample
-  - metric
-required_columns:
-  - sample
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: sample
-y: value
-color: null
-title: "Single-cell QC and annotation"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

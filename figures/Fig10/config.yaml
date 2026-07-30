@@ -1,31 +1,6 @@
 module: Fig10
-title: "Multiscale spatial burden and Japan-UTUC validation"
-panels: "A-E"
-workflow: precomputed_results
-input_file: Fig10_multiscale_results.tsv
-group_columns:
-  - sample
-  - program
-  - scale
-required_columns:
-  - sample
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: sample
-y: value
-color: null
-title: "Multiscale spatial burden and Japan-UTUC validation"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
-pair_burden_script: methods/spatial_analysis/01_pair_burden.py
-boundary_profile_script: methods/spatial_analysis/02_boundary_profiles.R
-clinical_model_script: methods/spatial_analysis/03_japan_clinical_models.R
-pair_burden_abundance: q05_cell_abundance_w_sf
-boundary_profile_abundance: means_cell_abundance_w_sf
-unit_of_spatial_inference: section
-scales:
-  ring0: within_spot
-  ring1: immediate_neighborhood
-  ring2: extended_neighborhood
+title: "Multiscale spatial organization and independent clinical validation"
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

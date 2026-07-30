@@ -8,6 +8,7 @@ single_cell:
   normalization_scale_factor: 10000
   highly_variable_genes: 2000
   pca_dimensions: 20
+  cluster_resolution: 0.5
   integration_method: Harmony
 
 cell2location:
@@ -46,6 +47,13 @@ scPagwas:
 spatial_multiscale:
   abundance_summary_pair_burden: q05
   abundance_summary_boundary_profile: posterior_mean
+  max_ring: 2
+  permutations: 500
+  permutation_seed: 20260722
+  interface_width: 1.10
+  signed_distance_min: -6
+  signed_distance_max: 6
+  gam_basis_dimension: 5
   ring_distances:
     ring0: 0
     ring1: 1
@@ -54,4 +62,3 @@ spatial_multiscale:
     ring0: 55
     ring1: 100
     ring2: 173-200
-

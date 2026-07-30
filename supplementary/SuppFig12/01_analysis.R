@@ -1,9 +1,80 @@
 #!/usr/bin/env Rscript
 
-source(file.path("functions", "R", "cli.R"))
-source(file.path("functions", "R", "figure_workflows.R"))
+# SuppFig12: BLCA single-cell validation
+# Heavy model fitting is performed by the named workflows. This script exposes
+# the exact panel hand-off, validates de-identified table schemas, and writes
+# one analysis table per computational panel.
+
+source(file.path("core", "R", "cli.R"))
+source(file.path("core", "R", "figure_assembly.R"))
 opts <- parse_common_args()
-cfg <- read_module_config(opts$config)
 set.seed(opts$seed)
-output <- run_configured_analysis("SuppFig12", cfg, opts)
-write_run_metadata(opts$output_dir, "SuppFig12_analysis", opts, list(output = output))
+
+panel_plan <- list(
+  list(
+    panel = "A",
+    title = "Major-lineage UMAP",
+    workflow = "workflows/single_cell/01_process_scrna.R",
+    operation = "select",
+    input = "SuppFig12_A.tsv",
+    required = c("UMAP_1", "UMAP_2", "cell_type"),
+    output = "panel_A_data.tsv"
+  ),
+  list(
+    panel = "B",
+    title = "Canonical lineage-marker dot plot",
+    workflow = "workflows/single_cell/01_process_scrna.R",
+    operation = "select",
+    input = "SuppFig12_B.tsv",
+    required = c("cell_type", "gene", "average_expression", "percent_expressing"),
+    output = "panel_B_data.tsv"
+  ),
+  list(
+    panel = "C",
+    title = "Neutrophil-marker audit",
+    workflow = "workflows/single_cell/01_process_scrna.R",
+    operation = "select",
+    input = "SuppFig12_C.tsv",
+    required = c("cell_type", "gene", "average_expression", "percent_expressing"),
+    output = "panel_C_data.tsv"
+  ),
+  list(
+    panel = "D",
+    title = "Myeloid reclustering and SPP1 density",
+    workflow = "workflows/single_cell/01_process_scrna.R",
+    operation = "select",
+    input = "SuppFig12_D.tsv",
+    required = c("UMAP_1", "UMAP_2", "cell_state", "SPP1"),
+    output = "panel_D_data.tsv"
+  ),
+  list(
+    panel = "E",
+    title = "Fibroblast reclustering and FAP density",
+    workflow = "workflows/single_cell/01_process_scrna.R",
+    operation = "select",
+    input = "SuppFig12_E.tsv",
+    required = c("UMAP_1", "UMAP_2", "cell_state", "FAP"),
+    output = "panel_E_data.tsv"
+  ),
+  list(
+    panel = "F",
+    title = "Endothelial reclustering and CXCR4 density",
+    workflow = "workflows/single_cell/01_process_scrna.R",
+    operation = "select",
+    input = "SuppFig12_F.tsv",
+    required = c("UMAP_1", "UMAP_2", "cell_state", "CXCR4"),
+    output = "panel_F_data.tsv"
+  )
+)
+
+audit <- run_figure_analysis("SuppFig12", panel_plan, opts)
+write_run_metadata(
+  opts$output_dir,
+  "SuppFig12_analysis",
+  opts,
+  list(
+    computational_panels = sum(audit$status == "written"),
+    documented_noncomputational_panels =
+      sum(audit$status == "documented_noncomputational_panel")
+  )
+)

@@ -1,0 +1,27 @@
+language	function	location	role
+R	parse_common_args	core/R/cli.R	Parse the five common command-line interfaces
+R	read_module_config	core/R/cli.R	Read and validate a YAML mapping
+R	require_input	core/R/cli.R	Resolve a required input below the supplied input directory
+R	write_run_metadata	core/R/cli.R	Save seed, runtime, commit and workflow metadata
+R	rank_inverse_normal	core/R/analysis_helpers.R	Rank-based inverse normal transformation
+R	safe_z	core/R/analysis_helpers.R	Zero-safe numeric standardization
+R	cell_proportions	core/R/analysis_helpers.R	Calculate group-wise cell-type proportions
+R	signature_score	core/R/analysis_helpers.R	Mean expression of available signature genes
+R	pair_burden	core/R/analysis_helpers.R	Product or geometric-mean pair burden
+R	summarise_numeric_by_group	core/R/analysis_helpers.R	Group-wise mean, median and sample count
+R	read_panel_input	core/R/figure_assembly.R	Read a panel table and enforce its column schema
+R	run_panel_operation	core/R/figure_assembly.R	Run transparent light panel statistics
+R	run_figure_analysis	core/R/figure_assembly.R	Write one reviewed data table per panel
+R	panel_plot	core/R/figure_assembly.R	Render box, bar, point, line, heatmap or forest panels
+R	run_figure_plots	core/R/figure_assembly.R	Save vector panels and a plot manifest
+R	publication_theme	core/R/plot_helpers.R	Apply the shared publication plotting theme
+R	save_vector_plot	core/R/plot_helpers.R	Save a Cairo PDF with explicit dimensions
+Python	common_parser	core/python/common.py	Build the shared Python CLI
+Python	load_yaml	core/python/common.py	Read a YAML configuration
+Python	require_file	core/python/common.py	Require an input path
+Python	validate_raw_counts	core/python/common.py	Reject normalized or invalid counts for count models
+Python	write_run_metadata	core/python/common.py	Save JSON runtime and Git provenance
+Python	clean_abundance_columns	core/python/spatial.py	Normalize cell2location posterior column names
+Python	pair_burden	core/python/spatial.py	Calculate within-spot pair burden
+Python	section_scale_total_abundance	core/python/spatial.py	Normalize inferred spot density between sections
+Python	rank_inverse_normal	core/python/spatial.py	Rank-normalize a patient-level score

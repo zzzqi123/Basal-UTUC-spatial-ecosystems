@@ -1,23 +1,26 @@
-# Fig10: Multiscale spatial burden and Japan-UTUC validation
+# Fig10: Multiscale spatial organization and independent clinical validation
 
-## Panels
+## Panel-to-code map
 
-`A-E`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | Section-level multiscale pair burden | `workflows/spatial/02_multiscale_pair_burden.py` |
+| B | Permutation-based spatial observed-to-expected | `workflows/spatial/02_multiscale_pair_burden.py` |
+| C | Section-specific signed-distance profiles | `workflows/spatial/03_prepare_boundary_input.py -> 04_infer_boundary_stgrads.R -> 05_boundary_profiles.R` |
+| D | GSE319536 continuous Basal-luminal validation | `workflows/spatial/06_external_rctd.R` |
+| E | Japan-UTUC cellular-program clinical models | `workflows/bulk_clinical_validation/02_japan_utuc_validation.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-q05 pair burden, spatial O/E, posterior-mean boundary profiles and clinical models.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript figures/Fig10/01_analysis.R \
   --config figures/Fig10/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/Fig10 \
   --output-dir outputs/Fig10 \
   --seed 20260730 --threads 4
 
@@ -28,16 +31,5 @@ Rscript figures/Fig10/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
-
-## Panel-to-method mapping
-
-- A: `methods/spatial_analysis/01_pair_burden.py`, q05 abundance, reported by
-  section.
-- B: multiscale spatial observed/expected values at ring 0, ring 1 and ring 2.
-- C: `methods/spatial_analysis/02_boundary_profiles.R`, posterior mean,
-  section-specific GAM curves without pooled spot-level inference.
-- D: external GSE319536 multiscale validation.
-- E: `methods/spatial_analysis/03_japan_clinical_models.R`, continuous
-  cellular-program scores rather than spatial niche scores.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

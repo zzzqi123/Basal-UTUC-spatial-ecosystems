@@ -1,23 +1,26 @@
-# SuppFig07: Myeloid subcluster characterisation
+# SuppFig07: Myeloid subcluster characterization
 
-## Panels
+## Panel-to-code map
 
-`A-E`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | Canonical marker dot plot | `workflows/single_cell/01_process_scrna.R` |
+| B | Markers and GO terms | `workflows/single_cell/06_functional_enrichment.R` |
+| C | Subcluster density along pseudotime | `workflows/single_cell/03_trajectory_analysis.R` |
+| D | CCR2-SPP1 and M2 spatial maps | `workflows/spatial/cell2location/` |
+| E | Dendritic-cell DSS | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-Markers, GO, pseudotime density, spatial mapping and survival.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript supplementary/SuppFig07/01_analysis.R \
   --config supplementary/SuppFig07/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/SuppFig07 \
   --output-dir outputs/SuppFig07 \
   --seed 20260730 --threads 4
 
@@ -28,5 +31,5 @@ Rscript supplementary/SuppFig07/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

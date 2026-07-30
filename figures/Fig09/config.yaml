@@ -1,23 +1,6 @@
 module: Fig09
-title: "VEGFA+ TAN-CXCR4+ tip EC angiogenic program"
-panels: "A-F"
-workflow: precomputed_results
-input_file: Fig09_angiogenic_program_results.tsv
-group_columns:
-  - analysis
-  - panel
-required_columns:
-  - analysis
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: analysis
-y: value
-color: null
-title: "VEGFA+ TAN-CXCR4+ tip EC angiogenic program"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
-method_script: methods/communication_and_perturbation/01_cellchat.R
-sender: Neu_c2_VEGFA
-receiver: Endo_c1_CXCR4
+title: "VEGFA TAN-CXCR4 tip EC angiogenic program"
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

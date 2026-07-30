@@ -1,20 +1,6 @@
 module: SuppFig01
-title: "Molecular subtype distribution and TME features"
-panels: "A-D"
-workflow: group_summary
-input_file: SuppFig01_bulk_tme.tsv
-group_columns:
-  - stage
-  - subtype
-required_columns:
-  - stage
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: subtype
-y: value
-color: null
-title: "Molecular subtype distribution and TME features"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
+title: "Molecular subtype and TME features"
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

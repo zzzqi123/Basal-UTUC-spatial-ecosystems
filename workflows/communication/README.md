@@ -1,0 +1,12 @@
+# Cell-cell communication analyses
+
+This directory contains project-level workflows reused across Figures 5, 6
+and 9.
+
+- `01_cellchat.R`: global and selected cell-state communication using
+  `CellChatDB.human`.
+- `02_nichenet_tam_to_mycaf.R`: multi-ligand candidate network from
+  `Macro_c0_SPP1` sender cells to `CAF_c3_POSTN` receiver cells.
+
+The NicheNet workflow treats SPP1 as one candidate ligand within a multi-ligand
+network. Epithelial perturbation is deliberately kept in `../perturbation/`.

@@ -1,23 +1,26 @@
-# Fig11: Clinical SPP1-FAP validation
+# Fig11: Clinical and subtype-predictive value of SPP1 and FAP
 
-## Panels
+## Panel-to-code map
 
-`A-E`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | DSS in Basal NMI versus Basal MI | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| B | SPP1 and FAP correlations with Basal score | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| C | Subtype-classification ROC curves | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| D | Joint SPP1-FAP survival stratification | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| E | Time-dependent DSS AUC | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-Correlation, ROC, survival and time-dependent AUC.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript figures/Fig11/01_analysis.R \
   --config figures/Fig11/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/Fig11 \
   --output-dir outputs/Fig11 \
   --seed 20260730 --threads 4
 
@@ -28,5 +31,5 @@ Rscript figures/Fig11/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

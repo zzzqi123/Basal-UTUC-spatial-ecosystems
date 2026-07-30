@@ -1,3 +1,14 @@
-analysis_results.tsv
-figure_panels.pdf
+panel_output_manifest.tsv
+panel_plot_manifest.tsv
+panel_A_data.tsv
+panel_A.pdf
+panel_B_data.tsv
+panel_B.pdf
+panel_C_data.tsv
+panel_D_data.tsv
+panel_D.pdf
+panel_E_data.tsv
+panel_E.pdf
+panel_F_data.tsv
+panel_F.pdf
 run_metadata.yaml

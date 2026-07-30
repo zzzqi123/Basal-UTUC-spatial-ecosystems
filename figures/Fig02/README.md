@@ -1,23 +1,24 @@
-# Fig02: Basal UTUC spatial landscape across stages
+# Fig02: Spatial transcriptomic landscape of Basal UTUC
 
-## Panels
+## Panel-to-code map
 
-`A-C`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | cell2location major-cell-type maps | `workflows/spatial/cell2location/` |
+| B | Within-section cell-state correlations | `workflows/spatial/cell2location/` |
+| C | CK5/6, GATA3, FAP and SPP1 immunohistochemistry | `non-computational source panel; code not applicable` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-cell2location abundance, spatial correlations and IHC summary.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript figures/Fig02/01_analysis.R \
   --config figures/Fig02/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/Fig02 \
   --output-dir outputs/Fig02 \
   --seed 20260730 --threads 4
 
@@ -28,11 +29,5 @@ Rscript figures/Fig02/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
-
-## Method source
-
-Panels A-B use the four scripts in `methods/cell2location/`. Panel B uses
-`q05_cell_abundance_w_sf`, 15 neighbours and Leiden resolution 0.3. Panel C is
-an IHC summary and does not enter the cell2location model.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

@@ -1,23 +1,27 @@
-# Fig09: VEGFA+ TAN-CXCR4+ tip EC angiogenic program
+# Fig09: VEGFA TAN-CXCR4 tip EC angiogenic program
 
-## Panels
+## Panel-to-code map
 
-`A-F`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | NMI-Basal component maps | `workflows/spatial/cell2location/` |
+| B | MI-Basal component maps | `workflows/spatial/cell2location/` |
+| C | Multiplex immunofluorescence | `non-computational source panel; code not applicable` |
+| D | Selected CellChat interactions | `workflows/communication/01_cellchat.R` |
+| E | VEGFA-VEGFR1 spatial signal | `workflows/spatial/01_visium_preprocessing.R` |
+| F | NAMPT-INSR spatial signal | `workflows/spatial/01_visium_preprocessing.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-CellChat, spatial coupling and multiplex IF summary.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript figures/Fig09/01_analysis.R \
   --config figures/Fig09/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/Fig09 \
   --output-dir outputs/Fig09 \
   --seed 20260730 --threads 4
 
@@ -28,12 +32,5 @@ Rscript figures/Fig09/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
-
-## Method source
-
-Selected communication is extracted from the global CellChat workflow with
-`Neu_c2_VEGFA` and `Endo_c1_CXCR4` as the target cell-state pair. Spatial
-co-localisation and multiplex IF are analysed independently of the CellChat
-probability.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.
