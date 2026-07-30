@@ -1,23 +1,29 @@
 # SuppFig09: Lymphoid subcluster programs
 
-## Panels
+## Panel-to-code map
 
-`A-H`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | CD4 T-cell UMAP | `workflows/single_cell/01_process_scrna.R` |
+| B | CD4 markers and functions | `workflows/single_cell/06_functional_enrichment.R` |
+| C | CD4 relative enrichment | `workflows/single_cell/01_process_scrna.R` |
+| D | CD8 T-cell UMAP | `workflows/single_cell/01_process_scrna.R` |
+| E | CD8 markers and functions | `workflows/single_cell/06_functional_enrichment.R` |
+| F | CD8 functional programs | `workflows/single_cell/07_pathway_activity.R` |
+| G | B-cell DSS | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| H | Lymphoid-marker correlations | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-CD4/CD8 markers, enrichment, B-cell survival and correlations.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript supplementary/SuppFig09/01_analysis.R \
   --config supplementary/SuppFig09/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/SuppFig09 \
   --output-dir outputs/SuppFig09 \
   --seed 20260730 --threads 4
 
@@ -28,5 +34,5 @@ Rscript supplementary/SuppFig09/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

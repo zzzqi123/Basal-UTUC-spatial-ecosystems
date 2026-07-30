@@ -1,23 +1,24 @@
-# SuppFig03: GWAS integration with scRNA-seq
+# SuppFig03: GWAS integration with single-cell profiles
 
-## Panels
+## Panel-to-code map
 
-`A-C`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | Annotated single-cell t-SNE | `workflows/single_cell/01_process_scrna.R` |
+| B | Cell-level scPagwas adjusted FDR | `workflows/genetics/01_scpagwas.R -> 02_prepare_scpagwas_tables.R` |
+| C | Cell-type scPagwas bootstrap FDR | `workflows/genetics/01_scpagwas.R -> 02_prepare_scpagwas_tables.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-Original scPagwas_main workflow with separated cell and cell-type FDR.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript supplementary/SuppFig03/01_analysis.R \
   --config supplementary/SuppFig03/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/SuppFig03 \
   --output-dir outputs/SuppFig03 \
   --seed 20260730 --threads 4
 
@@ -28,16 +29,5 @@ Rscript supplementary/SuppFig03/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
-
-## Panel-to-method mapping
-
-- A: annotated t-SNE coordinates from the single-cell object.
-- B: cell-level `Random_Correct_BG_adjp` from 100 empirical random-background
-  iterations.
-- C: cell-type `bootstrap_results$bp_value` from 200 bootstrap iterations.
-
-Run `methods/scPagwas/01_run_scpagwas.R` followed by
-`methods/scPagwas/02_prepare_figure_tables.R`. The module is locked to
-`scPagwas_main`, not `scPagwas_main2`.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

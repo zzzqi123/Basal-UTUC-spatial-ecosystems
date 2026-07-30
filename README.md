@@ -1,138 +1,154 @@
 # Basal UTUC spatial ecosystems
 
-Analytical code accompanying the manuscript:
+Reviewer-facing analysis code for the manuscript:
 
-> **SPP1-driven spatial niche remodeling defines aggressive progression in the Basal subtype of upper tract urothelial carcinoma**
+> **SPP1-associated spatial ecosystem remodeling in Basal upper tract
+> urothelial carcinoma**
 
-This repository contains the curated code used to generate the bioinformatic
-components of main Figures 1–11 and Supplementary Figures S1–S13. The code is
-organised by figure so that reviewers can connect each panel to its analytical
-inputs, parameters, intermediate tables and plotting script.
+This repository explains how the computational analyses and bioinformatic
+figure panels were produced without distributing patient-level raw data,
+large intermediate objects, histology images or server environments.
 
-## Repository status
-
-- Initial reviewer-facing release: `v0.1-reviewer`
-- Manuscript parameters are treated as the release specification.
-- Patient-level raw data and large derived objects are not distributed here.
-- Public accession numbers and source URLs are listed in
-  [`manifests/data_manifest.tsv`](manifests/data_manifest.tsv).
-- Figure-to-code coverage is listed in
-  [`manifests/figure_manifest.tsv`](manifests/figure_manifest.tsv).
-
-## Organisation
+## Four-layer organization
 
 ```text
-config/          portable example configuration and locked analysis parameters
-manifests/       figure, data and Methods-to-code audit tables
-methods/         reusable method workflows
-functions/       project-authored R and Python helpers
-figures/         one module for every main figure
-supplementary/   one module for every supplementary figure
-tests/           syntax, privacy, parameter and coverage checks
-data/            data-access instructions only
+core/            project-authored R and Python utilities
+workflows/       article-level analysis framework and key parameters
+figures/         main Figures 1–11, one directory per figure
+supplementary/   Supplementary Figures S1–S13, one directory per figure
 ```
 
-Each figure module contains:
+Supporting folders contain portable configuration, data-access instructions,
+coverage manifests and automated checks.
 
-1. `README.md` with panel-to-script mapping and required inputs;
-2. `01_analysis.R` or `01_analysis.py`;
-3. `02_plot.R` or `02_plot.py`;
-4. `config.yaml`;
-5. `expected_outputs.txt`.
+### 1. Core utilities
 
-The small per-figure scripts intentionally call shared, tested workflows rather
-than duplicating the same implementation in every directory.
+`core/R/` and `core/python/` contain input validation, command-line parsing,
+rank transforms, signature scoring, spatial pair burden, panel assembly,
+plotting, vector export and run metadata. Every public function is indexed in
+[`manifests/function_catalog.tsv`](manifests/function_catalog.tsv).
 
-This initial release separates computationally intensive method workflows from
-panel assembly. Method directories contain the reusable model-fitting and
-statistical implementations; figure directories document the panel mapping and
-consume the resulting de-identified tables. Inputs that cannot be redistributed
-are represented by explicit schemas and expected file names.
+All analysis scripts accept:
 
-## Quick start
-
-Create the portable configuration:
-
-```bash
-cp config/project.example.yaml config/project.yaml
+```text
+--config --input-dir --output-dir --seed --threads
 ```
 
-Edit only the paths in `config/project.yaml`. Do not edit the locked scientific
-parameters in `config/parameters.yaml` without updating the manuscript and
-`manifests/method_code_checklist.tsv`.
+Outputs are saved below the requested output directory together with the
+random seed, software/runtime information and Git commit.
 
-Python environment:
+### 2. Article-level workflows
 
-```bash
-conda env create -f environment.yml
-conda activate basal-utuc-spatial
+[`workflows/00_pipeline_overview.R`](workflows/00_pipeline_overview.R) records
+the overall hand-off:
+
+```text
+bulk and clinical ─┐
+single-cell ───────┼─> de-identified result tables ─> figure modules
+genetics ──────────┤
+spatial ───────────┤
+communication ─────┤
+perturbation ──────┘
 ```
 
-R packages:
+The spatial branch includes Visium processing, cell2location, spatial
+neighborhoods, multiscale pair burden, permutation O/E, stGrads boundaries,
+section-specific GAM profiles and external RCTD. The independent Japan-UTUC
+analysis is under `workflows/bulk_clinical_validation/`; it is not a spatial
+dataset and its cellular-program scores do not measure spatial adjacency.
 
-```r
-install.packages("renv")
-renv::restore()
-```
+### 3. Main figures
 
-Run one module:
+`figures/Fig01` through `figures/Fig11` each contain:
 
-```bash
-Rscript figures/Fig01/01_analysis.R \
-  --config figures/Fig01/config.yaml \
-  --input-dir data/processed \
-  --output-dir outputs/Fig01 \
-  --seed 20260730 \
-  --threads 4
-```
+- `README.md`: panel-to-workflow mapping and run order;
+- `01_analysis.R`: explicit input table and column schema for every panel;
+- `02_plot.R`: standard vector plotting or an explicit package-native panel;
+- `config.yaml`: figure-level reproducibility settings;
+- `expected_outputs.txt`: expected tables, plots and logs.
 
-Run repository checks:
+### 4. Supplementary figures
 
-```bash
-bash tests/run_all.sh
-```
+`supplementary/SuppFig01` through `supplementary/SuppFig13` use the same
+interface. Non-computational microscopy or experimental panels are marked
+`noncomputational`; they are not assigned fabricated analysis code.
 
-## Core method notes
+The panel-level coverage table is
+[`manifests/figure_manifest.tsv`](manifests/figure_manifest.tsv).
+
+## Key manuscript-locked workflows
 
 ### cell2location
 
-The reference model uses `orig.ident` as the batch field and
-`second_celltype_byhand` as the cell-state label. The reference regression is
-trained for 250 epochs. Spatial mapping uses:
+cell2location is located entirely under
+[`workflows/spatial/cell2location/`](workflows/spatial/cell2location/).
 
-- `N_cells_per_location = 30`
-- `detection_alpha = 20`
-- `max_epochs = 50000`
-- `batch_size = None`
-- `train_size = 1`
-
-Conservative spatial abundance maps and pair-burden analyses use the posterior
-5% quantile (`q05_cell_abundance_w_sf`). Figure 10 boundary profiles use the
-posterior mean and are explicitly labelled as such.
+- reference batch: `orig.ident`
+- reference label: `second_celltype_byhand`
+- reference regression: 250 epochs
+- expected cells per location: 30
+- detection alpha: 20
+- spatial mapping: 50,000 epochs, `batch_size=None`, `train_size=1`
+- conservative maps and pair burden: `q05_cell_abundance_w_sf`
+- continuous boundary profiles: posterior mean, stated separately
+- abundance neighbors: 15; Leiden resolution: 0.3
 
 ### scPagwas
 
-Supplementary Figure S3 uses the original `scPagwas_main` workflow corresponding
-to the 2023 method. Cell-type inference uses 200 bootstrap iterations with FDR
-adjustment. Single-cell empirical-null inference uses 100 random background
-iterations and Benjamini–Hochberg adjustment. Cell-level and cell-type FDR
-columns are kept separate throughout the workflow.
+Supplementary Figure S3 retains the original `scPagwas_main` workflow:
 
-## Data and privacy
+- cell-type inference: 200 bootstrap iterations followed by BH/FDR;
+- single-cell inference: 100 random-background iterations;
+- cell-level display: `Random_Correct_BG_adjp`;
+- cell-type display: BH-adjusted `bootstrap_results$bp_value`.
 
-This repository does not contain raw sequencing reads, patient-level clinical
-records, Visium histology images, RDS/H5AD objects, model weights or server
-environments. Private data are represented only by schemas and expected file
-names. Public datasets must be obtained from their original repositories.
+The two FDR quantities are kept in separate tables and cannot be interchanged.
 
-## Citation
+## Quick start
 
-See [`CITATION.cff`](CITATION.cff).
+```bash
+cp config/project.example.yaml config/project.yaml
+conda env create -f environment.yml
+conda activate basal-utuc-spatial
+bash tests/run_all.sh
+```
 
-## Copyright
+Example figure assembly:
 
-Copyright © 2026 Qi Zhang and co-authors. All rights reserved.
+```bash
+Rscript figures/Fig10/01_analysis.R \
+  --config figures/Fig10/config.yaml \
+  --input-dir data/processed/Fig10 \
+  --output-dir outputs/Fig10 \
+  --seed 20260730 --threads 4
 
-No open-source licence is granted. The repository is public for peer review,
-academic inspection and reproducibility assessment. Third-party packages remain
-subject to their respective licences.
+Rscript figures/Fig10/02_plot.R \
+  --config figures/Fig10/config.yaml \
+  --input-dir outputs/Fig10 \
+  --output-dir outputs/Fig10 \
+  --seed 20260730 --threads 4
+```
+
+## Data and intellectual-property boundary
+
+The repository does not contain FASTQ/BAM files, patient-level clinical
+records, RDS/H5AD/loom objects, Visium histology images, model weights, private
+accessions, workstation paths or server paths. Public datasets must be
+obtained from their original repositories; expected filenames are documented
+in `manifests/data_manifest.tsv`.
+
+No open-source licence is granted. Copyright © 2026 Qi Zhang and co-authors.
+The repository is public for peer review, academic inspection and
+reproducibility assessment. Third-party packages remain under their own
+licences and their source code is not copied here.
+
+## Official method interfaces
+
+Public wrappers follow the documented interfaces of
+[cell2location](https://cell2location.readthedocs.io/en/latest/notebooks/cell2location_tutorial.html),
+[scPagwas](https://github.com/dengchunyu/scPagwas),
+[CytoTRACE2](https://github.com/digitalcytometry/cytotrace2) and
+[spacexr/RCTD](https://github.com/dmcable/spacexr). Study-specific parameters
+are locked in `config/parameters.yaml` and
+`manifests/method_code_checklist.tsv`; third-party package source is not
+vendored into this repository.

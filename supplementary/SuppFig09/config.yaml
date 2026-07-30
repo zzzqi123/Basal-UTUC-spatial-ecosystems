@@ -1,20 +1,6 @@
 module: SuppFig09
 title: "Lymphoid subcluster programs"
-panels: "A-H"
-workflow: precomputed_results
-input_file: SuppFig09_lymphoid_programs.tsv
-group_columns:
-  - analysis
-  - cell_state
-required_columns:
-  - analysis
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: analysis
-y: value
-color: null
-title: "Lymphoid subcluster programs"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

@@ -1,23 +1,27 @@
-# Fig06: SPP1+ TAM-FAP+ myCAF coupling
+# Fig06: SPP1 TAM-myCAF spatial coupling and candidate signaling
 
-## Panels
+## Panel-to-code map
 
-`A-F`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | NMI-Basal spatial co-localization | `workflows/spatial/cell2location/` |
+| B | MI-Basal spatial co-localization | `workflows/spatial/cell2location/` |
+| C | Multiplex immunofluorescence | `non-computational source panel; code not applicable` |
+| D | NicheNet multi-ligand candidate network | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
+| E | TGF-beta ligand-receptor spatial signal | `workflows/spatial/01_visium_preprocessing.R` |
+| F | SPP1-integrin spatial signal | `workflows/spatial/01_visium_preprocessing.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-Spatial coupling and NicheNet multi-ligand candidate network.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript figures/Fig06/01_analysis.R \
   --config figures/Fig06/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/Fig06 \
   --output-dir outputs/Fig06 \
   --seed 20260730 --threads 4
 
@@ -28,13 +32,5 @@ Rscript figures/Fig06/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
-
-## Method source
-
-The ligand-ranking analysis is implemented in
-`methods/communication_and_perturbation/02_nichenet_tam_to_mycaf.R`, with
-`Macro_c0_SPP1` as sender and `CAF_c3_POSTN` as receiver. It reports a
-multi-ligand candidate network and does not encode SPP1 as the sole causal
-activator.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

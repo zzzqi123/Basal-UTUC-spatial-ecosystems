@@ -1,20 +1,6 @@
 module: Fig03
-title: "Myeloid remodeling and high-risk states"
-panels: "A-I"
-workflow: group_summary
-input_file: Fig03_myeloid_results.tsv
-group_columns:
-  - stage
-  - cell_state
-required_columns:
-  - stage
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: cell_state
-y: value
-color: null
-title: "Myeloid remodeling and high-risk states"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
+title: "Stage-associated remodeling of the myeloid compartment"
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

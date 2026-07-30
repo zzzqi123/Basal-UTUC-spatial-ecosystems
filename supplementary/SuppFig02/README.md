@@ -1,23 +1,24 @@
 # SuppFig02: Single-cell QC and annotation
 
-## Panels
+## Panel-to-code map
 
-`A-C`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | Single-cell quality-control metrics | `workflows/single_cell/01_process_scrna.R` |
+| B | Lineage-marker density maps | `workflows/single_cell/01_process_scrna.R` |
+| C | Major-cell-type proportions | `workflows/single_cell/01_process_scrna.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-QC metrics, lineage markers and major cell-type proportions.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript supplementary/SuppFig02/01_analysis.R \
   --config supplementary/SuppFig02/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/SuppFig02 \
   --output-dir outputs/SuppFig02 \
   --seed 20260730 --threads 4
 
@@ -28,5 +29,5 @@ Rscript supplementary/SuppFig02/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

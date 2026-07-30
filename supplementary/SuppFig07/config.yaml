@@ -1,20 +1,6 @@
 module: SuppFig07
-title: "Myeloid subcluster characterisation"
-panels: "A-E"
-workflow: precomputed_results
-input_file: SuppFig07_myeloid_results.tsv
-group_columns:
-  - analysis
-  - cell_state
-required_columns:
-  - analysis
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: analysis
-y: value
-color: null
-title: "Myeloid subcluster characterisation"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
+title: "Myeloid subcluster characterization"
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

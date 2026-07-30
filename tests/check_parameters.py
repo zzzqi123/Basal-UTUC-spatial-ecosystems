@@ -36,12 +36,12 @@ for key, value in expected_scpagwas.items():
         raise SystemExit(f"scPagwas mismatch: {key}={scpagwas.get(key)!r}, expected {value!r}")
 
 spatial_script = (
-    ROOT / "methods" / "cell2location" / "02_spatial_mapping.py"
+    ROOT / "workflows" / "spatial" / "cell2location" / "02_spatial_mapping.py"
 ).read_text(encoding="utf-8")
 if 'cfg["spatial_max_epochs"]' not in spatial_script:
     raise SystemExit("Spatial mapping does not consume the locked 50,000-epoch parameter")
 
-for path in list((ROOT / "config").rglob("*")) + list((ROOT / "methods").rglob("*")):
+for path in list((ROOT / "config").rglob("*")) + list((ROOT / "workflows").rglob("*")):
     if not path.is_file() or ".git" in path.parts:
         continue
     if path.suffix.lower() not in {".py", ".r", ".yaml", ".yml", ".md", ".tsv"}:

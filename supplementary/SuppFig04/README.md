@@ -1,23 +1,25 @@
-# SuppFig04: Spatial analysis of Basal UTUC
+# SuppFig04: Basal UTUC spatial analysis
 
-## Panels
+## Panel-to-code map
 
-`A-D`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | H&E images of profiled sections | `non-computational source panel; code not applicable` |
+| B | q05 abundance Leiden niches | `workflows/spatial/cell2location/` |
+| C | cell2location cell-state maps | `workflows/spatial/cell2location/` |
+| D | Spatial Basal signature | `workflows/spatial/01_visium_preprocessing.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-H&E, Leiden niches, cell2location maps and Basal score.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript supplementary/SuppFig04/01_analysis.R \
   --config supplementary/SuppFig04/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/SuppFig04 \
   --output-dir outputs/SuppFig04 \
   --seed 20260730 --threads 4
 
@@ -28,11 +30,5 @@ Rscript supplementary/SuppFig04/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
-
-## Method source
-
-Panels B-C are generated from `methods/cell2location/`. Spatial mapping is
-locked to `N_cells_per_location=30`, `detection_alpha=20` and 50,000 epochs.
-Panel C displays the q05 posterior abundance.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

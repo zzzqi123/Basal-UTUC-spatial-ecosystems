@@ -1,23 +1,28 @@
 # SuppFig10: Mesenchymal and endothelial heterogeneity
 
-## Panels
+## Panel-to-code map
 
-`A-G`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | Mesenchymal markers and GO terms | `workflows/single_cell/06_functional_enrichment.R` |
+| B | Spatial myogenesis score | `workflows/spatial/01_visium_preprocessing.R` |
+| C | CAF_c3_FAP Hallmark enrichment | `workflows/single_cell/06_functional_enrichment.R` |
+| D | Endothelial UMAP | `workflows/single_cell/01_process_scrna.R` |
+| E | Endothelial marker dot plot | `workflows/single_cell/01_process_scrna.R` |
+| F | Endo_c1_CXCR4 enrichment | `workflows/single_cell/06_functional_enrichment.R` |
+| G | Stromal and endothelial DSS | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-Markers, pathway enrichment, spatial scores and survival.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript supplementary/SuppFig10/01_analysis.R \
   --config supplementary/SuppFig10/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/SuppFig10 \
   --output-dir outputs/SuppFig10 \
   --seed 20260730 --threads 4
 
@@ -28,5 +33,5 @@ Rscript supplementary/SuppFig10/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

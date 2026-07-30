@@ -1,23 +1,29 @@
-# Fig05: Global communication and candidate interactions
+# Fig05: Global communication and selected signaling programs
 
-## Panels
+## Panel-to-code map
 
-`A-H`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | Number of inferred interactions | `workflows/communication/01_cellchat.R` |
+| B | Aggregated interaction strength | `workflows/communication/01_cellchat.R` |
+| C | Outgoing and incoming communication centrality | `workflows/communication/01_cellchat.R` |
+| D | SPP1 signaling network by stage | `workflows/communication/01_cellchat.R` |
+| E | TGF-beta signaling network by stage | `workflows/communication/01_cellchat.R` |
+| F | VEGF signaling network by stage | `workflows/communication/01_cellchat.R` |
+| G | Selected ligand-receptor probabilities | `workflows/communication/01_cellchat.R` |
+| H | Stage-level communication summary | `workflows/communication/01_cellchat.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-CellChat global networks and selected SPP1/TGFB interactions.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript figures/Fig05/01_analysis.R \
   --config figures/Fig05/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/Fig05 \
   --output-dir outputs/Fig05 \
   --seed 20260730 --threads 4
 
@@ -28,12 +34,5 @@ Rscript figures/Fig05/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
-
-## Method source
-
-Run `methods/communication_and_perturbation/01_cellchat.R` before this module.
-The workflow uses `CellChatDB.human`, excludes interactions supported by fewer
-than 10 cells and retains the full interaction table before selecting the
-SPP1/TGFB panels.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

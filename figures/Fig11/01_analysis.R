@@ -1,9 +1,71 @@
 #!/usr/bin/env Rscript
 
-source(file.path("functions", "R", "cli.R"))
-source(file.path("functions", "R", "figure_workflows.R"))
+# Fig11: Clinical and subtype-predictive value of SPP1 and FAP
+# Heavy model fitting is performed by the named workflows. This script exposes
+# the exact panel hand-off, validates de-identified table schemas, and writes
+# one analysis table per computational panel.
+
+source(file.path("core", "R", "cli.R"))
+source(file.path("core", "R", "figure_assembly.R"))
 opts <- parse_common_args()
-cfg <- read_module_config(opts$config)
 set.seed(opts$seed)
-output <- run_configured_analysis("Fig11", cfg, opts)
-write_run_metadata(opts$output_dir, "Fig11_analysis", opts, list(output = output))
+
+panel_plan <- list(
+  list(
+    panel = "A",
+    title = "DSS in Basal NMI versus Basal MI",
+    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    operation = "select",
+    input = "Fig11_A.tsv",
+    required = c("time", "survival", "stage"),
+    output = "panel_A_data.tsv"
+  ),
+  list(
+    panel = "B",
+    title = "SPP1 and FAP correlations with Basal score",
+    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    operation = "select",
+    input = "Fig11_B.tsv",
+    required = c("gene", "expression", "basal_score"),
+    output = "panel_B_data.tsv"
+  ),
+  list(
+    panel = "C",
+    title = "Subtype-classification ROC curves",
+    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    operation = "select",
+    input = "Fig11_C.tsv",
+    required = c("marker", "fpr", "tpr", "auc"),
+    output = "panel_C_data.tsv"
+  ),
+  list(
+    panel = "D",
+    title = "Joint SPP1-FAP survival stratification",
+    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    operation = "select",
+    input = "Fig11_D.tsv",
+    required = c("time", "survival", "group"),
+    output = "panel_D_data.tsv"
+  ),
+  list(
+    panel = "E",
+    title = "Time-dependent DSS AUC",
+    workflow = "workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    operation = "select",
+    input = "Fig11_E.tsv",
+    required = c("year", "model", "auc"),
+    output = "panel_E_data.tsv"
+  )
+)
+
+audit <- run_figure_analysis("Fig11", panel_plan, opts)
+write_run_metadata(
+  opts$output_dir,
+  "Fig11_analysis",
+  opts,
+  list(
+    computational_panels = sum(audit$status == "written"),
+    documented_noncomputational_panels =
+      sum(audit$status == "documented_noncomputational_panel")
+  )
+)

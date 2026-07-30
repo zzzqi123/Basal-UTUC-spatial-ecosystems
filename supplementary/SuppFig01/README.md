@@ -1,23 +1,25 @@
-# SuppFig01: Molecular subtype distribution and TME features
+# SuppFig01: Molecular subtype and TME features
 
-## Panels
+## Panel-to-code map
 
-`A-D`
+| Panel | Analysis | Source workflow |
+|---|---|---|
+| A | Subtype distribution across stages | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| B | Tumor purity within stage | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| C | Immune, myeloid and stromal marker expression | `workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
+| D | Major-cell-type Sankey summary | `workflows/single_cell/01_process_scrna.R` |
 
-## Analysis
+`01_analysis.R` declares each panel's input table and required columns. It
+performs lightweight panel assembly only; model fitting remains in
+`workflows/`. `02_plot.R` renders standard vector panels and records
+package-native or non-computational panels without fabricating a replacement.
 
-Subtype distribution, purity, marker expression and cell composition.
-
-The analysis script validates the expected input schema and calls the shared
-project workflow. Method-specific implementations are stored under `methods/`
-and project-authored helpers under `functions/`.
-
-## Run order
+## Run
 
 ```bash
 Rscript supplementary/SuppFig01/01_analysis.R \
   --config supplementary/SuppFig01/config.yaml \
-  --input-dir data/processed \
+  --input-dir data/processed/SuppFig01 \
   --output-dir outputs/SuppFig01 \
   --seed 20260730 --threads 4
 
@@ -28,5 +30,5 @@ Rscript supplementary/SuppFig01/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Inputs containing patient-level or large binary data are local and are not
-distributed in Git. See `data/README.md`.
+Private patient tables and large objects are not distributed. The expected
+de-identified table schemas are visible directly in `01_analysis.R`.

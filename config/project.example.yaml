@@ -1,7 +1,7 @@
 project:
   name: Basal-UTUC-spatial-ecosystems
   repository: https://github.com/zzzqi123/Basal-UTUC-spatial-ecosystems
-  release: v0.1-reviewer
+  release: v0.2-reviewer
 
 paths:
   input_dir: data/processed
@@ -24,4 +24,3 @@ samples:
 privacy:
   allow_patient_level_clinical_data: false
   allow_large_binary_objects: false
-

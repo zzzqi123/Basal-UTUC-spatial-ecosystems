@@ -1,25 +1,34 @@
-method	manuscript_specification	code_location	locked_value	check
-scRNA QC	min 300 and max 6000 detected genes	config/parameters.yaml	300;6000	PASS
-scRNA QC	mitochondrial transcripts <30%	config/parameters.yaml	30	PASS
-scRNA QC	hemoglobin transcripts <3%	config/parameters.yaml	3	PASS
-scRNA normalisation	scale factor 10000	config/parameters.yaml	10000	PASS
-scRNA feature selection	2000 highly variable genes	config/parameters.yaml	2000	PASS
-scRNA embedding	first 20 PCs	config/parameters.yaml	20	PASS
-cell2location reference	batch field	methods/cell2location/01_reference_signatures.py	orig.ident	PASS
-cell2location reference	cell-state field	methods/cell2location/01_reference_signatures.py	second_celltype_byhand	PASS
-cell2location reference	training epochs	methods/cell2location/01_reference_signatures.py	250	PASS
-cell2location spatial	expected cells per location	methods/cell2location/02_spatial_mapping.py	30	PASS
-cell2location spatial	detection alpha	methods/cell2location/02_spatial_mapping.py	20	PASS
-cell2location spatial	training epochs	methods/cell2location/02_spatial_mapping.py	50000	PASS
-cell2location posterior	conservative abundance	methods/cell2location/03_export_abundance.py	q05_cell_abundance_w_sf	PASS
-cell2location niches	kNN neighbours	methods/cell2location/04_spatial_niches.py	15	PASS
-cell2location niches	Leiden resolution	methods/cell2location/04_spatial_niches.py	0.3	PASS
-Fig10 pair burden	posterior summary	figures/Fig10/config.yaml	q05	PASS
-Fig10 boundary profile	posterior summary	figures/Fig10/config.yaml	posterior_mean	PASS
-scPagwas	entrypoint	methods/scPagwas/01_run_scpagwas.R	scPagwas_main	PASS
-scPagwas	cell-type bootstrap iterations	methods/scPagwas/01_run_scpagwas.R	200	PASS
-scPagwas	single-cell background iterations	methods/scPagwas/01_run_scpagwas.R	100	PASS
-scPagwas	multiple testing	methods/scPagwas/01_run_scpagwas.R	BH/FDR	PASS
-scPagwas cell map	FDR source	supplementary/SuppFig03/config.yaml	Random_Correct_BG_adjp	PASS
-scPagwas cell-type table	FDR source	supplementary/SuppFig03/config.yaml	bootstrap_results.bp_value	PASS
-
+branch	method	manuscript_or_release_specification	code_location	status
+core	reproducible CLI	--config; --input-dir; --output-dir; --seed; --threads	core/R/cli.R; core/python/common.py	PASS
+core	output provenance	random seed; runtime version; Git commit; UTC run time	core/R/cli.R; core/python/common.py	PASS
+single_cell	QC	300-6000 genes; mitochondrial <30%; hemoglobin <3%	workflows/single_cell/01_process_scrna.R	PASS
+single_cell	normalization and integration	LogNormalize 10000; 2000 HVGs; 20 PCs; Harmony by orig.ident	workflows/single_cell/01_process_scrna.R	PASS
+single_cell	embedding and clustering	neighbors; resolution 0.5; UMAP; t-SNE	workflows/single_cell/01_process_scrna.R	PASS
+single_cell	inferCNV	within-sample immune, stromal and endothelial reference	workflows/single_cell/02_infercnv_non_epi_reference.R	PASS
+single_cell	trajectory	Monocle3; Cancer_c0 root; 20 dimensions	workflows/single_cell/03_trajectory_analysis.R	PASS
+single_cell	CytoTRACE2	human; counts; batch 10000; smoothing batch 1000	workflows/single_cell/04_cytotrace2.R	PASS
+single_cell	pySCENIC	GRN; motif context pruning; AUCell	workflows/single_cell/05_pyscenic.sh	PASS
+single_cell	functional enrichment	GO BP; BH; marker FDR <0.05; log2FC >0.25	workflows/single_cell/06_functional_enrichment.R	PASS
+single_cell	pathway activity	AUCell; PROGENy human network top 500 genes	workflows/single_cell/07_pathway_activity.R	PASS
+genetics	scPagwas entry point	scPagwas_main; assay RNA; GRCh38; FinnGen R12	workflows/genetics/01_scpagwas.R	PASS
+genetics	scPagwas parameters	marg 10000; MAF 0.01; cluster cells 10; pathway 5-300; top genes 1000	workflows/genetics/01_scpagwas.R	PASS
+genetics	scPagwas resampling	200 cell-type bootstrap; 100 single-cell backgrounds	workflows/genetics/01_scpagwas.R	PASS
+genetics	scPagwas FDR	cell Random_Correct_BG_adjp; cell-type BH of bp_value	workflows/genetics/02_prepare_scpagwas_tables.R	PASS
+spatial	Visium input	Space Ranger output; SCTransform only for visualization; raw counts retained	workflows/spatial/01_visium_preprocessing.R	PASS
+spatial	cell2location reference	orig.ident; second_celltype_byhand; 250 epochs	workflows/spatial/cell2location/01_reference_signatures.py	PASS
+spatial	cell2location mapping	N_cells 30; detection alpha 20; 50000 epochs; batch None; train size 1	workflows/spatial/cell2location/02_spatial_mapping.py	PASS
+spatial	cell2location posterior	mean, q05 and q95 exported	workflows/spatial/cell2location/03_export_abundance.py	PASS
+spatial	abundance niches	q05; 15 neighbors; Leiden resolution 0.3	workflows/spatial/cell2location/04_spatial_niches.py	PASS
+spatial	multiscale pair burden	q05; density scaled; exact Visium rings 0-2	workflows/spatial/02_multiscale_pair_burden.py	PASS
+spatial	spatial O/E	500 within-section positional permutations; upper-tail empirical P	workflows/spatial/02_multiscale_pair_burden.py	PASS
+spatial	tumor reference	posterior mean; malignant fraction; section-specific Otsu threshold	workflows/spatial/03_prepare_boundary_input.py	PASS
+spatial	signed boundary	stGrads 2.0; interface width 1.10; median spot-spacing unit	workflows/spatial/04_infer_boundary_stgrads.R	PASS
+spatial	boundary profiles	log1p; within-section z score; -6 to +6; binned medians; GAM REML	workflows/spatial/05_boundary_profiles.R	PASS
+spatial	external deconvolution	RCTD full mode; row-normalized proportions	workflows/spatial/06_external_rctd.R	PASS
+communication	CellChat	CellChatDB.human; minimum 10 cells	workflows/communication/01_cellchat.R	PASS
+communication	NicheNet	Macro_c0_SPP1 sender; CAF_c3_POSTN receiver; multi-ligand interpretation	workflows/communication/02_nichenet_tam_to_mycaf.R	PASS
+perturbation	scTenifoldKnk	SPP1 virtual knockout restricted to malignant epithelial cells	workflows/perturbation/01_spp1_virtual_knockout.R	PASS
+bulk_clinical	subtype and prognosis	ROC; Cox; stage-aware clinical summaries	workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R	PASS
+bulk_clinical	Japan-UTUC	CIBERSORTx proportions; rank inverse normal; equal-weight pair scores	workflows/bulk_clinical_validation/02_japan_utuc_validation.R	PASS
+bulk_clinical	Japan-UTUC models	logistic age/sex; Cox age/sex/MI; Efron; BH within endpoint/model	workflows/bulk_clinical_validation/02_japan_utuc_validation.R	PASS
+bulk_clinical	external BLCA	immune/stromal features; ROC; dataset-stratified survival	workflows/bulk_clinical_validation/03_external_blca_validation.R	PASS

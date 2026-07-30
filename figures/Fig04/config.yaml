@@ -1,20 +1,6 @@
 module: Fig04
-title: "Stromal and endothelial states"
-panels: "A-F"
-workflow: group_summary
-input_file: Fig04_stromal_endothelial_results.tsv
-group_columns:
-  - stage
-  - cell_state
-required_columns:
-  - stage
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: cell_state
-y: value
-color: null
-title: "Stromal and endothelial states"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
+title: "Stromal and endothelial cell states"
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

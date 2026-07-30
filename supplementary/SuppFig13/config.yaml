@@ -1,26 +1,6 @@
 module: SuppFig13
-title: "Cancer_c3 boundary and Japan-UTUC validation"
-panels: "A-C"
-workflow: precomputed_results
-input_file: SuppFig13_cancer_c3.tsv
-group_columns:
-  - sample
-  - analysis
-required_columns:
-  - sample
-  - value
-analysis_output: analysis_results.tsv
-plot_input: analysis_results.tsv
-x: sample
-y: value
-color: null
-title: "Cancer_c3 boundary and Japan-UTUC validation"
-plot_output: figure_panels.pdf
-width: 7
-height: 5
-boundary_profile_script: methods/spatial_analysis/02_boundary_profiles.R
-clinical_model_script: methods/spatial_analysis/03_japan_clinical_models.R
-target_state: Cancer_c3
-abundance_summary: means_cell_abundance_w_sf
-spatial_pooling: none
-clinical_endpoint: muscle_invasion
+title: "Cancer_c3 boundary analysis and independent Japan-UTUC association"
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

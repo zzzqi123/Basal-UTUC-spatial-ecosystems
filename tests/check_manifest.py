@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Validate figure coverage and required module interfaces."""
+"""Validate panel-level main and supplementary figure coverage."""
 
 from pathlib import Path
 import csv
 
 ROOT = Path(__file__).resolve().parents[1]
 manifest = ROOT / "manifests" / "figure_manifest.tsv"
-required = {
+required_files = {
     "README.md",
     "01_analysis.R",
     "02_plot.R",
@@ -26,16 +26,27 @@ if observed_ids != expected_ids:
         f"extra={sorted(observed_ids-expected_ids)}"
     )
 
+keys = [(row["figure"], row["panel"]) for row in rows]
+if len(keys) != len(set(keys)):
+    raise SystemExit("Figure manifest contains duplicate figure-panel rows")
+if len(rows) < 100:
+    raise SystemExit("Figure manifest is not panel-level or is unexpectedly incomplete")
+
 for row in rows:
     module = ROOT / row["module"]
-    missing = required.difference(path.name for path in module.iterdir())
+    present = {path.name for path in module.iterdir()}
+    missing = required_files.difference(present)
     if missing:
-        raise SystemExit(f"{row['figure']} missing module files: {sorted(missing)}")
+        raise SystemExit(
+            f"{row['figure']} missing module files: {sorted(missing)}"
+        )
     for key in ("analysis_script", "plot_script"):
         if not (ROOT / row[key]).is_file():
-            raise SystemExit(f"{row['figure']} missing {key}: {row[key]}")
-    if not row["panels"] or not row["primary_methods"]:
-        raise SystemExit(f"{row['figure']} lacks panels or methods")
+            raise SystemExit(f"{row['figure']} {row['panel']} missing {key}")
+    if not row["source_workflow"] or not row["panel_type"]:
+        raise SystemExit(f"{row['figure']} {row['panel']} lacks method mapping")
 
-print(f"PASS: {len(rows)} figure modules cover Fig01-Fig11 and SuppFig01-SuppFig13")
-
+print(
+    f"PASS: {len(rows)} panels cover Fig01-Fig11 and "
+    "SuppFig01-SuppFig13"
+)
