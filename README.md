@@ -5,122 +5,112 @@ Reviewer-facing analysis code for the manuscript:
 > **SPP1-associated spatial ecosystem remodeling in Basal upper tract
 > urothelial carcinoma**
 
-This repository explains how the computational analyses and bioinformatic
-figure panels were produced without distributing patient-level raw data,
-large intermediate objects, histology images or server environments.
+This repository provides the computational framework, project-authored
+functions and figure-level code used in the study. Patient-level raw data,
+large intermediate objects, histology images and private server environments
+are not distributed.
 
-## Four-layer organization
+## Repository structure
 
 ```text
-core/            project-authored R and Python utilities
-workflows/       article-level analysis framework and key parameters
-figures/         main Figures 1–11, one directory per figure
-supplementary/   Supplementary Figures S1–S13, one directory per figure
+Basal-UTUC-spatial-ecosystems/
+├── core/
+│   ├── R/                         shared R utilities
+│   └── python/                    shared Python utilities
+├── workflows/
+│   ├── single_cell/               scRNA-seq processing and cell-state analyses
+│   ├── spatial/                   spatial mapping and spatial-ecosystem analyses
+│   ├── communication/             CellChat and NicheNet
+│   ├── perturbation/              scTenifoldKnk perturbation analyses
+│   ├── genetics/                  scPagwas and PheW-MR
+│   └── bulk_clinical_validation/  subtype, survival and external validation
+├── figures/Fig01-Fig11/           main-figure code organized by figure
+├── supplementary/SuppFig01-SuppFig13/
+│                                    supplementary-figure code organized by figure
+├── config/                        shared and workflow-specific parameters
+├── manifests/                     figure, method, function and data indexes
+├── tests/                         automated repository checks
+└── data/README.md                 local input contracts and access boundaries
 ```
 
-Supporting folders contain portable configuration, data-access instructions,
-coverage manifests and automated checks.
+## Article-level analysis workflow
 
-### 1. Core utilities
+This section describes the manuscript's analytical storyline—not a list of
+software packages and not a replacement for the abstract.
 
-`core/R/` and `core/python/` contain input validation, command-line parsing,
-rank transforms, signature scoring, spatial pair burden, panel assembly,
-plotting, vector export and run metadata. Every public function is indexed in
-[`manifests/function_catalog.tsv`](manifests/function_catalog.tsv).
+The study asks how molecular subtype and pathological stage jointly shape the
+UTUC tumor microenvironment, and how the Basal ecosystem is reorganized from
+non-muscle-invasive to muscle-invasive disease.
 
-All analysis scripts accept:
+```text
+Subtype and stage definition
+          ↓
+Single-cell identification of epithelial, immune and stromal states
+          ↓
+Spatial reconstruction of the Basal tumor ecosystem
+          ├── SPP1-associated TAM–myCAF boundary-like program
+          └── VEGFA+ TAN–CXCR4+ tip-EC angiogenic program
+          ↓
+Communication and in-silico perturbation analyses
+          ↓
+External spatial, bulk and clinical validation
+```
+
+| Analytical question | Main code branch | Role in the manuscript |
+|---|---|---|
+| How do subtype and stage relate to the cellular composition of UTUC? | `workflows/bulk_clinical_validation/`, `workflows/single_cell/` | Defines the Basal immune–stromal background and resolves epithelial, myeloid, lymphoid, fibroblast and endothelial states. |
+| Where are the relevant cell states organized in tissue? | `workflows/spatial/` | Maps cell-state abundance, spatial niches, co-localization, ligand–receptor neighborhoods and tumor-boundary profiles. |
+| Which spatial programs distinguish NMI-Basal from MI-Basal disease? | `workflows/spatial/`, `workflows/communication/` | Quantifies the SPP1-associated TAM–myCAF program and the parallel VEGFA+ TAN–CXCR4+ tip-EC angiogenic program. |
+| Which signaling and regulatory relationships are plausible? | `workflows/communication/`, `workflows/perturbation/` | Evaluates candidate communication networks and in-silico perturbations without treating them as source-specific functional proof. |
+| Are these programs reproducible and clinically relevant? | `workflows/spatial/`, `workflows/bulk_clinical_validation/`, `workflows/genetics/` | Uses public bladder cancer spatial/single-cell datasets, GeoMx, Japan-UTUC bulk data and genetic analyses as separate validation layers. |
+
+The two spatial programs are retained as related but distinct components of
+Basal progression. SPP1 provides a longitudinal association across the Basal
+phenotype, TAM–CAF spatial coupling, clinical outcome and epithelial-intrinsic
+experiments; it is not presented as the sole driver of the parallel
+angiogenic program. Japan-UTUC is a bulk clinical validation cohort and
+supports patient-level cellular-program associations, not spatial location.
+
+The executable order and input-output hand-offs are listed in
+[`workflows/00_pipeline_overview.R`](workflows/00_pipeline_overview.R).
+
+## Figure-level code
+
+`figures/Fig01` through `figures/Fig11` and
+`supplementary/SuppFig01` through `supplementary/SuppFig13` each contain:
+
+- `README.md`: panel-to-workflow mapping and run order;
+- `01_analysis.R`: panel input schema and analysis-table preparation;
+- `02_plot.R`: vector plotting or an explicit package-native panel;
+- `config.yaml`: figure-level settings;
+- `expected_outputs.txt`: expected tables, plots and logs.
+
+Non-computational microscopy and experimental panels are marked
+`noncomputational`; the repository does not assign fabricated analysis code to
+them.
+
+## Reproducibility indexes
+
+- [`manifests/figure_manifest.tsv`](manifests/figure_manifest.tsv): all 141
+  panels across Fig.1–11 and Supplementary Fig.S1–S13.
+- [`manifests/manuscript_method_audit.tsv`](manifests/manuscript_method_audit.tsv):
+  line-by-line mapping from the manuscript Methods to public code.
+- [`manifests/function_catalog.tsv`](manifests/function_catalog.tsv):
+  project-authored R and Python functions.
+- [`manifests/data_manifest.tsv`](manifests/data_manifest.tsv): public
+  accessions, controlled inputs and expected local filenames.
+- [`config/parameters.yaml`](config/parameters.yaml): shared
+  manuscript-level parameters.
+- [`DEPENDENCIES.md`](DEPENDENCIES.md): third-party packages, command-line
+  tools and database requirements.
+
+All public analysis scripts use the common interface:
 
 ```text
 --config --input-dir --output-dir --seed --threads
 ```
 
-Outputs are saved below the requested output directory together with the
-random seed, software/runtime information and Git commit.
-
-### 2. Article-level workflows
-
-[`workflows/00_pipeline_overview.R`](workflows/00_pipeline_overview.R) records
-the overall hand-off:
-
-```text
-bulk and clinical ─┐
-single-cell ───────┼─> de-identified result tables ─> figure modules
-genetics ──────────┤
-spatial ───────────┤
-communication ─────┤
-perturbation ──────┘
-```
-
-The single-cell branch includes QC/integration, manual marker evidence,
-lineage subclustering, primary and sensitivity inferCNV, CytoTRACE2,
-Monocle2, SCOP/Monocle3, pySCENIC, ClusterGVis/Nebulosa, enrichment,
-AUCell/PROGENy and Ro/e composition. The spatial branch includes Visium
-processing, cell2location, cell-state correlation and co-localization,
-SpaGene, SpaCET, spatial CellChat, multiscale pair burden, permutation O/E,
-stGrads boundaries, section-specific GAM profiles, Visium HD/Visium RCTD and
-GeoMx validation.
-
-The independent Japan-UTUC analysis is under
-`workflows/bulk_clinical_validation/`; it is not a spatial dataset and its
-cellular-program scores do not measure spatial adjacency.
-
-The line-by-line Methods audit is
-[`manifests/manuscript_method_audit.tsv`](manifests/manuscript_method_audit.tsv).
-It distinguishes final manuscript workflows, external vendor tools,
-sensitivity analyses, a resolved Ro/e wording mismatch and exploratory
-methods that are deliberately not represented as final analyses.
-
-The genetics branch includes both scPagwas and the SPP1 PheW-MR
-post-processing contract. Bulk workflows include ESTIMATE, BASE47/GSVA,
-subtype-by-stage linear models, DSS log-rank/Cox analysis, five-year timeROC,
-pROC and maximally selected thresholds.
-
-### 3. Main figures
-
-`figures/Fig01` through `figures/Fig11` each contain:
-
-- `README.md`: panel-to-workflow mapping and run order;
-- `01_analysis.R`: explicit input table and column schema for every panel;
-- `02_plot.R`: standard vector plotting or an explicit package-native panel;
-- `config.yaml`: figure-level reproducibility settings;
-- `expected_outputs.txt`: expected tables, plots and logs.
-
-### 4. Supplementary figures
-
-`supplementary/SuppFig01` through `supplementary/SuppFig13` use the same
-interface. Non-computational microscopy or experimental panels are marked
-`noncomputational`; they are not assigned fabricated analysis code.
-
-The panel-level coverage table is
-[`manifests/figure_manifest.tsv`](manifests/figure_manifest.tsv).
-
-## Key manuscript-locked workflows
-
-### cell2location
-
-cell2location is located entirely under
-[`workflows/spatial/cell2location/`](workflows/spatial/cell2location/).
-
-- reference batch: `orig.ident`
-- reference label: `second_celltype_byhand`
-- reference regression: 250 epochs
-- expected cells per location: 30
-- detection alpha: 20
-- spatial mapping: 50,000 epochs, `batch_size=None`, `train_size=1`
-- conservative maps and pair burden: `q05_cell_abundance_w_sf`
-- continuous boundary profiles: posterior mean, stated separately
-- abundance neighbors: 15; Leiden resolution: 0.3
-
-### scPagwas
-
-Supplementary Figure S3 retains the original `scPagwas_main` workflow:
-
-- cell-type inference: 200 bootstrap iterations followed by BH/FDR;
-- single-cell inference: 100 random-background iterations;
-- cell-level display: `Random_Correct_BG_adjp`;
-- cell-type display: BH-adjusted `bootstrap_results$bp_value`.
-
-The two FDR quantities are kept in separate tables and cannot be interchanged.
+Run metadata record the random seed, runtime version, UTC time and Git commit.
 
 ## Quick start
 
@@ -152,24 +142,11 @@ Rscript figures/Fig10/02_plot.R \
 The repository does not contain FASTQ/BAM files, patient-level clinical
 records, RDS/H5AD/loom objects, Visium histology images, model weights, private
 accessions, workstation paths or server paths. Public datasets must be
-obtained from their original repositories; expected filenames are documented
-in `manifests/data_manifest.tsv`.
+obtained from their original repositories; expected inputs are documented in
+[`data/README.md`](data/README.md) and
+[`manifests/data_manifest.tsv`](manifests/data_manifest.tsv).
 
 No open-source licence is granted. Copyright © 2026 Qi Zhang and co-authors.
 The repository is public for peer review, academic inspection and
 reproducibility assessment. Third-party packages remain under their own
 licences and their source code is not copied here.
-
-## Official method interfaces
-
-Public wrappers follow the documented interfaces of
-[cell2location](https://cell2location.readthedocs.io/en/latest/notebooks/cell2location_tutorial.html),
-[scPagwas](https://github.com/dengchunyu/scPagwas),
-[CytoTRACE2](https://github.com/digitalcytometry/cytotrace2) and
-[spacexr/RCTD](https://github.com/dmcable/spacexr),
-[CellChat](https://github.com/jinworks/CellChat),
-[SpaGene](https://github.com/liuqivandy/SpaGene) and
-[Monocle2](https://bioconductor.org/packages/monocle/). Study-specific
-parameters are locked in `config/parameters.yaml` and
-`manifests/method_code_checklist.tsv`; third-party package source is not
-vendored into this repository.
