@@ -43,30 +43,54 @@ flowchart TB
     A["Japan-UTUC bulk + internal scRNA-seq + Basal spatial transcriptomics"] --> B["Subtype-versus-stage analysis"]
     B --> C["Basal immune-stromal enrichment across NMI and MI tumors"]
     C --> D["Within-Basal comparison: NMI versus MI"]
-    D --> E["Malignant, myeloid, lymphoid, stromal and endothelial cell states"]
-    E --> F["Spatial reconstruction in Basal sections"]
+    D --> E["Cell-state analysis and spatial reconstruction in Basal tumors"]
 
-    F --> G["Invasive-front context<br/>Cancer_c0, CCR2+ monocytes, SPP1+ TAMs and FAP+ myCAFs"]
-    F --> H["Tumor-core context<br/>Cancer_c3, VEGFA+ TANs and CXCR4+ tip ECs"]
+    E --> S1
+    E --> A1
 
-    G --> I["Niche1: SPP1+ TAM-FAP+ myCAF<br/>boundary enrichment and effector-immune gradients"]
-    H --> J["Niche2: VEGFA+ TAN-CXCR4+ tip EC<br/>angiogenic spatial program"]
+    subgraph SPP["SPP1-associated evidence line"]
+        direction LR
+        S1["Invasive-front microenvironment<br/>Cancer_c0, CCR2+ monocytes, SPP1+ TAMs and FAP+ myCAFs"]
+        S2["Niche1 tissue analyses<br/>TAM-myCAF communication, boundary enrichment and immune gradients"]
+        S3["Epithelial SPP1 arm<br/>malignant-cell expression, virtual knockout and J82/HUVEC assays"]
+        S4["External urothelial carcinoma support<br/>BLCA bulk, scRNA-seq, Visium/Visium HD and GeoMx"]
+        S5["Clinical and biomarker assessment<br/>Japan-UTUC Niche1 models, SPP1/FAP classification and prognosis"]
 
-    I --> K["External BLCA spatial/GeoMx support<br/>Japan-UTUC invasion and survival models"]
-    J --> L["Spatial and mIF support<br/>Japan-UTUC invasion models"]
+        S1 --- S2
+        S2 --- S3
+        S2 --- S4
+        S2 --- S5
+        S3 --- S5
+    end
 
-    C --> M["Epithelial SPP1 branch<br/>virtual knockout and J82/HUVEC assays"]
-    K --> N["SPP1/FAP subtype discrimination and prognosis<br/>exploratory SPP1 PheW-MR"]
-    M --> N
+    subgraph ANG["Parallel angiogenic evidence line"]
+        direction LR
+        A1["Cancer_c3 malignant state<br/>hypoxia, glycolysis and angiogenesis; assessed separately"]
+        A2["Niche2 cell pair<br/>VEGFA+ TAN-CXCR4+ tip EC"]
+        A3["UTUC tissue evidence<br/>ligand-receptor maps, spatial co-enrichment and mIF"]
+        A4["Supporting associations<br/>Cancer_c3 external/Japan validation and Japan-UTUC Niche2 models"]
+
+        A1 --- A2
+        A2 --- A3
+        A1 --- A4
+        A2 --- A4
+    end
 ```
 
-Niche1 and Niche2 are analyzed as parallel MI-associated programs. Niche1
-shows the more reproducible tumor-boundary organization and retains the
-stage-adjusted disease-specific survival association in the Japan-UTUC cohort;
-Niche2 supports a hypoxia/angiogenesis program but has a more heterogeneous
-spatial pattern. The epithelial SPP1 perturbation is a separate functional
-branch and is not used as proof of TAM-derived SPP1 signaling to fibroblasts.
-Japan-UTUC provides bulk clinical validation, not spatial validation.
+Arrows above the two evidence lines show the order of the analysis. Plain
+connectors within each line group related evidence and do not imply an
+upstream, downstream or causal relationship. The epithelial SPP1 experiments
+therefore sit within the SPP1-associated line but remain distinct from the
+SPP1+ TAM-FAP+ myCAF tissue analysis. External BLCA datasets provide
+cross-context support alongside this line rather than a downstream step.
+
+Niche1 and Niche2 remain parallel MI-associated programs. Niche1 shows the
+more reproducible tumor-boundary organization and retains the stage-adjusted
+disease-specific survival association in Japan-UTUC; Niche2 supports a
+hypoxia/angiogenesis program but has a more heterogeneous spatial pattern.
+Cancer_c3 is shown as a related malignant state, not as a component of the
+VEGFA+ TAN-CXCR4+ tip-EC pair. Japan-UTUC provides bulk clinical association,
+not spatial validation.
 
 ## Main-figure modules
 
