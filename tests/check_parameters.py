@@ -132,6 +132,8 @@ if cfg["external_spatial_validation"].get("expected_sections") != 22:
 phewas = cfg["phewas_mr"]
 expected_phewas = {
     "target_gene": "SPP1",
+    "instrument_source": "eQTLGen_Phase1",
+    "outcome_source": "UK_Biobank_SAIGE_PheWeb",
     "outcome_sample_size": 456348,
     "total_binary_phenotypes": 1403,
     "min_cases_exclusive": 500,

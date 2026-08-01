@@ -22,5 +22,6 @@ vendored in this repository.
 `03_phewas_mr_spp1.R` validates and post-processes normalized output from the
 official SMR/HEIDI software: 1,403 UK Biobank binary phenotypes, more than 500
 cases, an expected 679 eligible outcomes, HEIDI p > 0.1 and BH FDR < 0.05.
-The eQTL reference, UK Biobank summary statistics and third-party SMR binary
+The SPP1 instrument source is eQTLGen Phase 1 and the outcome source is the UK
+Biobank SAIGE PheWeb. These summary statistics and the third-party SMR binary
 are not redistributed. See `../../config/phewas_mr.example.yaml`.

@@ -1,5 +1,9 @@
 # SuppFig12: Single-cell validation of bladder urothelial carcinoma cell-type annotations and SPP1/FAP/CXCR4-associated compartments
 
+This module uses the two public bladder cancer scRNA-seq resources listed in
+Supplementary Table 5: GSE222315 (nine tumors and four adjacent normal
+samples) and the seven retained tumor specimens from GSE267718.
+
 ## Panel-to-code map
 
 | Panel | Analysis | Source workflow |
@@ -33,4 +37,7 @@ Rscript supplementary/SuppFig12/02_plot.R \
 ```
 
 Required input columns are listed directly in `01_analysis.R`; expected files
-are listed in `expected_outputs.txt`.
+are listed in `expected_outputs.txt`. The upstream processing inputs are
+`gse222315_scrna.h5ad` and `gse267718_tumor_scrna.h5ad`; the two cohorts retain
+their dataset labels during Seurat processing and are combined only for the
+figure-level exports listed here.

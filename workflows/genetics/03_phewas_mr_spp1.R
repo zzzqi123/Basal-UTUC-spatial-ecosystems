@@ -60,6 +60,7 @@ if (nrow(eligible) != cfg$expected_eligible_phenotypes) {
 summary <- eligible %>%
   summarise(
     target_gene = cfg$target_gene,
+    instrument_source = cfg$instrument_source,
     outcome_source = cfg$outcome_source,
     outcome_sample_size = cfg$outcome_sample_size,
     tested_phenotypes = n(),
@@ -80,6 +81,8 @@ write_run_metadata(
   opts,
   list(
     method = "SMR with HEIDI exclusion",
+    instrument_source = cfg$instrument_source,
+    outcome_source = cfg$outcome_source,
     min_cases_exclusive = cfg$min_cases_exclusive,
     heidi_p_threshold = cfg$heidi_p_threshold,
     fdr_method = cfg$multiple_testing,

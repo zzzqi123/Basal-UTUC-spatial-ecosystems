@@ -40,6 +40,11 @@ Method-specific input contracts include:
   `Cancer_c0`-`Cancer_c4` cells before network construction;
 - `hallmark_gene_sets.tsv`: columns `pathway` and `gene` for shared
   single-cell enrichment workflows;
+- `gse222315_scrna.h5ad`: processed cells from nine bladder cancer tumors and
+  four adjacent normal samples in GSE222315;
+- `gse267718_tumor_scrna.h5ad`: the seven tumor specimens retained from the
+  33-specimen GSE267718 series; urine and PBMC samples are not included in the
+  tumor-focused validation;
 - `hg38_gene_order.tsv`: inferCNV gene order;
 - `infercnv_primary_matched_matrix.tsv.gz` and
   `infercnv_sensitivity_matched_matrix.tsv.gz`: gene-by-cell matrices exported
@@ -70,3 +75,8 @@ Method-specific input contracts include:
 - `spp1_phewas_smr_results.tsv.gz`: one normalized SMR/HEIDI row per UK
   Biobank binary phenotype with identifiers, PheCode category, case count,
   beta, standard error, SMR p value and HEIDI p value.
+
+The public validation inventory follows Supplementary Table 5: FinnGen R12,
+eQTLGen Phase 1, UK Biobank SAIGE PheWeb, TCGA-BLCA, GSE32894, GSE222315,
+GSE267718, GSE299573, GSE319536 and GSE296955. The Japan-UTUC RNA-seq cohort
+is controlled-access data under EGAD00001007667.

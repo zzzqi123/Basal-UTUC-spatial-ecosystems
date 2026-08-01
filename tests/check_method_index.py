@@ -30,7 +30,6 @@ allowed_status = {
     "included",
     "sensitivity",
     "included_with_note",
-    "methods_update",
     "external_step",
 }
 for row in rows:

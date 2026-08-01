@@ -12,8 +12,9 @@ notebooks are kept separately.
   `FindAllMarkers` tables for curator-reviewed labels.
 - `01c_lineage_subclustering.R`: configurable repetition of the same
   Seurat/Harmony workflow within epithelial, myeloid, neutrophil, lymphoid,
-  mesenchymal or endothelial compartments. The external BLCA single-cell
-  cohort uses the same interface.
+  mesenchymal or endothelial compartments. The external BCa validation uses
+  GSE222315 and the seven retained tumor specimens from GSE267718 through the
+  same interface, with the source cohort retained in the metadata.
 - `08_marker_visualization.R`: ClusterGVis marker heatmaps and Nebulosa
   density maps.
 - `09_roe_composition.R`: descriptive pooled observed/expected ratios and a

@@ -19,7 +19,7 @@ single_cell	visualization	ClusterGVis and Nebulosa	workflows/single_cell/08_mark
 single_cell	composition	descriptive Ro/e plus sample-level negative-binomial inference	workflows/single_cell/09_roe_composition.R	PASS_WITH_METHOD_NOTE
 genetics	scPagwas	scPagwas_main; FinnGen R12; GRCh38; 200 bootstrap; 100 backgrounds	workflows/genetics/01_scpagwas.R	PASS
 genetics	scPagwas FDR	cell Random_Correct_BG_adjp; cell-type BH of bp_value	workflows/genetics/02_prepare_scpagwas_tables.R	PASS
-genetics	SPP1 PheW-MR	1403 binary phenotypes; cases >500; expected 679; HEIDI >0.1; BH FDR <0.05	workflows/genetics/03_phewas_mr_spp1.R	PASS
+genetics	SPP1 PheW-MR	eQTLGen Phase 1; UK Biobank SAIGE PheWeb; 1403 binary phenotypes; cases >500; expected 679; HEIDI >0.1; BH FDR <0.05	workflows/genetics/03_phewas_mr_spp1.R	PASS
 spatial	cell2location reference	orig.ident; second_celltype_byhand; 250 epochs	workflows/spatial/cell2location/01_reference_signatures.py	PASS
 spatial	cell2location mapping	N cells 30; detection alpha 20; 50000 epochs; batch None; train size 1	workflows/spatial/cell2location/02_spatial_mapping.py	PASS
 spatial	cell2location posterior	mean q05 q95; conservative q05 default	workflows/spatial/cell2location/03_export_abundance.py	PASS
