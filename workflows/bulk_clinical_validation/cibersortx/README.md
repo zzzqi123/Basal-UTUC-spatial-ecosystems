@@ -1,10 +1,10 @@
 # Single-cell-reference to bulk deconvolution
 
-This module reconstructs the CIBERSORTx hand-off described in the manuscript.
+This module contains the CIBERSORTx hand-off described in the manuscript.
 The target dataset is the Japan-UTUC bulk RNA-seq cohort; the reference is the
 manually annotated UTUC single-cell dataset.
 
-## Public code boundary
+## Input and output handling
 
 - `01_prepare_inputs.R` selects at most 300 cells per fine-grained annotated
   state, exports the raw-count single-cell reference and preserves the supplied

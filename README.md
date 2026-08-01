@@ -80,7 +80,7 @@ outputs. The complete panel index, including Supplementary Figs. S1–S14, is in
 
 - [`workflows/00_pipeline_overview.R`](workflows/00_pipeline_overview.R):
   ordered list of workflow and figure hand-offs.
-- [`manifests/manuscript_method_audit.tsv`](manifests/manuscript_method_audit.tsv):
+- [`manifests/method_index.tsv`](manifests/method_index.tsv):
   mapping from Methods sections to repository scripts.
 - [`manifests/function_catalog.tsv`](manifests/function_catalog.tsv): shared R
   and Python functions written for this project.

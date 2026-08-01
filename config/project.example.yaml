@@ -1,7 +1,6 @@
 project:
   name: Basal-UTUC-spatial-ecosystems
   repository: https://github.com/zzzqi123/Basal-UTUC-spatial-ecosystems
-  release: v0.4.1-reviewer
 
 paths:
   input_dir: data/processed

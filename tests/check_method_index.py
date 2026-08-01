@@ -1,49 +1,48 @@
 #!/usr/bin/env python3
-"""Validate the manuscript-to-code audit and every declared public target."""
+"""Validate the manuscript method index and its declared script paths."""
 
 from pathlib import Path
 import csv
 
 ROOT = Path(__file__).resolve().parents[1]
-audit_path = ROOT / "manifests" / "manuscript_method_audit.tsv"
-with audit_path.open(encoding="utf-8") as handle:
+index_path = ROOT / "manifests" / "method_index.tsv"
+with index_path.open(encoding="utf-8") as handle:
     rows = list(csv.DictReader(handle, delimiter="\t"))
 
 required_columns = {
-    "scope",
+    "analysis layer",
     "method",
     "manuscript specification",
-    "public implementation",
+    "script",
     "status",
-    "audit note",
+    "note",
 }
 if not rows or set(rows[0]) != required_columns:
-    raise SystemExit("Manuscript method audit has an invalid schema")
+    raise SystemExit("Method index has an invalid schema")
 if len(rows) < 50:
-    raise SystemExit("Manuscript method audit is unexpectedly incomplete")
+    raise SystemExit("Method index is unexpectedly incomplete")
 
-keys = [(row["scope"], row["method"]) for row in rows]
+keys = [(row["analysis layer"], row["method"]) for row in rows]
 if len(keys) != len(set(keys)):
-    raise SystemExit("Duplicate scope-method rows in manuscript method audit")
+    raise SystemExit("Duplicate analysis-layer and method rows in method index")
 
 allowed_status = {
-    "PASS",
-    "PASS_RETAINED_SENSITIVITY",
-    "METHOD_TEXT_MISMATCH_RESOLVED",
-    "METHOD_TEXT_UPDATE_REQUIRED",
-    "DOCUMENTED_EXTERNAL",
-    "EXPLORATORY_NOT_FINAL",
+    "included",
+    "sensitivity",
+    "included_with_note",
+    "methods_update",
+    "external_step",
 }
 for row in rows:
     if row["status"] not in allowed_status:
         raise SystemExit(
-            f"Unsupported audit status for {row['method']}: {row['status']}"
+            f"Unsupported method-index status for {row['method']}: {row['status']}"
         )
-    for target in row["public implementation"].split(";"):
+    for target in row["script"].split(";"):
         path = ROOT / target.strip()
         if not path.exists():
             raise SystemExit(
-                f"Missing audit target for {row['method']}: {target.strip()}"
+                f"Missing script target for {row['method']}: {target.strip()}"
             )
 
 required_methods = {
@@ -70,6 +69,6 @@ required_methods = {
 observed_methods = {row["method"] for row in rows}
 missing = required_methods - observed_methods
 if missing:
-    raise SystemExit(f"Audit omits required methods: {sorted(missing)}")
+    raise SystemExit(f"Method index omits required methods: {sorted(missing)}")
 
-print(f"PASS: {len(rows)} manuscript and scope-control methods are audited")
+print(f"PASS: {len(rows)} manuscript methods are indexed")

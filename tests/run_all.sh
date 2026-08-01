@@ -7,7 +7,7 @@ cd "$repo_dir"
 python_bin="${PYTHON_BIN:-python3}"
 
 "$python_bin" tests/check_manifest.py
-"$python_bin" tests/check_method_audit.py
+"$python_bin" tests/check_method_index.py
 "$python_bin" tests/check_architecture.py
 "$python_bin" tests/check_parameters.py
 "$python_bin" tests/check_privacy.py

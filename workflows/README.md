@@ -25,5 +25,5 @@ bulk scores quantify patient-level cellular-program abundance and clinical
 association; they do not measure spatial adjacency.
 
 See `00_pipeline_overview.R` for the input-output hand-off between these
-workflows and the figure folders. The line-by-line comparison against the
-current manuscript is in `../manifests/manuscript_method_audit.tsv`.
+workflows and the figure folders. The Methods-to-script index is in
+`../manifests/method_index.tsv`.

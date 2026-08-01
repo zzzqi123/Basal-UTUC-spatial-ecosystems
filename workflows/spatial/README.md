@@ -63,8 +63,5 @@ Example RCTD configs are `../../config/rctd_gse299573.example.yaml` and
 section, then concatenate the de-identified proportion tables with a `section`
 column before the GSE319536 preparation step.
 
-CARD, MISTy and spatial NMF appear only in exploratory local code and are not
-named in the current manuscript Methods. Their exclusion from the formal
-public chain is explicit in `../../manifests/manuscript_method_audit.tsv`.
 Japan-UTUC is a bulk clinical cohort and remains under
 `../bulk_clinical_validation/`; it does not provide spatial co-localization.

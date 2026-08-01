@@ -74,10 +74,5 @@ Rscript workflows/single_cell/10_spp1_virtual_knockout.R \
   --seed 20260730 --threads 8
 ```
 
-The current Methods do not specify DoubletFinder, PAGA, Slingshot or scVelo as
-final analyses. They are recorded as exploratory in
-`../../manifests/manuscript_method_audit.tsv` and are not included in the
-figure pipeline.
-
 Large Seurat, loom and count objects remain local inputs and are excluded from
 Git.
