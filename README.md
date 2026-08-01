@@ -51,11 +51,6 @@ were prioritized:
   MI-associated spatial program linked to hypoxia and angiogenesis. Cancer_c3
   was evaluated as a related but separate malignant state.
 
-For the Japan-UTUC cohort, bulk-derived cellular-program scores were calculated
-from the prespecified cell-state signatures and tested for muscle invasion and
-disease-specific survival. These analyses assess patient-level clinical
-associations; they do not reconstruct or validate spatial niches.
-
 Together, the Basal phenotype, invasive-front immune–stromal program,
 epithelial-intrinsic experiments and SPP1/FAP classification and survival
 analyses identify SPP1 as a candidate therapeutic target and prognostic
