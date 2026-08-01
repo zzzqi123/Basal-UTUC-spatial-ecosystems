@@ -10,10 +10,10 @@
 | D | Subtype-classification ROC | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R` |
 | E | External survival validation | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/03_external_blca_validation.R` |
 
-`01_analysis.R` declares each panel's input table and required columns. It
-performs lightweight panel assembly only; model fitting remains in
-`workflows/`. `02_plot.R` renders standard vector panels and records
-package-native or non-computational panels without fabricating a replacement.
+`01_analysis.R` records each panel's source workflow, input table and required
+columns. `02_plot.R` draws the standard vector panels; panels exported directly
+from an analysis package or generated experimentally are listed in the panel
+map.
 
 ## Run
 
@@ -31,5 +31,5 @@ Rscript supplementary/SuppFig11/02_plot.R \
   --seed 20260730 --threads 4
 ```
 
-Private patient tables and large objects are not distributed. The expected
-de-identified table schemas are visible directly in `01_analysis.R`.
+Required input columns are listed directly in `01_analysis.R`; expected files
+are listed in `expected_outputs.txt`.

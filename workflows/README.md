@@ -1,8 +1,8 @@
 # Manuscript analysis workflows
 
-This folder gives the article-level computational framework. It is more
-substantive than pseudocode, but deliberately omits private paths, raw patient
-data, large intermediate objects and exploratory notebooks.
+This folder contains the analysis workflows used across multiple figures.
+Inputs and outputs are passed by command-line arguments; raw patient data,
+large intermediate objects and exploratory notebooks remain local.
 
 ## Overall order
 
@@ -20,7 +20,7 @@ data, large intermediate objects and exploratory notebooks.
    hand-off, ESTIMATE/BASE47 scores, subtype/TME interaction models,
    survival/ROC analyses and independent Japan-UTUC clinical models.
 
-The spatial and Japan-UTUC branches are intentionally separate. Japan-UTUC
+The spatial and Japan-UTUC branches are kept separate. Japan-UTUC
 bulk scores quantify patient-level cellular-program abundance and clinical
 association; they do not measure spatial adjacency.
 

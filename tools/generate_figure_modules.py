@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild explicit, reviewer-readable main and supplementary figure modules."""
+"""Rebuild the main and supplementary figure modules from the panel map."""
 
 from __future__ import annotations
 
@@ -619,9 +619,8 @@ def analysis_script(module: Module) -> str:
     return f'''#!/usr/bin/env Rscript
 
 # {Path(module.path).name}: {module.title}
-# Heavy model fitting is performed by the named workflows. This script exposes
-# the exact panel hand-off, validates de-identified table schemas, and writes
-# one analysis table per computational panel.
+# The source workflow for each panel is recorded in panel_plan. This script
+# checks the exported columns and writes the tables used for figure assembly.
 
 source(file.path("core", "R", "cli.R"))
 source(file.path("core", "R", "figure_assembly.R"))
@@ -691,9 +690,8 @@ def plot_script(module: Module) -> str:
     return f'''#!/usr/bin/env Rscript
 
 # {Path(module.path).name} panel rendering.
-# Standard statistical panels are rendered from the exported tables below.
-# Package-native graphs (CellChat, Seurat dot plots, inferCNV, SCENIC) remain
-# identified explicitly instead of being replaced with a misleading generic plot.
+# Standard panels are rendered from the exported tables below. Panels drawn
+# directly by an analysis package are listed in package_native_panels.
 
 source(file.path("core", "R", "cli.R"))
 source(file.path("core", "R", "figure_assembly.R"))
@@ -731,10 +729,10 @@ def readme(module: Module) -> str:
 
 {chr(10).join(rows)}
 
-`01_analysis.R` declares each panel's input table and required columns. It
-performs lightweight panel assembly only; model fitting remains in
-`workflows/`. `02_plot.R` renders standard vector panels and records
-package-native or non-computational panels without fabricating a replacement.
+`01_analysis.R` records each panel's source workflow, input table and required
+columns. `02_plot.R` draws the standard vector panels; panels exported directly
+from an analysis package or generated experimentally are listed in the panel
+map.
 
 ## Run
 
@@ -752,8 +750,8 @@ Rscript {module.path}/02_plot.R \\
   --seed 20260730 --threads 4
 ```
 
-Private patient tables and large objects are not distributed. The expected
-de-identified table schemas are visible directly in `01_analysis.R`.
+Required input columns are listed directly in `01_analysis.R`; expected files
+are listed in `expected_outputs.txt`.
 """
 
 

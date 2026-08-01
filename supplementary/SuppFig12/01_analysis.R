@@ -1,9 +1,8 @@
 #!/usr/bin/env Rscript
 
 # SuppFig12: Single-cell validation of bladder urothelial carcinoma cell-type annotations and SPP1/FAP/CXCR4-associated compartments
-# Heavy model fitting is performed by the named workflows. This script exposes
-# the exact panel hand-off, validates de-identified table schemas, and writes
-# one analysis table per computational panel.
+# The source workflow for each panel is recorded in panel_plan. This script
+# checks the exported columns and writes the tables used for figure assembly.
 
 source(file.path("core", "R", "cli.R"))
 source(file.path("core", "R", "figure_assembly.R"))

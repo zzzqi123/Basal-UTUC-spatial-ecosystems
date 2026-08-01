@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Enforce manuscript-locked cell2location and scPagwas parameters."""
+"""Check the cell2location and scPagwas parameters reported in Methods."""
 
 from pathlib import Path
 import yaml
@@ -161,4 +161,4 @@ for path in list((ROOT / "config").rglob("*")) + list((ROOT / "workflows").rglob
     if "max_epochs=20000" in text or "max_epochs = 20000" in text:
         raise SystemExit(f"Historical 20,000-epoch value found in {path.relative_to(ROOT)}")
 
-print("PASS: manuscript-locked parameters are consistent")
+print("PASS: reported method parameters are consistent")

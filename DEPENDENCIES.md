@@ -2,7 +2,7 @@
 
 `environment.yml` installs the shared Python environment, R 4.3 and the
 widely available CRAN/Bioconductor packages. `renv.lock` records the core R
-versions used by the reviewer-facing wrappers.
+package versions used by the analysis scripts.
 
 Several method-specific packages are installed from their official
 repositories or Bioconductor and may not be available from the same Conda
@@ -31,5 +31,5 @@ channel on every platform:
 
 Install these packages from the upstream source appropriate to the manuscript
 run and record the resolved versions in the run metadata. Third-party source,
-motif databases, model weights and vendor software are intentionally not
-copied into this repository.
+motif databases, model weights and vendor software are not copied into this
+repository.

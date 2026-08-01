@@ -1,9 +1,8 @@
 #!/usr/bin/env Rscript
 
 # SuppFig13: Robustness of malignant epithelial subcluster assignments and functional programs under alternative inferCNV reference selection
-# Heavy model fitting is performed by the named workflows. This script exposes
-# the exact panel hand-off, validates de-identified table schemas, and writes
-# one analysis table per computational panel.
+# The source workflow for each panel is recorded in panel_plan. This script
+# checks the exported columns and writes the tables used for figure assembly.
 
 source(file.path("core", "R", "cli.R"))
 source(file.path("core", "R", "figure_assembly.R"))

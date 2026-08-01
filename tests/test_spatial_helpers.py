@@ -19,4 +19,4 @@ section = pd.Series(["S1", "S2"])
 scaled = section_scale_total_abundance(abundance, section)
 assert scaled.shape == abundance.shape
 assert np.isfinite(scaled.to_numpy()).all()
-print("PASS: project-authored spatial helper smoke tests")
+print("PASS: spatial helper smoke tests")

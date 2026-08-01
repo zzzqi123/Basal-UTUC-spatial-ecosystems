@@ -1,4 +1,4 @@
-"""Project-authored spatial abundance helpers."""
+"""Spatial abundance and pair-burden helpers."""
 
 from __future__ import annotations
 
@@ -62,4 +62,3 @@ def rank_inverse_normal(values: pd.Series) -> pd.Series:
         index=values.index,
         name=values.name,
     )
-

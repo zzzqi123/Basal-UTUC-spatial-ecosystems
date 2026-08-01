@@ -3,7 +3,7 @@
 # Article-level execution map. Each row is a substantive hand-off. Private
 # cohorts and large objects are inputs, not repository contents.
 
-scripts <- c(
+workflow_scripts <- c(
   "workflows/single_cell/01_process_scrna.R",
   "workflows/single_cell/01b_annotation_and_markers.R",
   "workflows/single_cell/01c_lineage_subclustering.R",
@@ -45,9 +45,15 @@ scripts <- c(
   "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R",
   "workflows/bulk_clinical_validation/cibersortx/01_prepare_inputs.R",
   "workflows/bulk_clinical_validation/cibersortx/02_import_fractions.R",
-  "workflows/bulk_clinical_validation/02_japan_utuc_validation.R",
-  "figures/FigXX/01_analysis.R"
+  "workflows/bulk_clinical_validation/02_japan_utuc_validation.R"
 )
+
+figure_scripts <- c(
+  file.path("figures", sprintf("Fig%02d", 1:11), "01_analysis.R"),
+  file.path("supplementary", sprintf("SuppFig%02d", 1:14), "01_analysis.R")
+)
+
+scripts <- c(workflow_scripts, figure_scripts)
 
 branches <- vapply(scripts, function(script) {
   if (startsWith(script, "workflows/single_cell/")) return("single_cell")
@@ -56,7 +62,9 @@ branches <- vapply(scripts, function(script) {
   if (startsWith(script, "workflows/bulk_clinical_validation/")) {
     return("bulk_clinical")
   }
-  "figure_assembly"
+  if (startsWith(script, "figures/")) return("main_figure")
+  if (startsWith(script, "supplementary/")) return("supplementary_figure")
+  stop("Unrecognized pipeline path: ", script)
 }, character(1))
 
 pipeline <- data.frame(

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train cell2location spatial mapping using manuscript-locked parameters."""
+"""Train cell2location spatial mapping with the parameters in Methods."""
 
 from __future__ import annotations
 

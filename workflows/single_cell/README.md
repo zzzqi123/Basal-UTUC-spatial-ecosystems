@@ -1,7 +1,7 @@
 # Single-cell workflows
 
-The public branch follows the current manuscript Methods rather than copying
-private exploratory notebooks.
+These scripts follow the analyses reported in the current Methods. Exploratory
+notebooks are kept separately.
 
 ## Processing, annotation and subclustering
 
@@ -75,9 +75,9 @@ Rscript workflows/single_cell/10_spp1_virtual_knockout.R \
 ```
 
 The current Methods do not specify DoubletFinder, PAGA, Slingshot or scVelo as
-final analyses. They are therefore recorded as exploratory in
-`../../manifests/manuscript_method_audit.tsv` and are not silently inserted
-into the primary public pipeline.
+final analyses. They are recorded as exploratory in
+`../../manifests/manuscript_method_audit.tsv` and are not included in the
+figure pipeline.
 
 Large Seurat, loom and count objects remain local inputs and are excluded from
 Git.

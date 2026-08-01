@@ -1,9 +1,8 @@
 #!/usr/bin/env Rscript
 
 # Fig08: Epithelial SPP1 expression and functional effects of SPP1 knockdown in a urothelial carcinoma model
-# Heavy model fitting is performed by the named workflows. This script exposes
-# the exact panel hand-off, validates de-identified table schemas, and writes
-# one analysis table per computational panel.
+# The source workflow for each panel is recorded in panel_plan. This script
+# checks the exported columns and writes the tables used for figure assembly.
 
 source(file.path("core", "R", "cli.R"))
 source(file.path("core", "R", "figure_assembly.R"))

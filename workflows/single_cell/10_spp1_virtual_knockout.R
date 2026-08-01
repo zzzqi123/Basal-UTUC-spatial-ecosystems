@@ -1,8 +1,7 @@
 #!/usr/bin/env Rscript
 
-# Final manuscript workflow: SPP1 virtual knockout in UTUC malignant
-# epithelial cells only. Whole-TME and FAP knockout experiments are outside
-# the final analysis and are intentionally not implemented here.
+# SPP1 virtual knockout in UTUC malignant epithelial cells (Cancer_c0-c4).
+# Whole-TME and FAP knockout experiments are not part of this analysis.
 
 suppressPackageStartupMessages({
   library(clusterProfiler)
@@ -214,7 +213,7 @@ write_run_metadata(
     nc_nComp = cfg$nc_nComp,
     td_K = cfg$td_K,
     ma_nDim = cfg$ma_nDim,
-    claim_boundary = paste(
+    interpretation_scope = paste(
       "Network-level perturbation association only; not directional",
       "expression change or proof of TAM-to-CAF causality"
     )

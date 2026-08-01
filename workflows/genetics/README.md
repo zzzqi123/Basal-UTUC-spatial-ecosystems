@@ -1,8 +1,7 @@
 # scPagwas workflow for Supplementary Figure S3
 
-This module intentionally uses the original `scPagwas_main` entry point that
-corresponds to the 2023 publication and the existing Supplementary Figure S3.
-It does not silently replace the analysis with `scPagwas_main2`.
+Supplementary Figure S3 was generated with the original `scPagwas_main` entry
+point from the 2023 workflow. `scPagwas_main2` is not used here.
 
 ## Statistical outputs
 

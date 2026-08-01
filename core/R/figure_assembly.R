@@ -8,9 +8,9 @@ suppressPackageStartupMessages({
 source(file.path("core", "R", "analysis_helpers.R"))
 source(file.path("core", "R", "plot_helpers.R"))
 
-# Figure scripts declare their panel-specific work as a list of small records.
-# Heavy model fitting remains in workflows/; this layer checks the public table
-# interface, performs light panel statistics, and writes one table per panel.
+# Figure scripts declare panel-specific work as a list of records. This layer
+# checks exported tables, performs panel-level summaries and writes one table
+# per panel.
 
 read_panel_input <- function(input_dir, spec) {
   path <- file.path(input_dir, spec$input)

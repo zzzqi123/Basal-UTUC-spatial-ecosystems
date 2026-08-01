@@ -84,7 +84,6 @@ write_run_metadata(
   opts,
   list(
     roe = "pooled observed divided by independence expectation",
-    inference = "sample-level negative-binomial model with log(total cells) offset",
-    legacy_note = "private exploratory scripts also used sscVis chi-square summaries"
+    inference = "sample-level negative-binomial model with log(total cells) offset"
   )
 )

@@ -1,9 +1,8 @@
 #!/usr/bin/env Rscript
 
 # Fig08 panel rendering.
-# Standard statistical panels are rendered from the exported tables below.
-# Package-native graphs (CellChat, Seurat dot plots, inferCNV, SCENIC) remain
-# identified explicitly instead of being replaced with a misleading generic plot.
+# Standard panels are rendered from the exported tables below. Panels drawn
+# directly by an analysis package are listed in package_native_panels.
 
 source(file.path("core", "R", "cli.R"))
 source(file.path("core", "R", "figure_assembly.R"))

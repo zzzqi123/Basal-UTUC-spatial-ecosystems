@@ -1,4 +1,4 @@
-"""Shared command-line and validation helpers for the public workflows."""
+"""Shared command-line and validation helpers for analysis workflows."""
 
 from __future__ import annotations
 
