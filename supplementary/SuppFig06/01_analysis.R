@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig06: Malignant trajectories, programs and clinical relevance
+# SuppFig06: Developmental trajectories, transcriptional programs, spatial organization, and clinical association of malignant epithelial subclusters
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.
@@ -58,29 +58,29 @@ panel_plan <- list(
   ),
   list(
     panel = "F",
-    title = "Cancer_c3-Basal score correlation",
-    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    title = "Section-specific Cancer_c3 boundary profiles",
+    workflow = "workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R",
     operation = "select",
     input = "SuppFig06_F.tsv",
-    required = c("cancer_c3_score", "basal_score"),
+    required = c("sample", "cell_state", "signed_distance", "fitted_z", "se"),
     output = "panel_F_data.tsv"
   ),
   list(
     panel = "G",
-    title = "Cancer_c4 DSS",
-    workflow = "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R",
+    title = "Malignant programs along the external Basal-luminal continuum",
+    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
     operation = "select",
     input = "SuppFig06_G.tsv",
-    required = c("time", "survival", "group"),
+    required = c("cell_state", "basal_luminal_percentile", "mean_curve", "ci_low", "ci_high"),
     output = "panel_G_data.tsv"
   ),
   list(
     panel = "H",
-    title = "Cancer_c4 enrichment",
-    workflow = "workflows/single_cell/06_functional_enrichment.R",
+    title = "Japan-UTUC Cancer_c3 muscle-invasion models",
+    workflow = "workflows/bulk_clinical_validation/02_japan_utuc_validation.R",
     operation = "select",
     input = "SuppFig06_H.tsv",
-    required = c("pathway", "NES", "FDR"),
+    required = c("score", "endpoint", "model", "effect", "CI_low", "CI_high", "p_value", "FDR_BH"),
     output = "panel_H_data.tsv"
   )
 )

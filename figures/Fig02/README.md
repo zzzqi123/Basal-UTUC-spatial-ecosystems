@@ -1,4 +1,4 @@
-# Fig02: Spatial transcriptomic landscape of Basal UTUC
+# Fig02: Spatial transcriptomic analysis and validation of Basal UTUC tumors across pathological stages
 
 ## Panel-to-code map
 

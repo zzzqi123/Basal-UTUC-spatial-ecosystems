@@ -131,7 +131,7 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "A", "Non-epithelial-reference inferCNV heatmap", "workflows/single_cell/02_infercnv_non_epi_reference.R"
+  "A", "Adjacent-epithelial-reference inferCNV heatmap", "workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R"
 )
 readr::write_tsv(
   package_native_panels,

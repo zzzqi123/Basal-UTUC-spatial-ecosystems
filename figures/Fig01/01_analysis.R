@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig01: Subtype-stage relationships and the cellular landscape
+# Fig01: Molecular subtype, pathological stage, and the tumor microenvironment in UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

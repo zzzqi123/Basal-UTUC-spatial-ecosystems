@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig13: Cancer_c3 boundary analysis and independent Japan-UTUC association
+# SuppFig13: Robustness of malignant epithelial subcluster assignments and functional programs under alternative inferCNV reference selection
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.
@@ -13,30 +13,75 @@ set.seed(opts$seed)
 panel_plan <- list(
   list(
     panel = "A",
-    title = "Tumor threshold, boundary and signed-distance definition",
-    workflow = "workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R",
+    title = "Original adjacent-epithelial-reference inferCNV heatmap",
+    workflow = "workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R",
     operation = "select",
     input = "SuppFig13_A.tsv",
-    required = c("sample", "x", "y", "tumor_type", "tumor_interface_zone", "signed_distance"),
+    required = c("cell_id", "chromosome", "position", "cnv_value"),
     output = "panel_A_data.tsv"
   ),
   list(
     panel = "B",
-    title = "Section-specific Cancer_c3 boundary profiles",
-    workflow = "workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R",
+    title = "Within-sample non-epithelial-reference inferCNV heatmap",
+    workflow = "workflows/single_cell/02_infercnv_non_epi_reference.R",
     operation = "select",
     input = "SuppFig13_B.tsv",
-    required = c("sample", "cell_state", "signed_distance", "fitted_z", "se"),
+    required = c("cell_id", "chromosome", "position", "cnv_value"),
     output = "panel_B_data.tsv"
   ),
   list(
     panel = "C",
-    title = "Japan-UTUC Cancer_c3 muscle-invasion models",
-    workflow = "workflows/bulk_clinical_validation/02_japan_utuc_validation.R",
+    title = "Cell-level CNV burden percentile concordance",
+    workflow = "workflows/single_cell/02b_infercnv_reference_robustness.R",
     operation = "select",
     input = "SuppFig13_C.tsv",
-    required = c("score", "endpoint", "model", "effect", "CI_low", "CI_high", "p_value", "FDR_BH"),
+    required = c("cell_id", "sample", "primary_percentile", "sensitivity_percentile"),
     output = "panel_C_data.tsv"
+  ),
+  list(
+    panel = "D",
+    title = "Patient-specific CNV burden rank correlations",
+    workflow = "workflows/single_cell/02b_infercnv_reference_robustness.R",
+    operation = "select",
+    input = "SuppFig13_D.tsv",
+    required = c("sample", "n_cells", "spearman_rho"),
+    output = "panel_D_data.tsv"
+  ),
+  list(
+    panel = "E",
+    title = "Original and revised malignant-subcluster UMAPs",
+    workflow = "workflows/single_cell/02b_infercnv_reference_robustness.R",
+    operation = "select",
+    input = "SuppFig13_E.tsv",
+    required = c("cell_id", "UMAP_1", "UMAP_2", "analysis", "cell_state"),
+    output = "panel_E_data.tsv"
+  ),
+  list(
+    panel = "F",
+    title = "Overlap of malignant cells under both references",
+    workflow = "workflows/single_cell/02b_infercnv_reference_robustness.R",
+    operation = "select",
+    input = "SuppFig13_F.tsv",
+    required = c("primary_malignant", "sensitivity_malignant", "count"),
+    output = "panel_F_data.tsv"
+  ),
+  list(
+    panel = "G",
+    title = "Malignant-subcluster marker-profile concordance",
+    workflow = "workflows/single_cell/02b_infercnv_reference_robustness.R",
+    operation = "select",
+    input = "SuppFig13_G.tsv",
+    required = c("primary_cluster", "sensitivity_cluster", "spearman_rho"),
+    output = "panel_G_data.tsv"
+  ),
+  list(
+    panel = "H",
+    title = "Cancer_c0 and Cancer_c3 Hallmark NES concordance",
+    workflow = "workflows/single_cell/02b_infercnv_reference_robustness.R",
+    operation = "select",
+    input = "SuppFig13_H.tsv",
+    required = c("cell_state", "pathway", "primary_NES", "sensitivity_NES"),
+    output = "panel_H_data.tsv"
   )
 )
 

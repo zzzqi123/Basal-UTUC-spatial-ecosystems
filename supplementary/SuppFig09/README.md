@@ -1,4 +1,4 @@
-# SuppFig09: Lymphoid subcluster programs
+# SuppFig09: Transcriptional and functional heterogeneity of lymphoid subclusters in UTUC
 
 ## Panel-to-code map
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig08: Epithelial-intrinsic SPP1 perturbation and functional validation
+# Fig08: Epithelial SPP1 expression and functional effects of SPP1 knockdown in a urothelial carcinoma model
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.
@@ -13,46 +13,49 @@ set.seed(opts$seed)
 panel_plan <- list(
   list(
     panel = "A",
-    title = "Malignant-epithelial virtual-knockout enrichment",
-    workflow = "workflows/perturbation/01_spp1_virtual_knockout.R",
+    title = "SPP1 expression in adjacent and malignant epithelial cells",
+    workflow = "workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R",
     operation = "select",
     input = "Fig08_A.tsv",
-    required = c("pathway", "NES", "FDR"),
+    required = c("UMAP_1", "UMAP_2", "tissue_group", "SPP1"),
     output = "panel_A_data.tsv"
   ),
   list(
     panel = "B",
+    title = "Malignant-epithelial virtual-knockout enrichment",
+    workflow = "workflows/perturbation/01_spp1_virtual_knockout.R",
+    operation = "select",
+    input = "Fig08_B.tsv",
+    required = c("pathway", "NES", "FDR"),
+    output = "panel_B_data.tsv"
+  ),
+  list(
+    panel = "C",
     title = "SPP1 siRNA qRT-PCR",
     workflow = "non-computational source panel; code not applicable",
     operation = "document_only"
   ),
   list(
-    panel = "C",
+    panel = "D",
     title = "SPP1 knockdown western blot",
     workflow = "non-computational source panel; code not applicable",
     operation = "document_only"
   ),
   list(
-    panel = "D",
+    panel = "E",
     title = "J82 cell-viability assay",
     workflow = "non-computational source panel; code not applicable",
     operation = "document_only"
   ),
   list(
-    panel = "E",
+    panel = "F",
     title = "Transwell migration and invasion",
     workflow = "non-computational source panel; code not applicable",
     operation = "document_only"
   ),
   list(
-    panel = "F",
-    title = "Conditioned-medium tube-formation workflow",
-    workflow = "non-computational source panel; code not applicable",
-    operation = "document_only"
-  ),
-  list(
     panel = "G",
-    title = "HUVEC tube-formation images and quantification",
+    title = "Conditioned-medium HUVEC tube-formation assay",
     workflow = "non-computational source panel; code not applicable",
     operation = "document_only"
   )

@@ -1,4 +1,4 @@
-# SuppFig03: GWAS integration with single-cell profiles
+# SuppFig03: Integration of UTUC GWAS signals with single-cell transcriptomic profiles using scPagwas
 
 ## Panel-to-code map
 

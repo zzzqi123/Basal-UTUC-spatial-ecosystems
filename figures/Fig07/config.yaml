@@ -1,5 +1,5 @@
 module: Fig07
-title: "External bladder cancer validation of the myeloid-stromal program"
+title: "External bladder urothelial carcinoma datasets support the SPP1+ TAM-FAP+ myCAF program"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

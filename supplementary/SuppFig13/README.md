@@ -1,12 +1,17 @@
-# SuppFig13: Cancer_c3 boundary analysis and independent Japan-UTUC association
+# SuppFig13: Robustness of malignant epithelial subcluster assignments and functional programs under alternative inferCNV reference selection
 
 ## Panel-to-code map
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Tumor threshold, boundary and signed-distance definition | `workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R` |
-| B | Section-specific Cancer_c3 boundary profiles | `workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R` |
-| C | Japan-UTUC Cancer_c3 muscle-invasion models | `workflows/bulk_clinical_validation/02_japan_utuc_validation.R` |
+| A | Original adjacent-epithelial-reference inferCNV heatmap | `workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R` |
+| B | Within-sample non-epithelial-reference inferCNV heatmap | `workflows/single_cell/02_infercnv_non_epi_reference.R` |
+| C | Cell-level CNV burden percentile concordance | `workflows/single_cell/02b_infercnv_reference_robustness.R` |
+| D | Patient-specific CNV burden rank correlations | `workflows/single_cell/02b_infercnv_reference_robustness.R` |
+| E | Original and revised malignant-subcluster UMAPs | `workflows/single_cell/02b_infercnv_reference_robustness.R` |
+| F | Overlap of malignant cells under both references | `workflows/single_cell/02b_infercnv_reference_robustness.R` |
+| G | Malignant-subcluster marker-profile concordance | `workflows/single_cell/02b_infercnv_reference_robustness.R` |
+| H | Cancer_c0 and Cancer_c3 Hallmark NES concordance | `workflows/single_cell/02b_infercnv_reference_robustness.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

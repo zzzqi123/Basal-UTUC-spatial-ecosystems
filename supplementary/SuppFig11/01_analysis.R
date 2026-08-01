@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig11: BLCA bulk validation
+# SuppFig11: Bulk transcriptomic validation of the SPP1-associated Basal immune-stromal program in bladder urothelial carcinoma
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

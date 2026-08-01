@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig02: Spatial transcriptomic landscape of Basal UTUC
+# Fig02: Spatial transcriptomic analysis and validation of Basal UTUC tumors across pathological stages
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

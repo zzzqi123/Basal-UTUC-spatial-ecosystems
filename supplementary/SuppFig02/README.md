@@ -1,4 +1,4 @@
-# SuppFig02: Single-cell QC and annotation
+# SuppFig02: Single-cell RNA sequencing quality control, marker validation, and cell-type composition
 
 ## Panel-to-code map
 

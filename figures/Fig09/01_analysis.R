@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig09: VEGFA TAN-CXCR4 tip EC angiogenic program
+# Fig09: Spatial coupling and ligand-receptor interactions between CXCR4+ tip ECs and VEGFA+ TAN in Basal UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.
@@ -13,54 +13,54 @@ set.seed(opts$seed)
 panel_plan <- list(
   list(
     panel = "A",
-    title = "NMI-Basal component co-localization",
-    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
+    title = "Selected VEGFA TAN-tip EC ligand-receptor probabilities",
+    workflow = "workflows/communication/01_cellchat.R",
     operation = "select",
     input = "Fig09_A.tsv",
-    required = c("sample", "x", "y", "pair_id", "colocalization_score"),
+    required = c("source", "target", "ligand", "receptor", "probability", "p_value"),
     output = "panel_A_data.tsv"
   ),
   list(
     panel = "B",
-    title = "MI-Basal component co-localization",
-    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
+    title = "VEGFA-VEGFR1 spatial signal",
+    workflow = "workflows/spatial/08_spagene_lr_colocalization.R",
     operation = "select",
     input = "Fig09_B.tsv",
-    required = c("sample", "x", "y", "pair_id", "colocalization_score"),
+    required = c("sample", "x", "y", "interaction_score"),
     output = "panel_B_data.tsv"
   ),
   list(
     panel = "C",
-    title = "Multiplex immunofluorescence",
-    workflow = "non-computational source panel; code not applicable",
-    operation = "document_only"
+    title = "NAMPT-INSR spatial signal",
+    workflow = "workflows/spatial/08_spagene_lr_colocalization.R",
+    operation = "select",
+    input = "Fig09_C.tsv",
+    required = c("sample", "x", "y", "interaction_score"),
+    output = "panel_C_data.tsv"
   ),
   list(
     panel = "D",
-    title = "Selected CellChat interactions",
-    workflow = "workflows/communication/01_cellchat.R",
+    title = "NMI-Basal VEGFA TAN-tip EC co-localization",
+    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
     operation = "select",
     input = "Fig09_D.tsv",
-    required = c("source", "target", "ligand", "receptor", "probability", "p_value"),
+    required = c("sample", "x", "y", "pair_id", "colocalization_score"),
     output = "panel_D_data.tsv"
   ),
   list(
     panel = "E",
-    title = "VEGFA-VEGFR1 spatial signal",
-    workflow = "workflows/spatial/08_spagene_lr_colocalization.R",
+    title = "MI-Basal VEGFA TAN-tip EC co-localization",
+    workflow = "workflows/spatial/07_cellstate_correlation_colocalization.R",
     operation = "select",
     input = "Fig09_E.tsv",
-    required = c("sample", "x", "y", "interaction_score"),
+    required = c("sample", "x", "y", "pair_id", "colocalization_score"),
     output = "panel_E_data.tsv"
   ),
   list(
     panel = "F",
-    title = "NAMPT-INSR spatial signal",
-    workflow = "workflows/spatial/08_spagene_lr_colocalization.R",
-    operation = "select",
-    input = "Fig09_F.tsv",
-    required = c("sample", "x", "y", "interaction_score"),
-    output = "panel_F_data.tsv"
+    title = "Multiplex immunofluorescence",
+    workflow = "non-computational source panel; code not applicable",
+    operation = "document_only"
   )
 )
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig02: Single-cell QC and annotation
+# SuppFig02: Single-cell RNA sequencing quality control, marker validation, and cell-type composition
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

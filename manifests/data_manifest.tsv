@@ -1,11 +1,11 @@
 dataset	platform	accession_or_source	access_level	expected_local_name	used_in	status
-Institutional UTUC scRNA-seq	10x scRNA-seq	ACCESSION_PENDING	controlled	utuc_scrna_counts.h5ad	Fig01;Fig03-Fig09;SuppFig02-SuppFig10	pending_public_accession
-Institutional UTUC spatial transcriptomics	10x Visium	ACCESSION_PENDING	controlled	utuc_visium_manifest.tsv	Fig02;Fig03;Fig04;Fig06;Fig09;Fig10;SuppFig04;SuppFig05;SuppFig07;SuppFig10;SuppFig13	pending_public_accession
-Japan-UTUC bulk cohort	bulk RNA-seq	EGAD00001007667	controlled	japan_utuc_expression.tsv	Fig01;Fig10;Fig11;SuppFig11;SuppFig13	verified_accession
+Institutional UTUC scRNA-seq	10x scRNA-seq	ACCESSION_PENDING	controlled	utuc_scrna_counts.h5ad	Fig01;Fig03-Fig09;SuppFig02-SuppFig10;SuppFig13	pending_public_accession
+Institutional UTUC spatial transcriptomics	10x Visium	ACCESSION_PENDING	controlled	utuc_visium_manifest.tsv	Fig02;Fig03;Fig04;Fig06;Fig09;Fig10;SuppFig04;SuppFig05;SuppFig06;SuppFig07;SuppFig10;SuppFig14	pending_public_accession
+Japan-UTUC bulk cohort	bulk RNA-seq	EGAD00001007667	controlled	japan_utuc_expression.tsv	Fig01;Fig10;Fig11;SuppFig06	verified_accession
 UTUC GWAS	GWAS summary statistics	FinnGen R12	public	finngen_r12_utuc.tsv.gz	SuppFig03	verified_release
 TCGA-BLCA	bulk RNA-seq and clinical	GDC TCGA-BLCA	public	tcga_blca_expression.tsv	Fig11;SuppFig11	verify_download_manifest
 GSE32894	bulk expression and clinical	GSE32894	public	gse32894_expression.tsv	SuppFig11	verified_accession
 External BLCA Visium HD cohort	Visium HD	GSE299573	public	gse299573_visiumhd_8um.rds	Fig07	verify_sample_mapping
-External BLCA Visium cohort	Visium	GSE319536	public	gse319536_spatial_manifest.tsv	Fig07;Fig10	verify_sample_mapping
+External BLCA Visium cohort	Visium	GSE319536	public	gse319536_spatial_manifest.tsv	Fig07;Fig10;SuppFig06	verify_sample_mapping
 External BLCA single-cell cohort	scRNA-seq	GSE326226	public	gse326226_scrna.h5ad	SuppFig12	verify_sample_mapping
 External BLCA GeoMx cohort	GeoMx	GSE296955	public	gse296955_geomx_roi_signature_scores.tsv	Fig07	verify_sample_mapping

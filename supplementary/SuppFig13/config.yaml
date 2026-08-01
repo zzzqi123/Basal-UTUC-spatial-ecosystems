@@ -1,5 +1,5 @@
 module: SuppFig13
-title: "Cancer_c3 boundary analysis and independent Japan-UTUC association"
+title: "Robustness of malignant epithelial subcluster assignments and functional programs under alternative inferCNV reference selection"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

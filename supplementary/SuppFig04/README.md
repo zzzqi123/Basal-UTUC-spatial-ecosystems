@@ -1,4 +1,4 @@
-# SuppFig04: Basal UTUC spatial analysis
+# SuppFig04: Spatial transcriptomic analysis of Basal UTUC across pathological stages
 
 ## Panel-to-code map
 

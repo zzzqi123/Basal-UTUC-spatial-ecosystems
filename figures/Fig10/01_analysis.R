@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig10: Multiscale spatial organization and independent clinical validation
+# Fig10: Multiscale spatial and clinical comparison of two microenvironmental programs in Basal UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

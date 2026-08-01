@@ -1,4 +1,4 @@
-# Fig11: Clinical and subtype-predictive value of SPP1 and FAP
+# Fig11: Clinical stratification and subtype-discrimination performance of SPP1 and FAP in UTUC
 
 ## Panel-to-code map
 

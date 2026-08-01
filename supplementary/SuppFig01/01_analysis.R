@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig01: Molecular subtype and TME features
+# SuppFig01: Molecular subtype distribution and tumor microenvironment-related features across stages
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

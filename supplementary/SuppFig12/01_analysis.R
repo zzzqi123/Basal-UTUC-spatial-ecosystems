@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig12: BLCA single-cell validation
+# SuppFig12: Single-cell validation of bladder urothelial carcinoma cell-type annotations and SPP1/FAP/CXCR4-associated compartments
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

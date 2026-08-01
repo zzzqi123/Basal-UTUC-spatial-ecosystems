@@ -1,5 +1,5 @@
 module: SuppFig01
-title: "Molecular subtype and TME features"
+title: "Molecular subtype distribution and tumor microenvironment-related features across stages"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

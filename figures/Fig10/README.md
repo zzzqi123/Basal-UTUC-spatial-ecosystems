@@ -1,4 +1,4 @@
-# Fig10: Multiscale spatial organization and independent clinical validation
+# Fig10: Multiscale spatial and clinical comparison of two microenvironmental programs in Basal UTUC
 
 ## Panel-to-code map
 

@@ -1,5 +1,5 @@
 module: Fig11
-title: "Clinical and subtype-predictive value of SPP1 and FAP"
+title: "Clinical stratification and subtype-discrimination performance of SPP1 and FAP in UTUC"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

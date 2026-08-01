@@ -1,4 +1,4 @@
-# SuppFig12: BLCA single-cell validation
+# SuppFig12: Single-cell validation of bladder urothelial carcinoma cell-type annotations and SPP1/FAP/CXCR4-associated compartments
 
 ## Panel-to-code map
 

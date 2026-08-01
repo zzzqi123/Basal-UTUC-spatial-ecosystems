@@ -22,6 +22,7 @@ channel on every platform:
 | spatial ligand-receptor | `SpaGene` |
 | spatial gene-set score | `SpaCET` |
 | spatial boundary | `stGrads` 2.0 |
+| spatial niche functions | `clusterProfiler`, `fgsea`, `sandwich` |
 | external spatial score | `UCell` |
 | bulk scores | `estimate`, `GSVA` |
 | survival and ROC | `survminer`, `survival`, `timeROC`, `pROC` |

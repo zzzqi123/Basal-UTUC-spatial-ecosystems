@@ -88,6 +88,27 @@ spatial_multiscale:
     ring1: 100
     ring2: 173-200
 
+effector_boundary:
+  niche1_boundary_quantile: 0.85
+  neighbor_ring: 1
+  program_columns:
+    - CD8_cytotoxic_program
+    - cytotoxic_T_NK_program
+    - T_cell_inflamed_program
+
+niche_function:
+  included_sections: [MI-Basal-1, MI-Basal-2]
+  excluded_marker_genes: [SPP1, FAP, POSTN, VEGFA, CXCR4]
+  min_gene_set_size: 15
+  max_gene_set_size: 500
+  spatial_pathway_plan:
+    Niche1:
+      - GOBP_EXTRACELLULAR_MATRIX_ASSEMBLY
+      - GOBP_COLLAGEN_FIBRIL_ORGANIZATION
+    Niche2:
+      - HALLMARK_HYPOXIA
+      - HALLMARK_ANGIOGENESIS
+
 spatial_colocalization:
   abundance_key: q05_cell_abundance_w_sf
   ordinal_levels: 3

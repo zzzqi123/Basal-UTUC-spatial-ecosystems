@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig05: Malignant epithelial states and spatial distribution
+# SuppFig05: Developmental trajectories define functionally and spatially distinct malignant epithelial states in UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.
@@ -13,8 +13,8 @@ set.seed(opts$seed)
 panel_plan <- list(
   list(
     panel = "A",
-    title = "Non-epithelial-reference inferCNV heatmap",
-    workflow = "workflows/single_cell/02_infercnv_non_epi_reference.R",
+    title = "Adjacent-epithelial-reference inferCNV heatmap",
+    workflow = "workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R",
     operation = "select",
     input = "SuppFig05_A.tsv",
     required = c("cell_id", "chromosome", "position", "cnv_value"),

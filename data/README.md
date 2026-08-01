@@ -27,12 +27,26 @@ Method-specific input contracts include:
   stage and prespecified marker expression for survival and ROC workflows;
 - `utuc_annotated_scrna.rds`: curator-reviewed full Seurat object handed from
   marker review to downstream lineage, communication and pathway workflows;
-- `hallmark_gene_sets.tsv`: columns `pathway` and `gene`;
+- `hallmark_gene_sets.tsv`: columns `pathway` and `gene` for shared
+  single-cell enrichment workflows;
 - `hg38_gene_order.tsv`: inferCNV gene order;
+- `infercnv_primary_matched_matrix.tsv.gz` and
+  `infercnv_sensitivity_matched_matrix.tsv.gz`: gene-by-cell matrices exported
+  on exactly matched epithelial cells and common genes for Supplementary
+  Fig. S13, accompanied by `infercnv_cell_metadata.tsv`,
+  `malignant_reference_assignments.tsv`, `malignant_marker_profiles.tsv` and
+  `malignant_hallmark_nes.tsv`;
 - `spatial_cellstate_abundance.tsv.gz`: one row per section and spot with q05
   cell-state abundance columns;
 - `prespecified_cellstate_pairs.tsv`: `pair_id`, `state_1`, `state_2`;
 - `ligand_receptor_pairs.tsv`: `pair_id`, `ligand`, `receptor`;
+- `niche1_boundary_spots.tsv` and `visium_ring1_edges.tsv`: de-identified
+  spot compartments, Niche1 burden, three immune-effector program scores and
+  exact ring-1 adjacency for Fig. 6G;
+- `niche_component_gene_effects.tsv`, `pathway_gene_sets.tsv` and
+  `spatial_niche_pathway_scores.tsv`: component-resolved gene effects,
+  `pathway/gene` definitions and MI-section spot-level covariates for
+  Supplementary Fig. S14;
 - `external_visium_sections.rds`: named list containing the 22 GSE319536
   sections;
 - `external_visium_rctd_proportions.tsv.gz`: concatenated per-section

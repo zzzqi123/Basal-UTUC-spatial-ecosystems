@@ -1,5 +1,5 @@
 module: SuppFig04
-title: "Basal UTUC spatial analysis"
+title: "Spatial transcriptomic analysis of Basal UTUC across pathological stages"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

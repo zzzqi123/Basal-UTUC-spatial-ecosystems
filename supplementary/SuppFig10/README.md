@@ -1,4 +1,4 @@
-# SuppFig10: Mesenchymal and endothelial heterogeneity
+# SuppFig10: Transcriptional and spatial heterogeneity of mesenchymal and endothelial compartments in UTUC
 
 ## Panel-to-code map
 

@@ -17,6 +17,7 @@ dependencies:
   - r-rann
   - r-fnn
   - r-survival
+  - r-sandwich
   - r-proc
   - r-survminer
   - r-timeroc

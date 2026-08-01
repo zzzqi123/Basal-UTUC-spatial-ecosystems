@@ -1,4 +1,4 @@
-# SuppFig11: BLCA bulk validation
+# SuppFig11: Bulk transcriptomic validation of the SPP1-associated Basal immune-stromal program in bladder urothelial carcinoma
 
 ## Panel-to-code map
 

@@ -1,5 +1,5 @@
 module: SuppFig07
-title: "Myeloid subcluster characterization"
+title: "Transcriptional and spatial characterization of myeloid subclusters in UTUC"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

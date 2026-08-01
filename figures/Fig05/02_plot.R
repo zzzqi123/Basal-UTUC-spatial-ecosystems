@@ -23,26 +23,28 @@ plot_plan <- list(
     height = 4.2
   ),
   list(
-    panel = "G",
-    title = "Selected ligand-receptor probabilities",
-    input = "panel_G_data.tsv",
-    geometry = "bar",
-    x = "interaction",
-    y = "probability",
-    fill = "stage",
-    output = "panel_G.pdf",
+    panel = "E",
+    title = "TGFB1-(TGFBR1+TGFBR2) spatial signal",
+    input = "panel_E_data.tsv",
+    geometry = "point",
+    x = "x",
+    y = "y",
+    colour = "interaction_score",
+    facet = "sample",
+    output = "panel_E.pdf",
     width = 5.5,
     height = 4.2
   ),
   list(
-    panel = "H",
-    title = "Stage-level spatial communication summary",
-    input = "panel_H_data.tsv",
-    geometry = "heatmap",
-    x = "stage",
-    y = "pathway",
-    fill = "total_probability",
-    output = "panel_H.pdf",
+    panel = "F",
+    title = "SPP1-(ITGA8+ITGB1) spatial signal",
+    input = "panel_F_data.tsv",
+    geometry = "point",
+    x = "x",
+    y = "y",
+    colour = "interaction_score",
+    facet = "sample",
+    output = "panel_F.pdf",
     width = 5.5,
     height = 4.2
   )
@@ -56,9 +58,9 @@ package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
   "A", "Number of inferred interactions", "workflows/communication/01_cellchat.R",
   "B", "Aggregated interaction strength", "workflows/communication/01_cellchat.R",
-  "D", "SPP1 spatial signaling network by stage", "workflows/communication/03_cellchat_spatial.R",
-  "E", "TGF-beta spatial signaling network by stage", "workflows/communication/03_cellchat_spatial.R",
-  "F", "VEGF spatial signaling network by stage", "workflows/communication/03_cellchat_spatial.R"
+  "D", "Selected SPP1 TAM-myCAF ligand-receptor probabilities", "workflows/communication/01_cellchat.R",
+  "G", "NMI-Basal SPP1 and TGF-beta spatial communication", "workflows/communication/03_cellchat_spatial.R",
+  "H", "MI-Basal SPP1 and TGF-beta spatial communication", "workflows/communication/03_cellchat_spatial.R"
 )
 readr::write_tsv(
   package_native_panels,

@@ -1,16 +1,16 @@
-# Fig08: Epithelial-intrinsic SPP1 perturbation and functional validation
+# Fig08: Epithelial SPP1 expression and functional effects of SPP1 knockdown in a urothelial carcinoma model
 
 ## Panel-to-code map
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Malignant-epithelial virtual-knockout enrichment | `workflows/perturbation/01_spp1_virtual_knockout.R` |
-| B | SPP1 siRNA qRT-PCR | `non-computational source panel; code not applicable` |
-| C | SPP1 knockdown western blot | `non-computational source panel; code not applicable` |
-| D | J82 cell-viability assay | `non-computational source panel; code not applicable` |
-| E | Transwell migration and invasion | `non-computational source panel; code not applicable` |
-| F | Conditioned-medium tube-formation workflow | `non-computational source panel; code not applicable` |
-| G | HUVEC tube-formation images and quantification | `non-computational source panel; code not applicable` |
+| A | SPP1 expression in adjacent and malignant epithelial cells | `workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R` |
+| B | Malignant-epithelial virtual-knockout enrichment | `workflows/perturbation/01_spp1_virtual_knockout.R` |
+| C | SPP1 siRNA qRT-PCR | `non-computational source panel; code not applicable` |
+| D | SPP1 knockdown western blot | `non-computational source panel; code not applicable` |
+| E | J82 cell-viability assay | `non-computational source panel; code not applicable` |
+| F | Transwell migration and invasion | `non-computational source panel; code not applicable` |
+| G | Conditioned-medium HUVEC tube-formation assay | `non-computational source panel; code not applicable` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

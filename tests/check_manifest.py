@@ -18,7 +18,7 @@ with manifest.open(encoding="utf-8") as handle:
     rows = list(csv.DictReader(handle, delimiter="\t"))
 
 expected_ids = {f"Fig{i:02d}" for i in range(1, 12)}
-expected_ids |= {f"SuppFig{i:02d}" for i in range(1, 14)}
+expected_ids |= {f"SuppFig{i:02d}" for i in range(1, 15)}
 observed_ids = {row["figure"] for row in rows}
 if observed_ids != expected_ids:
     raise SystemExit(
@@ -55,5 +55,5 @@ for row in rows:
 
 print(
     f"PASS: {len(rows)} panels cover Fig01-Fig11 and "
-    "SuppFig01-SuppFig13"
+    "SuppFig01-SuppFig14"
 )

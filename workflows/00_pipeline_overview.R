@@ -9,6 +9,7 @@ scripts <- c(
   "workflows/single_cell/01c_lineage_subclustering.R",
   "workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R",
   "workflows/single_cell/02_infercnv_non_epi_reference.R",
+  "workflows/single_cell/02b_infercnv_reference_robustness.R",
   "workflows/single_cell/03_trajectory_analysis.R",
   "workflows/single_cell/03b_monocle3_robustness.R",
   "workflows/single_cell/04_cytotrace2.R",
@@ -35,6 +36,8 @@ scripts <- c(
   "workflows/spatial/03_prepare_boundary_input.py",
   "workflows/spatial/04_infer_boundary_stgrads.R",
   "workflows/spatial/05_boundary_profiles.R",
+  "workflows/spatial/13_effector_boundary_profiles.R",
+  "workflows/spatial/14_niche_functional_analysis.R",
   "workflows/spatial/06_external_rctd.R",
   "workflows/spatial/10_visiumhd_niche_colocalization.R",
   "workflows/spatial/11a_prepare_external_visium_scores.R",
@@ -45,16 +48,17 @@ scripts <- c(
   "figures/FigXX/01_analysis.R"
 )
 
-branches <- c(
-  rep("single_cell", 13),
-  rep("genetics", 2),
-  rep("spatial", 7),
-  rep("communication", 3),
-  rep("perturbation", 2),
-  rep("spatial", 9),
-  rep("bulk_clinical", 2),
+branches <- vapply(scripts, function(script) {
+  if (startsWith(script, "workflows/single_cell/")) return("single_cell")
+  if (startsWith(script, "workflows/genetics/")) return("genetics")
+  if (startsWith(script, "workflows/spatial/")) return("spatial")
+  if (startsWith(script, "workflows/communication/")) return("communication")
+  if (startsWith(script, "workflows/perturbation/")) return("perturbation")
+  if (startsWith(script, "workflows/bulk_clinical_validation/")) {
+    return("bulk_clinical")
+  }
   "figure_assembly"
-)
+}, character(1))
 
 pipeline <- data.frame(
   order = seq_along(scripts),

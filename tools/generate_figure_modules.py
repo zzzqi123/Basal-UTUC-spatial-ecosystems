@@ -84,6 +84,7 @@ MARKERS = (
 SUBCLUSTER = "workflows/single_cell/01c_lineage_subclustering.R"
 INFER_CNV_PRIMARY = "workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R"
 INFER_CNV = "workflows/single_cell/02_infercnv_non_epi_reference.R"
+INFER_CNV_ROBUST = "workflows/single_cell/02b_infercnv_reference_robustness.R"
 TRAJECTORY = "workflows/single_cell/03_trajectory_analysis.R"
 MONOCLE3 = "workflows/single_cell/03b_monocle3_robustness.R"
 CYTOTRACE = "workflows/single_cell/04_cytotrace2.R"
@@ -113,6 +114,8 @@ EXTERNAL_VISIUM = (
     "workflows/spatial/11_external_visium_basal_axis.R"
 )
 GEOMX = "workflows/spatial/12_geomx_roi_validation.R"
+EFFECTOR_BOUNDARY = "workflows/spatial/13_effector_boundary_profiles.R"
+NICHE_FUNCTION = "workflows/spatial/14_niche_functional_analysis.R"
 CELLCHAT = "workflows/communication/01_cellchat.R"
 NICHENET = "workflows/communication/02_nichenet_tam_to_mycaf.R"
 SPATIAL_CELLCHAT = "workflows/communication/03_cellchat_spatial.R"
@@ -126,7 +129,7 @@ SCPAGWAS = (
 MODULES = (
     Module(
         "figures/Fig01",
-        "Subtype-stage relationships and the cellular landscape",
+        "Molecular subtype, pathological stage, and the tumor microenvironment in UTUC",
         (
             p("A", "Molecular subtype distribution by stage", BULK,
               "stage,subtype,n,proportion", "bar", x="stage", y="proportion", fill="subtype"),
@@ -144,7 +147,7 @@ MODULES = (
     ),
     Module(
         "figures/Fig02",
-        "Spatial transcriptomic landscape of Basal UTUC",
+        "Spatial transcriptomic analysis and validation of Basal UTUC tumors across pathological stages",
         (
             p("A", "cell2location major-cell-type maps", C2L,
               "sample,x,y,cell_type,q05_abundance", "point", x="x", y="y", colour="q05_abundance", facet="cell_type"),
@@ -155,7 +158,7 @@ MODULES = (
     ),
     Module(
         "figures/Fig03",
-        "Stage-associated remodeling of the myeloid compartment",
+        "Myeloid-state heterogeneity and spatial remodeling across UTUC stages",
         (
             p("A", "Myeloid UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
@@ -179,7 +182,7 @@ MODULES = (
     ),
     Module(
         "figures/Fig04",
-        "Stromal and endothelial cell states",
+        "Functional states and spatial distribution of stromal and endothelial subclusters in UTUC",
         (
             p("A", "Mesenchymal UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
@@ -197,7 +200,7 @@ MODULES = (
     ),
     Module(
         "figures/Fig05",
-        "Global communication and selected signaling programs",
+        "Global cell-cell communication and spatial mapping of SPP1+ TAM-FAP+ myCAF signaling in Basal UTUC",
         (
             native("A", "Number of inferred interactions", CELLCHAT,
                    "source,target,count"),
@@ -205,38 +208,42 @@ MODULES = (
                    "source,target,weight"),
             p("C", "Outgoing and incoming communication centrality", CELLCHAT,
               "cell_state,outgoing,incoming", "point", x="outgoing", y="incoming", colour="cell_state"),
-            native("D", "SPP1 spatial signaling network by stage", SPATIAL_CELLCHAT,
-                   "stage,source,target,probability,p_value"),
-            native("E", "TGF-beta spatial signaling network by stage", SPATIAL_CELLCHAT,
-                   "stage,source,target,probability,p_value"),
-            native("F", "VEGF spatial signaling network by stage", SPATIAL_CELLCHAT,
-                   "stage,source,target,probability,p_value"),
-            p("G", "Selected ligand-receptor probabilities", CELLCHAT,
-              "stage,interaction,probability,p_value", "bar", x="interaction", y="probability", fill="stage"),
-            p("H", "Stage-level spatial communication summary", SPATIAL_CELLCHAT,
-              "stage,pathway,total_probability", "heatmap", x="stage", y="pathway", fill="total_probability"),
+            native("D", "Selected SPP1 TAM-myCAF ligand-receptor probabilities", CELLCHAT,
+                   "source,target,ligand,receptor,probability,p_value"),
+            p("E", "TGFB1-(TGFBR1+TGFBR2) spatial signal", SPAGENE,
+              "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score", facet="sample"),
+            p("F", "SPP1-(ITGA8+ITGB1) spatial signal", SPAGENE,
+              "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score", facet="sample"),
+            native("G", "NMI-Basal SPP1 and TGF-beta spatial communication", SPATIAL_CELLCHAT,
+                   "stage,pathway,source,target,probability,p_value"),
+            native("H", "MI-Basal SPP1 and TGF-beta spatial communication", SPATIAL_CELLCHAT,
+                   "stage,pathway,source,target,probability,p_value"),
         ),
     ),
     Module(
         "figures/Fig06",
-        "SPP1 TAM-myCAF spatial coupling and candidate signaling",
+        "Spatial organization and receiver programs of the SPP1+ TAM-FAP+ myCAF niche in Basal UTUC",
         (
             p("A", "NMI-Basal spatial co-localization", SPATIAL_COLOC,
               "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
             p("B", "MI-Basal spatial co-localization", SPATIAL_COLOC,
               "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
             wet("C", "Multiplex immunofluorescence"),
-            native("D", "NicheNet multi-ligand candidate network", NICHENET,
-                   "ligand,aupr_corrected,receiver_target"),
-            p("E", "TGF-beta ligand-receptor spatial signal", SPAGENE,
-              "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score"),
-            p("F", "SPP1-integrin spatial signal", SPAGENE,
-              "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score"),
+            native("D", "NicheNet macrophage-derived ligand activity", NICHENET,
+                   "ligand,aupr_corrected,receiver_group"),
+            native("E", "NicheNet ligand-receptor prior interaction potential", NICHENET,
+                   "ligand,receptor,prior_interaction_potential"),
+            native("F", "MI-associated FAP myCAF ligand-target potential", NICHENET,
+                   "ligand,target,regulatory_potential"),
+            p("G", "Effector-immune programs across Niche1-high boundaries", EFFECTOR_BOUNDARY,
+              "sample,program,boundary_position,mean_score", "line", x="boundary_position", y="mean_score", group="sample", colour="sample", facet="program"),
+            native("H", "FAP myCAF receiver-gene overlap across comparisons", NICHENET,
+                   "gene_set,membership,count"),
         ),
     ),
     Module(
         "figures/Fig07",
-        "External bladder cancer validation of the myeloid-stromal program",
+        "External bladder urothelial carcinoma datasets support the SPP1+ TAM-FAP+ myCAF program",
         (
             p("A", "Visium HD RCTD embedding", VISIUMHD,
               "UMAP_1,UMAP_2,cell_type", "point", x="UMAP_1", y="UMAP_2", colour="cell_type"),
@@ -260,38 +267,39 @@ MODULES = (
     ),
     Module(
         "figures/Fig08",
-        "Epithelial-intrinsic SPP1 perturbation and functional validation",
+        "Epithelial SPP1 expression and functional effects of SPP1 knockdown in a urothelial carcinoma model",
         (
-            p("A", "Malignant-epithelial virtual-knockout enrichment", PERTURB,
+            p("A", "SPP1 expression in adjacent and malignant epithelial cells", MARKERS,
+              "UMAP_1,UMAP_2,tissue_group,SPP1", "point", x="UMAP_1", y="UMAP_2", colour="SPP1", facet="tissue_group"),
+            p("B", "Malignant-epithelial virtual-knockout enrichment", PERTURB,
               "pathway,NES,FDR", "bar", x="pathway", y="NES", fill="NES"),
-            wet("B", "SPP1 siRNA qRT-PCR"),
-            wet("C", "SPP1 knockdown western blot"),
-            wet("D", "J82 cell-viability assay"),
-            wet("E", "Transwell migration and invasion"),
-            wet("F", "Conditioned-medium tube-formation workflow"),
-            wet("G", "HUVEC tube-formation images and quantification"),
+            wet("C", "SPP1 siRNA qRT-PCR"),
+            wet("D", "SPP1 knockdown western blot"),
+            wet("E", "J82 cell-viability assay"),
+            wet("F", "Transwell migration and invasion"),
+            wet("G", "Conditioned-medium HUVEC tube-formation assay"),
         ),
     ),
     Module(
         "figures/Fig09",
-        "VEGFA TAN-CXCR4 tip EC angiogenic program",
+        "Spatial coupling and ligand-receptor interactions between CXCR4+ tip ECs and VEGFA+ TAN in Basal UTUC",
         (
-            p("A", "NMI-Basal component co-localization", SPATIAL_COLOC,
-              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
-            p("B", "MI-Basal component co-localization", SPATIAL_COLOC,
-              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
-            wet("C", "Multiplex immunofluorescence"),
-            native("D", "Selected CellChat interactions", CELLCHAT,
+            native("A", "Selected VEGFA TAN-tip EC ligand-receptor probabilities", CELLCHAT,
                    "source,target,ligand,receptor,probability,p_value"),
-            p("E", "VEGFA-VEGFR1 spatial signal", SPAGENE,
-              "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score"),
-            p("F", "NAMPT-INSR spatial signal", SPAGENE,
-              "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score"),
+            p("B", "VEGFA-VEGFR1 spatial signal", SPAGENE,
+              "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score", facet="sample"),
+            p("C", "NAMPT-INSR spatial signal", SPAGENE,
+              "sample,x,y,interaction_score", "point", x="x", y="y", colour="interaction_score", facet="sample"),
+            p("D", "NMI-Basal VEGFA TAN-tip EC co-localization", SPATIAL_COLOC,
+              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
+            p("E", "MI-Basal VEGFA TAN-tip EC co-localization", SPATIAL_COLOC,
+              "sample,x,y,pair_id,colocalization_score", "point", x="x", y="y", colour="colocalization_score", facet="pair_id"),
+            wet("F", "Multiplex immunofluorescence"),
         ),
     ),
     Module(
         "figures/Fig10",
-        "Multiscale spatial organization and independent clinical validation",
+        "Multiscale spatial and clinical comparison of two microenvironmental programs in Basal UTUC",
         (
             p("A", "Section-level multiscale pair burden", PAIR,
               "section,program,ring,pair_burden,fold_vs_nmi", "line", x="ring", y="fold_vs_nmi", group="section", colour="section", facet="program"),
@@ -307,7 +315,7 @@ MODULES = (
     ),
     Module(
         "figures/Fig11",
-        "Clinical and subtype-predictive value of SPP1 and FAP",
+        "Clinical stratification and subtype-discrimination performance of SPP1 and FAP in UTUC",
         (
             p("A", "DSS in Basal NMI versus Basal MI", BULK,
               "time,survival,stage", "line", x="time", y="survival", group="stage", colour="stage"),
@@ -323,7 +331,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig01",
-        "Molecular subtype and TME features",
+        "Molecular subtype distribution and tumor microenvironment-related features across stages",
         (
             p("A", "Subtype distribution across stages", BULK,
               "stage,subtype,n,proportion", "bar", x="stage", y="proportion", fill="subtype"),
@@ -337,7 +345,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig02",
-        "Single-cell QC and annotation",
+        "Single-cell RNA sequencing quality control, marker validation, and cell-type composition",
         (
             p("A", "Single-cell quality-control metrics", SCRNA,
               "sample,metric,value", "box", x="sample", y="value", fill="sample", facet="metric"),
@@ -349,7 +357,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig03",
-        "GWAS integration with single-cell profiles",
+        "Integration of UTUC GWAS signals with single-cell transcriptomic profiles using scPagwas",
         (
             p("A", "Annotated single-cell t-SNE", SCRNA,
               "tSNE_1,tSNE_2,cell_type", "point", x="tSNE_1", y="tSNE_2", colour="cell_type"),
@@ -361,7 +369,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig04",
-        "Basal UTUC spatial analysis",
+        "Spatial transcriptomic analysis of Basal UTUC across pathological stages",
         (
             wet("A", "H&E images of profiled sections"),
             p("B", "q05 abundance Leiden niches", C2L,
@@ -374,9 +382,9 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig05",
-        "Malignant epithelial states and spatial distribution",
+        "Developmental trajectories define functionally and spatially distinct malignant epithelial states in UTUC",
         (
-            native("A", "Non-epithelial-reference inferCNV heatmap", INFER_CNV,
+            native("A", "Adjacent-epithelial-reference inferCNV heatmap", INFER_CNV_PRIMARY,
                    "cell_id,chromosome,position,cnv_value"),
             p("B", "Malignant epithelial UMAP", INFER_CNV_PRIMARY,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
@@ -400,7 +408,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig06",
-        "Malignant trajectories, programs and clinical relevance",
+        "Developmental trajectories, transcriptional programs, spatial organization, and clinical association of malignant epithelial subclusters",
         (
             p("A", "Top markers and GO terms", ENRICHMENT,
               "cell_state,gene_or_term,value,kind", "heatmap", x="cell_state", y="gene_or_term", fill="value", facet="kind"),
@@ -412,17 +420,17 @@ MODULES = (
               "cell_state,regulon,auc", "box", x="cell_state", y="auc", fill="cell_state", facet="regulon"),
             p("E", "Cancer_c3 Hallmark enrichment", ENRICHMENT,
               "pathway,NES,FDR", "bar", x="pathway", y="NES", fill="NES"),
-            p("F", "Cancer_c3-Basal score correlation", BULK,
-              "cancer_c3_score,basal_score", "point", x="cancer_c3_score", y="basal_score"),
-            p("G", "Cancer_c4 DSS", BULK,
-              "time,survival,group", "line", x="time", y="survival", group="group", colour="group"),
-            p("H", "Cancer_c4 enrichment", ENRICHMENT,
-              "pathway,NES,FDR", "bar", x="pathway", y="NES", fill="NES"),
+            p("F", "Section-specific Cancer_c3 boundary profiles", BOUNDARY,
+              "sample,cell_state,signed_distance,fitted_z,se", "line", x="signed_distance", y="fitted_z", group="sample", colour="sample"),
+            p("G", "Malignant programs along the external Basal-luminal continuum", EXTERNAL_VISIUM,
+              "cell_state,basal_luminal_percentile,mean_curve,ci_low,ci_high", "line", x="basal_luminal_percentile", y="mean_curve", group="cell_state", colour="cell_state"),
+            p("H", "Japan-UTUC Cancer_c3 muscle-invasion models", JAPAN,
+              "score,endpoint,model,effect,CI_low,CI_high,p_value,FDR_BH", "forest", effect="effect", term="model", lower="CI_low", upper="CI_high"),
         ),
     ),
     Module(
         "supplementary/SuppFig07",
-        "Myeloid subcluster characterization",
+        "Transcriptional and spatial characterization of myeloid subclusters in UTUC",
         (
             native("A", "Canonical marker dot plot", MARKERS,
                    "cell_state,gene,average_expression,percent_expressing"),
@@ -438,7 +446,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig08",
-        "Lymphoid heterogeneity and spatial organization",
+        "Transcriptional heterogeneity and spatial organization of lymphoid subclusters in UTUC",
         (
             p("A", "Lymphoid UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
@@ -454,7 +462,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig09",
-        "Lymphoid subcluster programs",
+        "Transcriptional and functional heterogeneity of lymphoid subclusters in UTUC",
         (
             p("A", "CD4 T-cell UMAP", SUBCLUSTER,
               "UMAP_1,UMAP_2,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state"),
@@ -476,7 +484,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig10",
-        "Mesenchymal and endothelial heterogeneity",
+        "Transcriptional and spatial heterogeneity of mesenchymal and endothelial compartments in UTUC",
         (
             p("A", "Mesenchymal markers and GO terms", ENRICHMENT,
               "cell_state,gene_or_term,value,kind", "heatmap", x="cell_state", y="gene_or_term", fill="value", facet="kind"),
@@ -496,7 +504,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig11",
-        "BLCA bulk validation",
+        "Bulk transcriptomic validation of the SPP1-associated Basal immune-stromal program in bladder urothelial carcinoma",
         (
             p("A", "Immune and stromal scores", BLCA,
               "stage,subtype,score_name,score_value", "box", x="subtype", y="score_value", fill="subtype", facet="score_name"),
@@ -512,7 +520,7 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig12",
-        "BLCA single-cell validation",
+        "Single-cell validation of bladder urothelial carcinoma cell-type annotations and SPP1/FAP/CXCR4-associated compartments",
         (
             p("A", "Major-lineage UMAP", SCRNA,
               "UMAP_1,UMAP_2,cell_type", "point", x="UMAP_1", y="UMAP_2", colour="cell_type"),
@@ -530,14 +538,36 @@ MODULES = (
     ),
     Module(
         "supplementary/SuppFig13",
-        "Cancer_c3 boundary analysis and independent Japan-UTUC association",
+        "Robustness of malignant epithelial subcluster assignments and functional programs under alternative inferCNV reference selection",
         (
-            p("A", "Tumor threshold, boundary and signed-distance definition", BOUNDARY,
+            native("A", "Original adjacent-epithelial-reference inferCNV heatmap", INFER_CNV_PRIMARY,
+                   "cell_id,chromosome,position,cnv_value"),
+            native("B", "Within-sample non-epithelial-reference inferCNV heatmap", INFER_CNV,
+                   "cell_id,chromosome,position,cnv_value"),
+            p("C", "Cell-level CNV burden percentile concordance", INFER_CNV_ROBUST,
+              "cell_id,sample,primary_percentile,sensitivity_percentile", "point", x="primary_percentile", y="sensitivity_percentile", colour="sample"),
+            p("D", "Patient-specific CNV burden rank correlations", INFER_CNV_ROBUST,
+              "sample,n_cells,spearman_rho", "bar", x="sample", y="spearman_rho", fill="spearman_rho"),
+            p("E", "Original and revised malignant-subcluster UMAPs", INFER_CNV_ROBUST,
+              "cell_id,UMAP_1,UMAP_2,analysis,cell_state", "point", x="UMAP_1", y="UMAP_2", colour="cell_state", facet="analysis"),
+            native("F", "Overlap of malignant cells under both references", INFER_CNV_ROBUST,
+                   "primary_malignant,sensitivity_malignant,count"),
+            p("G", "Malignant-subcluster marker-profile concordance", INFER_CNV_ROBUST,
+              "primary_cluster,sensitivity_cluster,spearman_rho", "heatmap", x="primary_cluster", y="sensitivity_cluster", fill="spearman_rho"),
+            p("H", "Cancer_c0 and Cancer_c3 Hallmark NES concordance", INFER_CNV_ROBUST,
+              "cell_state,pathway,primary_NES,sensitivity_NES", "point", x="primary_NES", y="sensitivity_NES", colour="cell_state"),
+        ),
+    ),
+    Module(
+        "supplementary/SuppFig14",
+        "Tumor-boundary inference and functional characterization of spatial niches in Basal UTUC",
+        (
+            p("A", "Signed distance from the inferred tumor boundary", BOUNDARY,
               "sample,x,y,tumor_type,tumor_interface_zone,signed_distance", "point", x="x", y="y", colour="signed_distance", facet="sample"),
-            p("B", "Section-specific Cancer_c3 boundary profiles", BOUNDARY,
-              "sample,cell_state,signed_distance,fitted_z,se", "line", x="signed_distance", y="fitted_z", group="sample", colour="sample"),
-            p("C", "Japan-UTUC Cancer_c3 muscle-invasion models", JAPAN,
-              "score,endpoint,model,effect,CI_low,CI_high,p_value,FDR_BH", "forest", effect="effect", term="model", lower="CI_low", upper="CI_high"),
+            native("B", "Integrated Hallmark GSEA for each spatial niche", NICHE_FUNCTION,
+                   "niche,pathway,NES,p_value,FDR"),
+            p("C", "Adjusted spatial niche-pathway associations in MI sections", NICHE_FUNCTION,
+              "niche,pathway,beta,CI_low,CI_high,p_value,FDR", "forest", effect="beta", term="pathway", lower="CI_low", upper="CI_high", facet="niche"),
         ),
     ),
 )
@@ -780,7 +810,7 @@ def main() -> None:
                     "plot_script": f"{module.path}/02_plot.R",
                     "source_workflow": panel.workflow,
                     "panel_type": panel_type,
-                    "status": "implemented_v0.3",
+                    "status": "implemented_v0.4",
                 }
             )
 

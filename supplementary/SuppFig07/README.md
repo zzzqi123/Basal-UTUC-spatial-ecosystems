@@ -1,4 +1,4 @@
-# SuppFig07: Myeloid subcluster characterization
+# SuppFig07: Transcriptional and spatial characterization of myeloid subclusters in UTUC
 
 ## Panel-to-code map
 

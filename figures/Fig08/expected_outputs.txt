@@ -2,4 +2,6 @@ panel_output_manifest.tsv
 panel_plot_manifest.tsv
 panel_A_data.tsv
 panel_A.pdf
+panel_B_data.tsv
+panel_B.pdf
 run_metadata.yaml

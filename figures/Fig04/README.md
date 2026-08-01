@@ -1,4 +1,4 @@
-# Fig04: Stromal and endothelial cell states
+# Fig04: Functional states and spatial distribution of stromal and endothelial subclusters in UTUC
 
 ## Panel-to-code map
 

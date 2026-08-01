@@ -1,5 +1,5 @@
 module: Fig09
-title: "VEGFA TAN-CXCR4 tip EC angiogenic program"
+title: "Spatial coupling and ligand-receptor interactions between CXCR4+ tip ECs and VEGFA+ TAN in Basal UTUC"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

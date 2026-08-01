@@ -6,7 +6,8 @@ panel_B_data.tsv
 panel_B.pdf
 panel_D_data.tsv
 panel_E_data.tsv
-panel_E.pdf
 panel_F_data.tsv
-panel_F.pdf
+panel_G_data.tsv
+panel_G.pdf
+panel_H_data.tsv
 run_metadata.yaml

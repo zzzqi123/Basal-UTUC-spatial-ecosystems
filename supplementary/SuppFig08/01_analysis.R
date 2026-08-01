@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig08: Lymphoid heterogeneity and spatial organization
+# SuppFig08: Transcriptional heterogeneity and spatial organization of lymphoid subclusters in UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

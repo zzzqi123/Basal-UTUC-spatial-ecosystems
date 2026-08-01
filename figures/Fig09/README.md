@@ -1,15 +1,15 @@
-# Fig09: VEGFA TAN-CXCR4 tip EC angiogenic program
+# Fig09: Spatial coupling and ligand-receptor interactions between CXCR4+ tip ECs and VEGFA+ TAN in Basal UTUC
 
 ## Panel-to-code map
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | NMI-Basal component co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
-| B | MI-Basal component co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
-| C | Multiplex immunofluorescence | `non-computational source panel; code not applicable` |
-| D | Selected CellChat interactions | `workflows/communication/01_cellchat.R` |
-| E | VEGFA-VEGFR1 spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
-| F | NAMPT-INSR spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
+| A | Selected VEGFA TAN-tip EC ligand-receptor probabilities | `workflows/communication/01_cellchat.R` |
+| B | VEGFA-VEGFR1 spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
+| C | NAMPT-INSR spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
+| D | NMI-Basal VEGFA TAN-tip EC co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
+| E | MI-Basal VEGFA TAN-tip EC co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
+| F | Multiplex immunofluorescence | `non-computational source panel; code not applicable` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

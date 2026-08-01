@@ -1,5 +1,5 @@
 module: SuppFig11
-title: "BLCA bulk validation"
+title: "Bulk transcriptomic validation of the SPP1-associated Basal immune-stromal program in bladder urothelial carcinoma"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

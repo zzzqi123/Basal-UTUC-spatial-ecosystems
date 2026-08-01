@@ -1,4 +1,4 @@
-# Fig03: Stage-associated remodeling of the myeloid compartment
+# Fig03: Myeloid-state heterogeneity and spatial remodeling across UTUC stages
 
 ## Panel-to-code map
 

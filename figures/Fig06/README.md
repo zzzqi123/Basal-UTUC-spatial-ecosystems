@@ -1,4 +1,4 @@
-# Fig06: SPP1 TAM-myCAF spatial coupling and candidate signaling
+# Fig06: Spatial organization and receiver programs of the SPP1+ TAM-FAP+ myCAF niche in Basal UTUC
 
 ## Panel-to-code map
 
@@ -7,9 +7,11 @@
 | A | NMI-Basal spatial co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
 | B | MI-Basal spatial co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
 | C | Multiplex immunofluorescence | `non-computational source panel; code not applicable` |
-| D | NicheNet multi-ligand candidate network | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
-| E | TGF-beta ligand-receptor spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
-| F | SPP1-integrin spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
+| D | NicheNet macrophage-derived ligand activity | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
+| E | NicheNet ligand-receptor prior interaction potential | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
+| F | MI-associated FAP myCAF ligand-target potential | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
+| G | Effector-immune programs across Niche1-high boundaries | `workflows/spatial/13_effector_boundary_profiles.R` |
+| H | FAP myCAF receiver-gene overlap across comparisons | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

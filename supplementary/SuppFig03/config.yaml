@@ -1,5 +1,5 @@
 module: SuppFig03
-title: "GWAS integration with single-cell profiles"
+title: "Integration of UTUC GWAS signals with single-cell transcriptomic profiles using scPagwas"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

@@ -37,26 +37,16 @@ plot_plan <- list(
     height = 4.2
   ),
   list(
-    panel = "E",
-    title = "TGF-beta ligand-receptor spatial signal",
-    input = "panel_E_data.tsv",
-    geometry = "point",
-    x = "x",
-    y = "y",
-    colour = "interaction_score",
-    output = "panel_E.pdf",
-    width = 5.5,
-    height = 4.2
-  ),
-  list(
-    panel = "F",
-    title = "SPP1-integrin spatial signal",
-    input = "panel_F_data.tsv",
-    geometry = "point",
-    x = "x",
-    y = "y",
-    colour = "interaction_score",
-    output = "panel_F.pdf",
+    panel = "G",
+    title = "Effector-immune programs across Niche1-high boundaries",
+    input = "panel_G_data.tsv",
+    geometry = "line",
+    x = "boundary_position",
+    y = "mean_score",
+    group = "sample",
+    colour = "sample",
+    facet = "program",
+    output = "panel_G.pdf",
     width = 5.5,
     height = 4.2
   )
@@ -68,7 +58,10 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "D", "NicheNet multi-ligand candidate network", "workflows/communication/02_nichenet_tam_to_mycaf.R"
+  "D", "NicheNet macrophage-derived ligand activity", "workflows/communication/02_nichenet_tam_to_mycaf.R",
+  "E", "NicheNet ligand-receptor prior interaction potential", "workflows/communication/02_nichenet_tam_to_mycaf.R",
+  "F", "MI-associated FAP myCAF ligand-target potential", "workflows/communication/02_nichenet_tam_to_mycaf.R",
+  "H", "FAP myCAF receiver-gene overlap across comparisons", "workflows/communication/02_nichenet_tam_to_mycaf.R"
 )
 readr::write_tsv(
   package_native_panels,

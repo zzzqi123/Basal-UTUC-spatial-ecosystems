@@ -1,4 +1,4 @@
-# SuppFig01: Molecular subtype and TME features
+# SuppFig01: Molecular subtype distribution and tumor microenvironment-related features across stages
 
 ## Panel-to-code map
 

@@ -28,6 +28,10 @@ Example lineage config: `../../config/subclustering.example.yaml`.
   stated CNV-score and correlation thresholds.
 - `02_infercnv_non_epi_reference.R`: clearly labeled sensitivity analysis
   using immune, stromal and endothelial reference cells.
+- `02b_infercnv_reference_robustness.R`: matched-cell and common-gene
+  comparison of the two reference strategies, including within-sample CNV
+  burden ranks, malignant-cell overlap, re-clustered marker concordance and
+  Cancer_c0/Cancer_c3 Hallmark NES concordance for Supplementary Fig. S13.
 - `03_trajectory_analysis.R`: primary Monocle2 analysis using expression
   filters, 1,000 q-ranked ordering genes, DDRTree and `orderCells`.
 - `03b_monocle3_robustness.R`: the local final implementation,

@@ -26,6 +26,15 @@
 - `04_infer_boundary_stgrads.R`: stGrads 2.0 boundary and signed distance.
 - `05_boundary_profiles.R`: section-specific GAM profiles from -6 to +6 spot
   spacings.
+- `13_effector_boundary_profiles.R`: top-15% Niche1 boundary anchors with
+  exact ring-1 neighbors on the outer non-tumor and adjacent tumor sides;
+  immune-effector programs are standardized within section and summarized as
+  the three-compartment Fig. 6G profile.
+- `14_niche_functional_analysis.R`: one integrated ranked gene list per niche
+  for Hallmark GSEA, plus MI-section models containing both niche burdens and
+  adjustments for library size, total inferred abundance and malignant-cell
+  fraction. Spatial-block robust section estimates are combined by
+  fixed-effect meta-analysis for Supplementary Fig. S14.
 
 Conservative maps and pair burden use q05 abundance. Posterior means are used
 only for the declared continuous boundary profile.

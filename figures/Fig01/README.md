@@ -1,4 +1,4 @@
-# Fig01: Subtype-stage relationships and the cellular landscape
+# Fig01: Molecular subtype, pathological stage, and the tumor microenvironment in UTUC
 
 ## Panel-to-code map
 

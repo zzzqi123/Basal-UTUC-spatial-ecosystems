@@ -1,5 +1,5 @@
 module: Fig05
-title: "Global communication and selected signaling programs"
+title: "Global cell-cell communication and spatial mapping of SPP1+ TAM-FAP+ myCAF signaling in Basal UTUC"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

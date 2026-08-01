@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig05: Global communication and selected signaling programs
+# Fig05: Global cell-cell communication and spatial mapping of SPP1+ TAM-FAP+ myCAF signaling in Basal UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.
@@ -40,47 +40,47 @@ panel_plan <- list(
   ),
   list(
     panel = "D",
-    title = "SPP1 spatial signaling network by stage",
-    workflow = "workflows/communication/03_cellchat_spatial.R",
+    title = "Selected SPP1 TAM-myCAF ligand-receptor probabilities",
+    workflow = "workflows/communication/01_cellchat.R",
     operation = "select",
     input = "Fig05_D.tsv",
-    required = c("stage", "source", "target", "probability", "p_value"),
+    required = c("source", "target", "ligand", "receptor", "probability", "p_value"),
     output = "panel_D_data.tsv"
   ),
   list(
     panel = "E",
-    title = "TGF-beta spatial signaling network by stage",
-    workflow = "workflows/communication/03_cellchat_spatial.R",
+    title = "TGFB1-(TGFBR1+TGFBR2) spatial signal",
+    workflow = "workflows/spatial/08_spagene_lr_colocalization.R",
     operation = "select",
     input = "Fig05_E.tsv",
-    required = c("stage", "source", "target", "probability", "p_value"),
+    required = c("sample", "x", "y", "interaction_score"),
     output = "panel_E_data.tsv"
   ),
   list(
     panel = "F",
-    title = "VEGF spatial signaling network by stage",
-    workflow = "workflows/communication/03_cellchat_spatial.R",
+    title = "SPP1-(ITGA8+ITGB1) spatial signal",
+    workflow = "workflows/spatial/08_spagene_lr_colocalization.R",
     operation = "select",
     input = "Fig05_F.tsv",
-    required = c("stage", "source", "target", "probability", "p_value"),
+    required = c("sample", "x", "y", "interaction_score"),
     output = "panel_F_data.tsv"
   ),
   list(
     panel = "G",
-    title = "Selected ligand-receptor probabilities",
-    workflow = "workflows/communication/01_cellchat.R",
+    title = "NMI-Basal SPP1 and TGF-beta spatial communication",
+    workflow = "workflows/communication/03_cellchat_spatial.R",
     operation = "select",
     input = "Fig05_G.tsv",
-    required = c("stage", "interaction", "probability", "p_value"),
+    required = c("stage", "pathway", "source", "target", "probability", "p_value"),
     output = "panel_G_data.tsv"
   ),
   list(
     panel = "H",
-    title = "Stage-level spatial communication summary",
+    title = "MI-Basal SPP1 and TGF-beta spatial communication",
     workflow = "workflows/communication/03_cellchat_spatial.R",
     operation = "select",
     input = "Fig05_H.tsv",
-    required = c("stage", "pathway", "total_probability"),
+    required = c("stage", "pathway", "source", "target", "probability", "p_value"),
     output = "panel_H_data.tsv"
   )
 )

@@ -1,10 +1,10 @@
-# SuppFig05: Malignant epithelial states and spatial distribution
+# SuppFig05: Developmental trajectories define functionally and spatially distinct malignant epithelial states in UTUC
 
 ## Panel-to-code map
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Non-epithelial-reference inferCNV heatmap | `workflows/single_cell/02_infercnv_non_epi_reference.R` |
+| A | Adjacent-epithelial-reference inferCNV heatmap | `workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R` |
 | B | Malignant epithelial UMAP | `workflows/single_cell/02a_infercnv_adjacent_epithelial_reference.R` |
 | C | CytoTRACE2 and Monocle3 trajectories | `workflows/single_cell/04_cytotrace2.R -> workflows/single_cell/03b_monocle3_robustness.R` |
 | D | Basal-marker density | `workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R` |

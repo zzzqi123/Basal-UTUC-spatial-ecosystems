@@ -1,5 +1,5 @@
 module: Fig02
-title: "Spatial transcriptomic landscape of Basal UTUC"
+title: "Spatial transcriptomic analysis and validation of Basal UTUC tumors across pathological stages"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

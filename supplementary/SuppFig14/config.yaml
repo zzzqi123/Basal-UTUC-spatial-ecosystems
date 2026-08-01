@@ -1,0 +1,6 @@
+module: SuppFig14
+title: "Tumor-boundary inference and functional characterization of spatial niches in Basal UTUC"
+seed: 20260730
+vector_format: pdf
+table_format: tsv
+heavy_models_run_in: workflows

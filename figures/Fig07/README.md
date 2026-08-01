@@ -1,4 +1,4 @@
-# Fig07: External bladder cancer validation of the myeloid-stromal program
+# Fig07: External bladder urothelial carcinoma datasets support the SPP1+ TAM-FAP+ myCAF program
 
 ## Panel-to-code map
 

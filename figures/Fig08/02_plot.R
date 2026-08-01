@@ -12,13 +12,26 @@ opts <- parse_common_args()
 plot_plan <- list(
   list(
     panel = "A",
-    title = "Malignant-epithelial virtual-knockout enrichment",
+    title = "SPP1 expression in adjacent and malignant epithelial cells",
     input = "panel_A_data.tsv",
+    geometry = "point",
+    x = "UMAP_1",
+    y = "UMAP_2",
+    colour = "SPP1",
+    facet = "tissue_group",
+    output = "panel_A.pdf",
+    width = 5.5,
+    height = 4.2
+  ),
+  list(
+    panel = "B",
+    title = "Malignant-epithelial virtual-knockout enrichment",
+    input = "panel_B_data.tsv",
     geometry = "bar",
     x = "pathway",
     y = "NES",
     fill = "NES",
-    output = "panel_A.pdf",
+    output = "panel_B.pdf",
     width = 5.5,
     height = 4.2
   )

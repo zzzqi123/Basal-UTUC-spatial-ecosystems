@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig10: Mesenchymal and endothelial heterogeneity
+# SuppFig10: Transcriptional and spatial heterogeneity of mesenchymal and endothelial compartments in UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

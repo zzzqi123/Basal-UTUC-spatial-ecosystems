@@ -18,7 +18,10 @@ Fig06	private project R scripts	curated NicheNet sender-receiver analysis
 Fig08	private project R scripts	curated epithelial SPP1 perturbation and enrichment
 Fig10	private project Python scripts	curated multiscale q05 pair analysis
 Fig10	private project R scripts	curated section-resolved posterior-mean profiles
-Fig10;SuppFig13	private project R scripts	curated Japan-UTUC component models
+Fig10;SuppFig06	private project R scripts	curated Japan-UTUC component models
+SuppFig13	private inferCNV revision scripts	curated matched-cell CNV-rank, malignant-overlap, re-clustering and functional-concordance analyses
+Fig06	private boundary-interface revision scripts	curated top-15% Niche1 boundary anchors and exact-ring-1 three-compartment immune-effector profiles
+SuppFig14	private spatial-niche revision scripts	curated integrated niche-ranked-list GSEA and adjusted spatial pathway models
 SuppFig05	private project R scripts	curated adjacent-epithelial primary inferCNV and non-epithelial sensitivity workflow
 SuppFig03	official scPagwas package wrapper	original scPagwas_main interface retained; third-party source not copied
 workflows/genetics/03_phewas_mr_spp1.R	current manuscript Methods plus official SMR output schema	curated case-count filter, HEIDI exclusion and phenotype-wide FDR; third-party software and restricted statistics not copied

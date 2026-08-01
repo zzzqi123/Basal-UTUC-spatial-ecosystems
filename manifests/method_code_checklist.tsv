@@ -44,3 +44,7 @@ bulk_clinical	ESTIMATE and BASE47 GSVA	ImmuneScore StromalScore; Basal minus Lum
 bulk_clinical	stage interaction	score ~ basal_luminal_score * stage	workflows/bulk_clinical_validation/03_external_blca_validation.R	PASS
 bulk_clinical	survival and ROC	DSS; log-rank; Cox Efron; 60-month timeROC; pROC; maxstat cut point	workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R	PASS
 bulk_clinical	Japan-UTUC	rank inverse normal; equal-weight cellular-program scores; logistic and Cox models	workflows/bulk_clinical_validation/02_japan_utuc_validation.R	PASS
+single_cell	inferCNV reference robustness	matched epithelial cells and common genes; within-sample CNV burden percentile ranks; malignant-state and functional concordance	workflows/single_cell/02b_infercnv_reference_robustness.R	PASS
+spatial	Niche1 immune-effector boundary profile	top 15% Niche1 boundary anchors; exact ring-1 outer and tumor neighbors; within-section z scores	workflows/spatial/13_effector_boundary_profiles.R	PASS
+spatial	spatial-niche Hallmark GSEA	one integrated ranked gene list per niche; centered within-component percentiles; BH correction	workflows/spatial/14_niche_functional_analysis.R	PASS
+spatial	adjusted niche-pathway association	MI sections; both niche burdens; library size, total abundance and malignant fraction covariates; spatial-block robust SE; fixed-effect meta-analysis	workflows/spatial/14_niche_functional_analysis.R	PASS

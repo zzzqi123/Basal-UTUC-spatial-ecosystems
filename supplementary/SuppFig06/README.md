@@ -1,4 +1,4 @@
-# SuppFig06: Malignant trajectories, programs and clinical relevance
+# SuppFig06: Developmental trajectories, transcriptional programs, spatial organization, and clinical association of malignant epithelial subclusters
 
 ## Panel-to-code map
 
@@ -9,9 +9,9 @@
 | C | Monocle3 robustness embeddings | `workflows/single_cell/03b_monocle3_robustness.R` |
 | D | Representative regulon activities | `workflows/single_cell/05_pyscenic.sh` |
 | E | Cancer_c3 Hallmark enrichment | `workflows/single_cell/06_functional_enrichment.R` |
-| F | Cancer_c3-Basal score correlation | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| G | Cancer_c4 DSS | `workflows/bulk_clinical_validation/00_prepare_bulk_scores.R -> workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R` |
-| H | Cancer_c4 enrichment | `workflows/single_cell/06_functional_enrichment.R` |
+| F | Section-specific Cancer_c3 boundary profiles | `workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R` |
+| G | Malignant programs along the external Basal-luminal continuum | `workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R` |
+| H | Japan-UTUC Cancer_c3 muscle-invasion models | `workflows/bulk_clinical_validation/02_japan_utuc_validation.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

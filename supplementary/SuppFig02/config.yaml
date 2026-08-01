@@ -1,5 +1,5 @@
 module: SuppFig02
-title: "Single-cell QC and annotation"
+title: "Single-cell RNA sequencing quality control, marker validation, and cell-type composition"
 seed: 20260730
 vector_format: pdf
 table_format: tsv

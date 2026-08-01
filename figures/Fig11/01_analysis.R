@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig11: Clinical and subtype-predictive value of SPP1 and FAP
+# Fig11: Clinical stratification and subtype-discrimination performance of SPP1 and FAP in UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

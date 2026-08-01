@@ -1,4 +1,4 @@
-# SuppFig08: Lymphoid heterogeneity and spatial organization
+# SuppFig08: Transcriptional heterogeneity and spatial organization of lymphoid subclusters in UTUC
 
 ## Panel-to-code map
 

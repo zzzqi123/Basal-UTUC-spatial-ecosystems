@@ -11,52 +11,54 @@ opts <- parse_common_args()
 
 plot_plan <- list(
   list(
-    panel = "A",
-    title = "NMI-Basal component co-localization",
-    input = "panel_A_data.tsv",
-    geometry = "point",
-    x = "x",
-    y = "y",
-    colour = "colocalization_score",
-    facet = "pair_id",
-    output = "panel_A.pdf",
-    width = 5.5,
-    height = 4.2
-  ),
-  list(
     panel = "B",
-    title = "MI-Basal component co-localization",
+    title = "VEGFA-VEGFR1 spatial signal",
     input = "panel_B_data.tsv",
     geometry = "point",
     x = "x",
     y = "y",
-    colour = "colocalization_score",
-    facet = "pair_id",
+    colour = "interaction_score",
+    facet = "sample",
     output = "panel_B.pdf",
     width = 5.5,
     height = 4.2
   ),
   list(
-    panel = "E",
-    title = "VEGFA-VEGFR1 spatial signal",
-    input = "panel_E_data.tsv",
+    panel = "C",
+    title = "NAMPT-INSR spatial signal",
+    input = "panel_C_data.tsv",
     geometry = "point",
     x = "x",
     y = "y",
     colour = "interaction_score",
-    output = "panel_E.pdf",
+    facet = "sample",
+    output = "panel_C.pdf",
     width = 5.5,
     height = 4.2
   ),
   list(
-    panel = "F",
-    title = "NAMPT-INSR spatial signal",
-    input = "panel_F_data.tsv",
+    panel = "D",
+    title = "NMI-Basal VEGFA TAN-tip EC co-localization",
+    input = "panel_D_data.tsv",
     geometry = "point",
     x = "x",
     y = "y",
-    colour = "interaction_score",
-    output = "panel_F.pdf",
+    colour = "colocalization_score",
+    facet = "pair_id",
+    output = "panel_D.pdf",
+    width = 5.5,
+    height = 4.2
+  ),
+  list(
+    panel = "E",
+    title = "MI-Basal VEGFA TAN-tip EC co-localization",
+    input = "panel_E_data.tsv",
+    geometry = "point",
+    x = "x",
+    y = "y",
+    colour = "colocalization_score",
+    facet = "pair_id",
+    output = "panel_E.pdf",
     width = 5.5,
     height = 4.2
   )
@@ -68,7 +70,7 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "D", "Selected CellChat interactions", "workflows/communication/01_cellchat.R"
+  "A", "Selected VEGFA TAN-tip EC ligand-receptor probabilities", "workflows/communication/01_cellchat.R"
 )
 readr::write_tsv(
   package_native_panels,

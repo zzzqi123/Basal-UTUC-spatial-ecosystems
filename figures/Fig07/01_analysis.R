@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig07: External bladder cancer validation of the myeloid-stromal program
+# Fig07: External bladder urothelial carcinoma datasets support the SPP1+ TAM-FAP+ myCAF program
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

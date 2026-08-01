@@ -25,7 +25,7 @@ Basal-UTUC-spatial-ecosystems/
 │   ├── genetics/                  scPagwas and PheW-MR
 │   └── bulk_clinical_validation/  subtype, survival and external validation
 ├── figures/Fig01-Fig11/           main-figure code organized by figure
-├── supplementary/SuppFig01-SuppFig13/
+├── supplementary/SuppFig01-SuppFig14/
 │                                    supplementary-figure code organized by figure
 ├── config/                        shared and workflow-specific parameters
 ├── manifests/                     figure, method, function and data indexes
@@ -77,7 +77,7 @@ The executable order and input-output hand-offs are listed in
 ## Figure-level code
 
 `figures/Fig01` through `figures/Fig11` and
-`supplementary/SuppFig01` through `supplementary/SuppFig13` each contain:
+`supplementary/SuppFig01` through `supplementary/SuppFig14` each contain:
 
 - `README.md`: panel-to-workflow mapping and run order;
 - `01_analysis.R`: panel input schema and analysis-table preparation;
@@ -91,8 +91,8 @@ them.
 
 ## Reproducibility indexes
 
-- [`manifests/figure_manifest.tsv`](manifests/figure_manifest.tsv): all 141
-  panels across Fig.1–11 and Supplementary Fig.S1–S13.
+- [`manifests/figure_manifest.tsv`](manifests/figure_manifest.tsv): all 151
+  panels across Fig.1–11 and Supplementary Fig.S1–S14.
 - [`manifests/manuscript_method_audit.tsv`](manifests/manuscript_method_audit.tsv):
   line-by-line mapping from the manuscript Methods to public code.
 - [`manifests/function_catalog.tsv`](manifests/function_catalog.tsv):

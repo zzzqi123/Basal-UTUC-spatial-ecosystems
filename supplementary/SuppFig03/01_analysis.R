@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# SuppFig03: GWAS integration with single-cell profiles
+# SuppFig03: Integration of UTUC GWAS signals with single-cell transcriptomic profiles using scPagwas
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.

@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fig04: Stromal and endothelial cell states
+# Fig04: Functional states and spatial distribution of stromal and endothelial subclusters in UTUC
 # Heavy model fitting is performed by the named workflows. This script exposes
 # the exact panel hand-off, validates de-identified table schemas, and writes
 # one analysis table per computational panel.
