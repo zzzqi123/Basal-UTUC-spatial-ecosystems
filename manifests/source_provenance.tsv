@@ -1,5 +1,5 @@
 public_module	source_class	reuse_action
-workflows/spatial/cell2location	private analysis notebook plus official cell2location API	reconstructed against manuscript-locked parameters; private notebook and third-party source not distributed
+workflows/spatial/cell2location	private analysis notebook plus official cell2location API	implemented with the parameters reported in Methods; private notebook and third-party source not distributed
 workflows/single_cell	private project R scripts plus current manuscript Methods	curated QC, annotation, lineage subclustering, primary and sensitivity inferCNV, Monocle2, SCOP Monocle3, marker display, enrichment and composition workflows; exploratory notebooks not distributed
 workflows/spatial/07_cellstate_correlation_colocalization.R	private project R scripts	curated within-section Spearman and three-level ordinal co-localization
 workflows/spatial/08_spagene_lr_colocalization.R	private project R scripts plus official SpaGene API	curated global SpaGene LR test and local neighbor score; third-party source not copied
