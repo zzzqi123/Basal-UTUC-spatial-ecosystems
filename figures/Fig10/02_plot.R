@@ -56,7 +56,7 @@ plot_plan <- list(
     title = "GSE319536 continuous Basal-luminal validation",
     input = "panel_D_data.tsv",
     geometry = "line",
-    x = "basal_luminal_percentile",
+    x = "basal_axis_percentile",
     y = "mean_curve",
     group = "ring",
     colour = "ring",

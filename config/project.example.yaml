@@ -11,15 +11,6 @@ runtime:
   seed: 20260730
   threads: 4
 
-samples:
-  spatial:
-    - sample_id: SLZ
-      group: NMI-Basal
-    - sample_id: WJ
-      group: MI-Basal
-    - sample_id: YJM
-      group: MI-Basal
-
 privacy:
   allow_patient_level_clinical_data: false
   allow_large_binary_objects: false

@@ -16,6 +16,7 @@ python_bin="${PYTHON_BIN:-python3}"
 
 if command -v Rscript >/dev/null 2>&1; then
   Rscript tests/test_cibersortx_handoff.R
+  Rscript tests/test_fig10_assembly.R
   while IFS= read -r script; do
     Rscript -e "parse(file='$script')" >/dev/null
   done < <(find core workflows figures supplementary -type f -name '*.R' | sort)

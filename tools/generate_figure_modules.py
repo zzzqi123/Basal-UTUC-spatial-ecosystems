@@ -21,6 +21,7 @@ class Panel:
     fields: tuple[tuple[str, str], ...] = ()
     noncomputational: bool = False
     package_native: bool = False
+    input_name: str | None = None
 
 
 @dataclass(frozen=True)
@@ -36,6 +37,7 @@ def p(
     workflow: str,
     columns: str,
     geometry: str | None,
+    input_name: str | None = None,
     **fields: str,
 ) -> Panel:
     return Panel(
@@ -45,6 +47,7 @@ def p(
         tuple(value.strip() for value in columns.split(",") if value.strip()),
         geometry,
         tuple(fields.items()),
+        input_name=input_name,
     )
 
 
@@ -303,15 +306,15 @@ MODULES = (
         "Multiscale spatial and clinical comparison of two microenvironmental programs in Basal UTUC",
         (
             p("A", "Section-level multiscale pair burden", PAIR,
-              "section,program,ring,pair_burden,fold_vs_nmi", "line", x="ring", y="fold_vs_nmi", group="section", colour="section", facet="program"),
+              "section,program,ring,pair_burden,fold_vs_nmi", "line", input_name="multiscale_pair_burden_and_oe.tsv", x="ring", y="fold_vs_nmi", group="section", colour="section", facet="program"),
             p("B", "Permutation-based spatial observed-to-expected", PAIR,
-              "section,program,ring,spatial_oe,permutation_p_upper", "line", x="ring", y="spatial_oe", group="section", colour="section", facet="program"),
+              "section,program,ring,spatial_oe,permutation_p_upper", "line", input_name="multiscale_pair_burden_and_oe.tsv", x="ring", y="spatial_oe", group="section", colour="section", facet="program"),
             p("C", "Section-specific signed-distance profiles", BOUNDARY,
-              "sample,cell_state,signed_distance,fitted_z,se", "line", x="signed_distance", y="fitted_z", group="cell_state", colour="cell_state", facet="sample"),
+              "sample,cell_state,signed_distance,fitted_z,se", "line", input_name="section_boundary_predictions.tsv", x="signed_distance", y="fitted_z", group="cell_state", colour="cell_state", facet="sample"),
             p("D", "GSE319536 continuous Basal-luminal validation", EXTERNAL_VISIUM,
-              "basal_luminal_percentile,ring,pair_score,mean_curve,ci_low,ci_high", "line", x="basal_luminal_percentile", y="mean_curve", group="ring", colour="ring"),
+              "basal_axis_percentile,ring,mean_curve,ci_low,ci_high", "line", input_name="external_visium_mean_gam_curves.tsv", x="basal_axis_percentile", y="mean_curve", group="ring", colour="ring"),
             p("E", "Japan-UTUC cellular-program clinical models", JAPAN,
-              "score,endpoint,model,effect,CI_low,CI_high,p_value,FDR_BH", "forest", effect="effect", term="score", lower="CI_low", upper="CI_high", facet="endpoint"),
+              "score,endpoint,model,effect,CI_low,CI_high,p_value,FDR_BH", "forest", input_name="japan_utuc_clinical_models.tsv", effect="effect", term="score", lower="CI_low", upper="CI_high", facet="endpoint"),
         ),
     ),
     Module(
@@ -609,7 +612,8 @@ def analysis_script(module: Module) -> str:
         if not panel.noncomputational:
             values.update(
                 {
-                    "input": f"{Path(module.path).name}_{panel.panel}.tsv",
+                    "input": panel.input_name
+                    or f"{Path(module.path).name}_{panel.panel}.tsv",
                     "required": panel.columns,
                     "output": f"panel_{panel.panel}_data.tsv",
                 }
@@ -723,6 +727,39 @@ def readme(module: Module) -> str:
     for panel in module.panels:
         rows.append(f"| {panel.panel} | {panel.title} | `{panel.workflow}` |")
     module_id = Path(module.path).name
+    data_boundary = ""
+    closing = (
+        "Required input columns are listed directly in `01_analysis.R`; expected "
+        "files\nare listed in `expected_outputs.txt`."
+    )
+    if module_id == "Fig10":
+        data_boundary = """
+## Data boundary
+
+No example patient, spot-level or clinical table is included. Panels A-C use
+the controlled institutional spatial dataset; panel D uses the public
+GSE319536 series; panel E uses the controlled-access Japan-UTUC RNA-seq dataset
+EGAD00001007667. The EGA dataset contains 158 UTUC tumors and 8 normal tissues;
+the clinical models use the 158 tumors.
+
+The figure module reads four upstream summary files:
+
+| Panels | Required file | Produced by |
+|---|---|---|
+| A-B | `multiscale_pair_burden_and_oe.tsv` | `02_multiscale_pair_burden.py` |
+| C | `section_boundary_predictions.tsv` | `05_boundary_profiles.R` |
+| D | `external_visium_mean_gam_curves.tsv` | `11_external_visium_basal_axis.R` |
+| E | `japan_utuc_clinical_models.tsv` | `02_japan_utuc_validation.R` |
+
+Place these de-identified summary tables in one local input directory before
+running the figure module. Their required columns are checked before plotting.
+"""
+        data_boundary = data_boundary.rstrip()
+        closing += (
+            " `tests/test_fig10_assembly.R` creates\n"
+            "temporary synthetic tables and checks the complete table-to-PDF path; "
+            "it does\nnot reproduce or approximate the biological results."
+        )
     return f"""# {module_id}: {module.title}
 
 ## Panel-to-code map
@@ -733,6 +770,7 @@ def readme(module: Module) -> str:
 columns. `02_plot.R` draws the standard vector panels; panels exported directly
 from an analysis package or generated experimentally are listed in the panel
 map.
+{data_boundary}
 
 ## Run
 
@@ -750,8 +788,7 @@ Rscript {module.path}/02_plot.R \\
   --seed 20260730 --threads 4
 ```
 
-Required input columns are listed directly in `01_analysis.R`; expected files
-are listed in `expected_outputs.txt`.
+{closing}
 """
 
 

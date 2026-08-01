@@ -100,30 +100,19 @@ All analysis scripts use the same command-line arguments:
 Run metadata include the random seed, software version, UTC time and Git
 commit.
 
-## Quick start
+## Environment check
 
 ```bash
-cp config/project.example.yaml config/project.yaml
 conda env create -f environment.yml
 conda activate basal-utuc-spatial
 bash tests/run_all.sh
 ```
 
-Example for Fig. 10:
-
-```bash
-Rscript figures/Fig10/01_analysis.R \
-  --config figures/Fig10/config.yaml \
-  --input-dir data/processed/Fig10 \
-  --output-dir outputs/Fig10 \
-  --seed 20260730 --threads 4
-
-Rscript figures/Fig10/02_plot.R \
-  --config figures/Fig10/config.yaml \
-  --input-dir outputs/Fig10 \
-  --output-dir outputs/Fig10 \
-  --seed 20260730 --threads 4
-```
+The checks use temporary synthetic matrices created at run time. No patient or
+spatial sample is bundled with the repository. Passing the checks confirms the
+software environment, input schemas and code paths; it does not reproduce the
+manuscript results without the datasets listed in `data/README.md`. Figure-level
+commands and data requirements are documented in each figure directory.
 
 ## Data and code availability
 

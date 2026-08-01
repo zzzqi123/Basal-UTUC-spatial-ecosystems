@@ -15,7 +15,7 @@ panel_plan <- list(
     title = "Section-level multiscale pair burden",
     workflow = "workflows/spatial/02_multiscale_pair_burden.py",
     operation = "select",
-    input = "Fig10_A.tsv",
+    input = "multiscale_pair_burden_and_oe.tsv",
     required = c("section", "program", "ring", "pair_burden", "fold_vs_nmi"),
     output = "panel_A_data.tsv"
   ),
@@ -24,7 +24,7 @@ panel_plan <- list(
     title = "Permutation-based spatial observed-to-expected",
     workflow = "workflows/spatial/02_multiscale_pair_burden.py",
     operation = "select",
-    input = "Fig10_B.tsv",
+    input = "multiscale_pair_burden_and_oe.tsv",
     required = c("section", "program", "ring", "spatial_oe", "permutation_p_upper"),
     output = "panel_B_data.tsv"
   ),
@@ -33,7 +33,7 @@ panel_plan <- list(
     title = "Section-specific signed-distance profiles",
     workflow = "workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R",
     operation = "select",
-    input = "Fig10_C.tsv",
+    input = "section_boundary_predictions.tsv",
     required = c("sample", "cell_state", "signed_distance", "fitted_z", "se"),
     output = "panel_C_data.tsv"
   ),
@@ -42,8 +42,8 @@ panel_plan <- list(
     title = "GSE319536 continuous Basal-luminal validation",
     workflow = "workflows/spatial/06_rctd_deconvolution.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
     operation = "select",
-    input = "Fig10_D.tsv",
-    required = c("basal_luminal_percentile", "ring", "pair_score", "mean_curve", "ci_low", "ci_high"),
+    input = "external_visium_mean_gam_curves.tsv",
+    required = c("basal_axis_percentile", "ring", "mean_curve", "ci_low", "ci_high"),
     output = "panel_D_data.tsv"
   ),
   list(
@@ -51,7 +51,7 @@ panel_plan <- list(
     title = "Japan-UTUC cellular-program clinical models",
     workflow = "workflows/bulk_clinical_validation/02_japan_utuc_validation.R",
     operation = "select",
-    input = "Fig10_E.tsv",
+    input = "japan_utuc_clinical_models.tsv",
     required = c("score", "endpoint", "model", "effect", "CI_low", "CI_high", "p_value", "FDR_BH"),
     output = "panel_E_data.tsv"
   )

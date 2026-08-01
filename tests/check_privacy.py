@@ -31,6 +31,12 @@ for path in ROOT.rglob("*"):
     }:
         continue
     text = path.read_text(encoding="utf-8", errors="ignore")
+    if relative == Path("config/project.example.yaml") and re.search(
+        r"^\s*sample_id\s*:", text, flags=re.MULTILINE
+    ):
+        raise SystemExit(
+            "Project example config must not contain institutional sample IDs"
+        )
     for label, pattern in forbidden_patterns.items():
         if pattern.search(text):
             raise SystemExit(f"{label} found in {relative}")
