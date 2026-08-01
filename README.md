@@ -33,28 +33,33 @@ Basal-UTUC-spatial-ecosystems/
 
 ## Study overview
 
-The central finding of this study is that molecular subtype, rather than
-pathological stage, is the main determinant of the immune–stromal composition
-of the UTUC microenvironment. Within the Basal subtype, comparison of NMI and
-MI tumors further reveals a coordinated cellular and spatial reorganization.
-MI-Basal tumors are characterized by two distinct programs: Niche1, an
-invasive-front SPP1+ TAM–FAP+ myCAF program associated with stromal remodeling
-and reduced effector-immune activity; and Niche2, a VEGFA+ TAN–CXCR4+ tip-EC
-angiogenic program, with Cancer_c3 evaluated as a related malignant state.
-Across spatial, external, functional and clinical analyses, SPP1 emerges as a
-candidate therapeutic target and prognostic biomarker in Basal UTUC.
+We first asked whether molecular subtype or pathological stage primarily
+shapes the UTUC tumor microenvironment. Basal tumors retained an
+immune–stromal-enriched landscape in both NMI and MI disease, indicating that
+subtype, rather than stage, is the dominant organizer of TME composition.
 
-The evidence supporting the two microenvironmental programs is summarized
-below:
+We then compared NMI-Basal and MI-Basal tumors to define the cellular and
+spatial remodeling associated with muscle invasion. Two MI-associated programs
+were prioritized:
 
-| Evidence | SPP1-associated immune–stromal line | Angiogenic line |
-|---|---|---|
-| Main spatial finding | SPP1+ TAM–FAP+ myCAF organization at the invasive front, with boundary and immune-gradient analyses | VEGFA+ TAN–CXCR4+ tip-EC program; Cancer_c3 is treated as a separate related malignant state |
-| Other evidence | CellChat/NicheNet, spatial ligand–receptor analysis and mIF; epithelial SPP1 virtual knockout and J82/HUVEC assays | Spatial ligand–receptor analysis, co-enrichment and mIF; Cancer_c3 pathway analysis |
-| Validation | BLCA bulk, single-cell, Visium/Visium HD and GeoMx datasets; Japan-UTUC Niche1 models and SPP1/FAP clinical analysis | External and Japan-UTUC validation of Cancer_c3; Japan-UTUC Niche2 muscle-invasion analysis |
+- **Niche1: SPP1-associated immune–stromal program.** SPP1+ TAMs and FAP+
+  myCAFs showed stronger invasive-front organization in MI-Basal sections,
+  together with extracellular-matrix remodeling and reduced effector-immune
+  activity toward the tumor. This line also includes epithelial SPP1 virtual
+  knockout, J82/HUVEC experiments and external bladder cancer support.
+- **Niche2: angiogenic program.** VEGFA+ TANs and CXCR4+ tip ECs showed an
+  MI-associated spatial program linked to hypoxia and angiogenesis. Cancer_c3
+  was evaluated as a related but separate malignant state.
 
-The rows summarize related evidence, not a causal sequence. Japan-UTUC is a
-bulk clinical cohort and does not validate spatial location.
+For the Japan-UTUC cohort, bulk-derived cellular-program scores were calculated
+from the prespecified cell-state signatures and tested for muscle invasion and
+disease-specific survival. These analyses assess patient-level clinical
+associations; they do not reconstruct or validate spatial niches.
+
+Together, the Basal phenotype, invasive-front immune–stromal program,
+epithelial-intrinsic experiments and SPP1/FAP classification and survival
+analyses identify SPP1 as a candidate therapeutic target and prognostic
+biomarker in Basal UTUC.
 
 ## Main-figure modules
 
