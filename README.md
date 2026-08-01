@@ -33,10 +33,19 @@ Basal-UTUC-spatial-ecosystems/
 
 ## Study overview
 
-The paper first asks whether molecular subtype or pathological stage better
-explains the UTUC microenvironment. It then focuses on the differences between
-NMI-Basal and MI-Basal tumors. The analyses are grouped into two parallel
-lines:
+The central finding of this study is that molecular subtype, rather than
+pathological stage, is the main determinant of the immune–stromal composition
+of the UTUC microenvironment. Within the Basal subtype, comparison of NMI and
+MI tumors further reveals a coordinated cellular and spatial reorganization.
+MI-Basal tumors are characterized by two distinct programs: Niche1, an
+invasive-front SPP1+ TAM–FAP+ myCAF program associated with stromal remodeling
+and reduced effector-immune activity; and Niche2, a VEGFA+ TAN–CXCR4+ tip-EC
+angiogenic program, with Cancer_c3 evaluated as a related malignant state.
+Across spatial, external, functional and clinical analyses, SPP1 emerges as a
+candidate therapeutic target and prognostic biomarker in Basal UTUC.
+
+The evidence supporting the two microenvironmental programs is summarized
+below:
 
 | Evidence | SPP1-associated immune–stromal line | Angiogenic line |
 |---|---|---|
