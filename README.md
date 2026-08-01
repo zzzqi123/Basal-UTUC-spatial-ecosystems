@@ -31,20 +31,21 @@ Basal-UTUC-spatial-ecosystems/
 └── data/README.md                 expected local inputs
 ```
 
-## Study design and code map
+## Study overview
 
-The study first separates molecular-subtype effects from pathological-stage
-effects, then examines cell-state and spatial remodeling within Basal tumors.
-The lower panels group evidence by scientific line rather than implying a
-causal sequence.
+The paper first asks whether molecular subtype or pathological stage better
+explains the UTUC microenvironment. It then focuses on the differences between
+NMI-Basal and MI-Basal tumors. The analyses are grouped into two parallel
+lines:
 
-![Study design and evidence structure](assets/study-design.svg)
+| Evidence | SPP1-associated immune–stromal line | Angiogenic line |
+|---|---|---|
+| Main spatial finding | SPP1+ TAM–FAP+ myCAF organization at the invasive front, with boundary and immune-gradient analyses | VEGFA+ TAN–CXCR4+ tip-EC program; Cancer_c3 is treated as a separate related malignant state |
+| Other evidence | CellChat/NicheNet, spatial ligand–receptor analysis and mIF; epithelial SPP1 virtual knockout and J82/HUVEC assays | Spatial ligand–receptor analysis, co-enrichment and mIF; Cancer_c3 pathway analysis |
+| Validation | BLCA bulk, single-cell, Visium/Visium HD and GeoMx datasets; Japan-UTUC Niche1 models and SPP1/FAP clinical analysis | External and Japan-UTUC validation of Cancer_c3; Japan-UTUC Niche2 muscle-invasion analysis |
 
-The SPP1-associated line brings together the invasive-front TAM–myCAF program,
-epithelial-intrinsic SPP1 experiments and external/clinical support, while
-keeping their evidential roles distinct. Cancer_c3 is evaluated separately
-from the VEGFA+ TAN–CXCR4+ tip-EC pair. Japan-UTUC provides bulk clinical
-association rather than spatial validation.
+The rows summarize related evidence, not a causal sequence. Japan-UTUC is a
+bulk clinical cohort and does not validate spatial location.
 
 ## Main-figure modules
 
