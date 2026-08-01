@@ -23,10 +23,10 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Malignant-epithelial virtual-knockout enrichment",
-    workflow = "workflows/perturbation/01_spp1_virtual_knockout.R",
+    workflow = "workflows/single_cell/10_spp1_virtual_knockout.R",
     operation = "select",
     input = "Fig08_B.tsv",
-    required = c("pathway", "NES", "FDR"),
+    required = c("pathway", "ontology", "gene_count", "FDR", "neg_log10_FDR"),
     output = "panel_B_data.tsv"
   ),
   list(

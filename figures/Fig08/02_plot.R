@@ -29,8 +29,8 @@ plot_plan <- list(
     input = "panel_B_data.tsv",
     geometry = "bar",
     x = "pathway",
-    y = "NES",
-    fill = "NES",
+    y = "neg_log10_FDR",
+    fill = "ontology",
     output = "panel_B.pdf",
     width = 5.5,
     height = 4.2

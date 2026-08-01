@@ -119,7 +119,7 @@ NICHE_FUNCTION = "workflows/spatial/14_niche_functional_analysis.R"
 CELLCHAT = "workflows/communication/01_cellchat.R"
 NICHENET = "workflows/communication/02_nichenet_tam_to_mycaf.R"
 SPATIAL_CELLCHAT = "workflows/communication/03_cellchat_spatial.R"
-PERTURB = "workflows/perturbation/01_spp1_virtual_knockout.R"
+PERTURB = "workflows/single_cell/10_spp1_virtual_knockout.R"
 SCPAGWAS = (
     "workflows/genetics/01_scpagwas.R -> "
     "workflows/genetics/02_prepare_scpagwas_tables.R"
@@ -272,7 +272,8 @@ MODULES = (
             p("A", "SPP1 expression in adjacent and malignant epithelial cells", MARKERS,
               "UMAP_1,UMAP_2,tissue_group,SPP1", "point", x="UMAP_1", y="UMAP_2", colour="SPP1", facet="tissue_group"),
             p("B", "Malignant-epithelial virtual-knockout enrichment", PERTURB,
-              "pathway,NES,FDR", "bar", x="pathway", y="NES", fill="NES"),
+              "pathway,ontology,gene_count,FDR,neg_log10_FDR", "bar",
+              x="pathway", y="neg_log10_FDR", fill="ontology"),
             wet("C", "SPP1 siRNA qRT-PCR"),
             wet("D", "SPP1 knockdown western blot"),
             wet("E", "J82 cell-viability assay"),

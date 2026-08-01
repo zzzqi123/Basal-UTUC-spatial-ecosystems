@@ -9,7 +9,7 @@ data, large intermediate objects and exploratory notebooks.
 1. `single_cell/`: quality control, integration, annotation, lineage
    reclustering, primary and sensitivity inferCNV, Monocle2/SCOP-Monocle3
    trajectories, SCENIC, marker visualization, composition and functional
-   programs.
+   programs, including the final malignant-epithelial SPP1 virtual knockout.
 2. `genetics/`: FinnGen GWAS integration using the original `scPagwas_main`
    workflow and SPP1 PheW-MR/SMR-HEIDI result processing.
 3. `spatial/`: Visium processing, cell2location, spatial neighborhoods,
@@ -17,8 +17,7 @@ data, large intermediate objects and exploratory notebooks.
    RCTD, multiscale pair burden, permutation O/E and signed-distance profiles.
 4. `communication/`: single-cell and spatial CellChat plus the TAM-to-myCAF
    NicheNet candidate network.
-5. `perturbation/`: malignant-epithelial and TME scTenifoldKnk analyses.
-6. `bulk_clinical_validation/`: ESTIMATE/BASE47 scores, subtype/TME
+5. `bulk_clinical_validation/`: ESTIMATE/BASE47 scores, subtype/TME
    interaction models, survival/ROC analyses and independent Japan-UTUC
    clinical models.
 

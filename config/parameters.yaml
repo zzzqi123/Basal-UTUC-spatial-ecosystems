@@ -25,6 +25,22 @@ single_cell:
   monocle3_dimensions: 20
   roe_inference: negative_binomial
 
+sctenifoldknk:
+  package_version: "1.0.3"
+  target_gene: SPP1
+  annotation_column: second_celltype_byhand
+  malignant_states: [Cancer_c0, Cancer_c1, Cancer_c2, Cancer_c3, Cancer_c4]
+  hvg_candidates: 2500
+  network_genes: 1000
+  nc_nNet: 5
+  nc_nCells: 1000
+  nc_nComp: 5
+  td_K: 3
+  ma_nDim: 2
+  dr_abs_z_threshold: 1
+  dr_raw_p_threshold: 0.05
+  enrichment_fdr: 0.05
+
 cell2location:
   reference_batch_key: orig.ident
   reference_label_key: second_celltype_byhand

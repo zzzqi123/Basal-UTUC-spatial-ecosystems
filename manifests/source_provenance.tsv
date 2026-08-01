@@ -15,7 +15,7 @@ Fig03;SuppFig07	private project R scripts	curated myeloid subcluster analyses
 Fig04;SuppFig10	private project R scripts	curated mesenchymal and endothelial analyses
 Fig05;Fig09	private project R scripts	curated CellChat analyses
 Fig06	private project R scripts	curated NicheNet sender-receiver analysis
-Fig08	private project R scripts	curated epithelial SPP1 perturbation and enrichment
+Fig08	private final UTUC malignant-epithelial R scripts plus official scTenifoldKnk API	curated SPP1-only perturbation and enrichment; obsolete whole-TME FAP/SPP1 exploration excluded
 Fig10	private project Python scripts	curated multiscale q05 pair analysis
 Fig10	private project R scripts	curated section-resolved posterior-mean profiles
 Fig10;SuppFig06	private project R scripts	curated Japan-UTUC component models

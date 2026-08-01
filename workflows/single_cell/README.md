@@ -45,6 +45,26 @@ Example lineage config: `../../config/subclustering.example.yaml`.
 - `06_functional_enrichment.R`: GO-BP and KEGG over-representation plus
   Hallmark GSEA from a two-column `pathway/gene` table.
 - `07_pathway_activity.R`: AUCell and PROGENy activity.
+- `10_spp1_virtual_knockout.R`: the final scTenifoldKnk analysis restricted to
+  `Cancer_c0`-`Cancer_c4` malignant epithelial cells. It constructs the locked
+  1,000-gene network, runs the SPP1-only perturbation with
+  `nNet=5`, `nCells=1000`, `nComp=5`, `td_K=3`, `ma_nDim=2`, and exports the
+  DR-gene and GO/KEGG tables used for Fig. 8B. Whole-TME or FAP knockouts are
+  not part of the final analysis.
+
+The virtual-knockout output describes network-level perturbation associations.
+Its Z-score sign is not interpreted as pathway up/down-regulation, and the
+analysis does not establish macrophage-to-CAF causality.
+
+Run the finalized workflow with the manuscript-level parameter file:
+
+```bash
+Rscript workflows/single_cell/10_spp1_virtual_knockout.R \
+  --config config/parameters.yaml \
+  --input-dir data/processed \
+  --output-dir outputs/Fig08_spp1_virtual_knockout \
+  --seed 20260730 --threads 8
+```
 
 The current Methods do not specify DoubletFinder, PAGA, Slingshot or scVelo as
 final analyses. They are therefore recorded as exploratory in

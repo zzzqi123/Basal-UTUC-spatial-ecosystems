@@ -18,6 +18,7 @@ scripts <- c(
   "workflows/single_cell/07_pathway_activity.R",
   "workflows/single_cell/08_marker_visualization.R",
   "workflows/single_cell/09_roe_composition.R",
+  "workflows/single_cell/10_spp1_virtual_knockout.R",
   "workflows/genetics/01_scpagwas.R",
   "workflows/genetics/03_phewas_mr_spp1.R",
   "workflows/spatial/cell2location/01_reference_signatures.py",
@@ -30,8 +31,6 @@ scripts <- c(
   "workflows/communication/01_cellchat.R",
   "workflows/communication/03_cellchat_spatial.R",
   "workflows/communication/02_nichenet_tam_to_mycaf.R",
-  "workflows/perturbation/01_spp1_virtual_knockout.R",
-  "workflows/perturbation/02_sctenifoldknk_tme_targets.R",
   "workflows/spatial/02_multiscale_pair_burden.py",
   "workflows/spatial/03_prepare_boundary_input.py",
   "workflows/spatial/04_infer_boundary_stgrads.R",
@@ -53,7 +52,6 @@ branches <- vapply(scripts, function(script) {
   if (startsWith(script, "workflows/genetics/")) return("genetics")
   if (startsWith(script, "workflows/spatial/")) return("spatial")
   if (startsWith(script, "workflows/communication/")) return("communication")
-  if (startsWith(script, "workflows/perturbation/")) return("perturbation")
   if (startsWith(script, "workflows/bulk_clinical_validation/")) {
     return("bulk_clinical")
   }

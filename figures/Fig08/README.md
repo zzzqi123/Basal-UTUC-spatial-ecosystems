@@ -5,7 +5,7 @@
 | Panel | Analysis | Source workflow |
 |---|---|---|
 | A | SPP1 expression in adjacent and malignant epithelial cells | `workflows/single_cell/01b_annotation_and_markers.R -> workflows/single_cell/08_marker_visualization.R` |
-| B | Malignant-epithelial virtual-knockout enrichment | `workflows/perturbation/01_spp1_virtual_knockout.R` |
+| B | Malignant-epithelial virtual-knockout enrichment | `workflows/single_cell/10_spp1_virtual_knockout.R` |
 | C | SPP1 siRNA qRT-PCR | `non-computational source panel; code not applicable` |
 | D | SPP1 knockdown western blot | `non-computational source panel; code not applicable` |
 | E | J82 cell-viability assay | `non-computational source panel; code not applicable` |

@@ -20,6 +20,7 @@ required_workflows = (
     "workflows/single_cell/03b_monocle3_robustness.R",
     "workflows/single_cell/08_marker_visualization.R",
     "workflows/single_cell/09_roe_composition.R",
+    "workflows/single_cell/10_spp1_virtual_knockout.R",
     "workflows/spatial/07_cellstate_correlation_colocalization.R",
     "workflows/spatial/08_spagene_lr_colocalization.R",
     "workflows/spatial/09_spacet_gene_set_scores.R",
@@ -34,6 +35,9 @@ required_workflows = (
 for relative in required_workflows:
     if not (ROOT / relative).is_file():
         raise SystemExit(f"Required workflow is missing: {relative}")
+
+if (ROOT / "workflows" / "perturbation").exists():
+    raise SystemExit("Obsolete top-level perturbation branch remains")
 
 c2l = ROOT / "workflows" / "spatial" / "cell2location"
 if not c2l.is_dir() or len(list(c2l.glob("*.py"))) != 4:
@@ -63,6 +67,12 @@ for row in rows:
     ].startswith("workflows/spatial/"):
         raise SystemExit(
             f"cell2location mapped outside spatial: {row['figure']}{row['panel']}"
+        )
+    if "virtual-knockout" in row["title"].lower() and not row[
+        "source_workflow"
+    ].startswith("workflows/single_cell/"):
+        raise SystemExit(
+            f"Virtual knockout mapped outside single_cell: {row['figure']}{row['panel']}"
         )
 
 for directory in (ROOT / "figures", ROOT / "supplementary"):

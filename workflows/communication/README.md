@@ -12,4 +12,5 @@ and 9.
   distance scale 3.65 and at least 10 locations per group.
 
 The NicheNet workflow treats SPP1 as one candidate ligand within a multi-ligand
-network. Epithelial perturbation is deliberately kept in `../perturbation/`.
+network. The separate SPP1-only malignant-epithelial virtual knockout is kept
+with the other single-cell analyses in `../single_cell/10_spp1_virtual_knockout.R`.

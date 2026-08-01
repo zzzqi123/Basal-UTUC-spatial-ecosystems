@@ -62,6 +62,32 @@ for key, value in expected_single_cell.items():
             f"Single-cell mismatch: {key}={single_cell.get(key)!r}, expected {value!r}"
         )
 
+sctenifoldknk = cfg["sctenifoldknk"]
+expected_sctenifoldknk = {
+    "package_version": "1.0.3",
+    "target_gene": "SPP1",
+    "malignant_states": ["Cancer_c0", "Cancer_c1", "Cancer_c2", "Cancer_c3", "Cancer_c4"],
+    "network_genes": 1000,
+    "nc_nNet": 5,
+    "nc_nCells": 1000,
+    "nc_nComp": 5,
+    "td_K": 3,
+    "ma_nDim": 2,
+}
+for key, value in expected_sctenifoldknk.items():
+    if sctenifoldknk.get(key) != value:
+        raise SystemExit(
+            f"scTenifoldKnk mismatch: {key}={sctenifoldknk.get(key)!r}, "
+            f"expected {value!r}"
+        )
+
+sctenifold_script = (
+    ROOT / "workflows" / "single_cell" / "10_spp1_virtual_knockout.R"
+).read_text(encoding="utf-8")
+for forbidden in ('gKO = "FAP"', 'targets <- c("SPP1", "FAP")', "utuc_tme_cells"):
+    if forbidden in sctenifold_script:
+        raise SystemExit(f"Obsolete TME/FAP perturbation remains: {forbidden}")
+
 spatial_cellchat = cfg["spatial_cellchat"]
 expected_spatial_cellchat = {
     "database": "CellChatDB.human",

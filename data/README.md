@@ -27,6 +27,10 @@ Method-specific input contracts include:
   stage and prespecified marker expression for survival and ROC workflows;
 - `utuc_annotated_scrna.rds`: curator-reviewed full Seurat object handed from
   marker review to downstream lineage, communication and pathway workflows;
+- `utuc_malignant_epithelial.rds`: the same annotated Seurat object (or an
+  analysis-ready subset) retaining the `RNA` raw-count layer and
+  `second_celltype_byhand`; the public SPP1 workflow reselects only
+  `Cancer_c0`-`Cancer_c4` cells before network construction;
 - `hallmark_gene_sets.tsv`: columns `pathway` and `gene` for shared
   single-cell enrichment workflows;
 - `hg38_gene_order.tsv`: inferCNV gene order;

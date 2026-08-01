@@ -38,7 +38,7 @@ spatial	multiscale burden	q05; exact rings 0-2; 500 permutations	workflows/spati
 spatial	boundary	posterior mean; Otsu; stGrads 2.0; signed-distance GAM	workflows/spatial/03_prepare_boundary_input.py; workflows/spatial/04_infer_boundary_stgrads.R; workflows/spatial/05_boundary_profiles.R	PASS
 communication	CellChat single-cell	CellChatDB.human; minimum 10 cells	workflows/communication/01_cellchat.R	PASS
 communication	NicheNet	SPP1 TAM sender; FAP myCAF receiver	workflows/communication/02_nichenet_tam_to_mycaf.R	PASS
-perturbation	scTenifoldKnk	epithelial SPP1; TME SPP1 and FAP targets separated	workflows/perturbation/01_spp1_virtual_knockout.R; workflows/perturbation/02_sctenifoldknk_tme_targets.R	PASS
+single_cell	scTenifoldKnk	SPP1 knockout only in Cancer_c0-Cancer_c4 malignant epithelial cells; nNet 5; nCells 1000; nComp 5; td_K 3; ma_nDim 2	workflows/single_cell/10_spp1_virtual_knockout.R	PASS
 bulk_clinical	CIBERSORTx	CIBERSORTx proportions are external tool outputs	workflows/bulk_clinical_validation/02_japan_utuc_validation.R	DOCUMENTED_EXTERNAL
 bulk_clinical	ESTIMATE and BASE47 GSVA	ImmuneScore StromalScore; Basal minus Luminal subtype score	workflows/bulk_clinical_validation/00_prepare_bulk_scores.R	PASS
 bulk_clinical	stage interaction	score ~ basal_luminal_score * stage	workflows/bulk_clinical_validation/03_external_blca_validation.R	PASS

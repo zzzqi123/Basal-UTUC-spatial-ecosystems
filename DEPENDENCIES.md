@@ -17,7 +17,7 @@ channel on every platform:
 | pathway activity | `AUCell`, `decoupleR` |
 | regulatory network | `pyscenic` plus the human motif databases |
 | communication | `CellChat`, `nichenetr` |
-| perturbation | `scTenifoldKnk` |
+| single-cell virtual knockout | `scTenifoldKnk` 1.0.3, `clusterProfiler`, `org.Hs.eg.db` |
 | spatial deconvolution | `spacexr` |
 | spatial ligand-receptor | `SpaGene` |
 | spatial gene-set score | `SpaCET` |
