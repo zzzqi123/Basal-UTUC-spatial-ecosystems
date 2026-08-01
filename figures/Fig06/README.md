@@ -7,11 +7,11 @@
 | A | NMI-Basal spatial co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
 | B | MI-Basal spatial co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |
 | C | Multiplex immunofluorescence | `non-computational source panel; code not applicable` |
-| D | NicheNet macrophage-derived ligand activity | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
-| E | NicheNet ligand-receptor prior interaction potential | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
-| F | MI-associated FAP myCAF ligand-target potential | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
+| D | NicheNet macrophage-derived ligand activity | `workflows/single_cell/12_nichenet_tam_to_mycaf.R` |
+| E | NicheNet ligand-receptor prior interaction potential | `workflows/single_cell/12_nichenet_tam_to_mycaf.R` |
+| F | MI-associated FAP myCAF ligand-target potential | `workflows/single_cell/12_nichenet_tam_to_mycaf.R` |
 | G | Effector-immune programs across Niche1-high boundaries | `workflows/spatial/13_effector_boundary_profiles.R` |
-| H | FAP myCAF receiver-gene overlap across comparisons | `workflows/communication/02_nichenet_tam_to_mycaf.R` |
+| H | FAP myCAF receiver-gene overlap across comparisons | `workflows/single_cell/12_nichenet_tam_to_mycaf.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It
 performs lightweight panel assembly only; model fitting remains in

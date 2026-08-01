@@ -18,11 +18,10 @@ Basal-UTUC-spatial-ecosystems/
 │   ├── R/                         shared R utilities
 │   └── python/                    shared Python utilities
 ├── workflows/
-│   ├── single_cell/               scRNA-seq processing and cell-state analyses
-│   ├── spatial/                   spatial mapping and spatial-ecosystem analyses
-│   ├── communication/             CellChat and NicheNet
+│   ├── single_cell/               scRNA-seq states, CellChat and NicheNet
+│   ├── spatial/                   spatial deconvolution, CellChat and ecosystems
 │   ├── genetics/                  scPagwas and PheW-MR
-│   └── bulk_clinical_validation/  subtype, survival and external validation
+│   └── bulk_clinical_validation/  CIBERSORTx, subtype and clinical validation
 ├── figures/Fig01-Fig11/           main-figure code organized by figure
 ├── supplementary/SuppFig01-SuppFig14/
 │                                    supplementary-figure code organized by figure
@@ -59,8 +58,8 @@ External spatial, bulk and clinical validation
 |---|---|---|
 | How do subtype and stage relate to the cellular composition of UTUC? | `workflows/bulk_clinical_validation/`, `workflows/single_cell/` | Defines the Basal immune–stromal background and resolves epithelial, myeloid, lymphoid, fibroblast and endothelial states. |
 | Where are the relevant cell states organized in tissue? | `workflows/spatial/` | Maps cell-state abundance, spatial niches, co-localization, ligand–receptor neighborhoods and tumor-boundary profiles. |
-| Which spatial programs distinguish NMI-Basal from MI-Basal disease? | `workflows/spatial/`, `workflows/communication/` | Quantifies the SPP1-associated TAM–myCAF program and the parallel VEGFA+ TAN–CXCR4+ tip-EC angiogenic program. |
-| Which signaling and regulatory relationships are plausible? | `workflows/communication/`, `workflows/single_cell/` | Evaluates candidate communication networks and the malignant-epithelial SPP1 virtual knockout without treating them as source-specific functional proof. |
+| Which spatial programs distinguish NMI-Basal from MI-Basal disease? | `workflows/spatial/`, `workflows/single_cell/` | Quantifies the SPP1-associated TAM–myCAF program and the parallel VEGFA+ TAN–CXCR4+ tip-EC angiogenic program. |
+| Which signaling and regulatory relationships are plausible? | `workflows/single_cell/`, `workflows/spatial/` | Evaluates single-cell and spatial communication networks plus the malignant-epithelial SPP1 virtual knockout without treating them as source-specific functional proof. |
 | Are these programs reproducible and clinically relevant? | `workflows/spatial/`, `workflows/bulk_clinical_validation/`, `workflows/genetics/` | Uses public bladder cancer spatial/single-cell datasets, GeoMx, Japan-UTUC bulk data and genetic analyses as separate validation layers. |
 
 The two spatial programs are retained as related but distinct components of
@@ -69,6 +68,11 @@ phenotype, TAM–CAF spatial coupling, clinical outcome and epithelial-intrinsic
 experiments; it is not presented as the sole driver of the parallel
 angiogenic program. Japan-UTUC is a bulk clinical validation cohort and
 supports patient-level cellular-program associations, not spatial location.
+
+Cross-modal deconvolution is organized by the target modality: the
+single-cell-reference-to-bulk CIBERSORTx hand-off is under
+`workflows/bulk_clinical_validation/cibersortx/`, whereas cell2location and
+RCTD single-cell-reference-to-spatial mapping are under `workflows/spatial/`.
 
 The executable order and input-output hand-offs are listed in
 [`workflows/00_pipeline_overview.R`](workflows/00_pipeline_overview.R).

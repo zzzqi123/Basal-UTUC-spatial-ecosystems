@@ -16,9 +16,10 @@ channel on every platform:
 | marker display | `ClusterGVis`, `Nebulosa` |
 | pathway activity | `AUCell`, `decoupleR` |
 | regulatory network | `pyscenic` plus the human motif databases |
-| communication | `CellChat`, `nichenetr` |
+| single-cell communication | `CellChat`, `nichenetr` |
 | single-cell virtual knockout | `scTenifoldKnk` 1.0.3, `clusterProfiler`, `org.Hs.eg.db` |
 | spatial deconvolution | `spacexr` |
+| bulk deconvolution | registered CIBERSORTx web service |
 | spatial ligand-receptor | `SpaGene` |
 | spatial gene-set score | `SpaCET` |
 | spatial boundary | `stGrads` 2.0 |

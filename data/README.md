@@ -25,6 +25,13 @@ Method-specific input contracts include:
   `program/gene` BASE47 definitions for ESTIMATE/GSVA;
 - `utuc_bulk_expression_clinical.tsv`: de-identified DSS endpoint, subtype,
   stage and prespecified marker expression for survival and ROC workflows;
+- `japan_utuc_bulk_expression.tsv.gz`: gene-symbol-by-sample expression table
+  used to write the 158-sample CIBERSORTx mixture matrix;
+- `japan_utuc_clinical.tsv`: de-identified `sample_id`, muscle-invasion, DSS,
+  age and sex table used only after CIBERSORTx fraction import;
+- `CIBERSORTx_Job2_Results.csv`: registered-service relative-fraction output;
+  it is validated and converted to `japan_utuc_program_scores.tsv` by the
+  public import script;
 - `utuc_annotated_scrna.rds`: curator-reviewed full Seurat object handed from
   marker review to downstream lineage, communication and pathway workflows;
 - `utuc_malignant_epithelial.rds`: the same annotated Seurat object (or an

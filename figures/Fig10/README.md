@@ -7,7 +7,7 @@
 | A | Section-level multiscale pair burden | `workflows/spatial/02_multiscale_pair_burden.py` |
 | B | Permutation-based spatial observed-to-expected | `workflows/spatial/02_multiscale_pair_burden.py` |
 | C | Section-specific signed-distance profiles | `workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R` |
-| D | GSE319536 continuous Basal-luminal validation | `workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R` |
+| D | GSE319536 continuous Basal-luminal validation | `workflows/spatial/06_rctd_deconvolution.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R` |
 | E | Japan-UTUC cellular-program clinical models | `workflows/bulk_clinical_validation/02_japan_utuc_validation.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It

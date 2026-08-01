@@ -19,6 +19,8 @@ scripts <- c(
   "workflows/single_cell/08_marker_visualization.R",
   "workflows/single_cell/09_roe_composition.R",
   "workflows/single_cell/10_spp1_virtual_knockout.R",
+  "workflows/single_cell/11_cellchat.R",
+  "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
   "workflows/genetics/01_scpagwas.R",
   "workflows/genetics/03_phewas_mr_spp1.R",
   "workflows/spatial/cell2location/01_reference_signatures.py",
@@ -28,21 +30,21 @@ scripts <- c(
   "workflows/spatial/07_cellstate_correlation_colocalization.R",
   "workflows/spatial/08_spagene_lr_colocalization.R",
   "workflows/spatial/09_spacet_gene_set_scores.R",
-  "workflows/communication/01_cellchat.R",
-  "workflows/communication/03_cellchat_spatial.R",
-  "workflows/communication/02_nichenet_tam_to_mycaf.R",
+  "workflows/spatial/15_cellchat_spatial.R",
   "workflows/spatial/02_multiscale_pair_burden.py",
   "workflows/spatial/03_prepare_boundary_input.py",
   "workflows/spatial/04_infer_boundary_stgrads.R",
   "workflows/spatial/05_boundary_profiles.R",
   "workflows/spatial/13_effector_boundary_profiles.R",
   "workflows/spatial/14_niche_functional_analysis.R",
-  "workflows/spatial/06_external_rctd.R",
+  "workflows/spatial/06_rctd_deconvolution.R",
   "workflows/spatial/10_visiumhd_niche_colocalization.R",
   "workflows/spatial/11a_prepare_external_visium_scores.R",
   "workflows/spatial/11_external_visium_basal_axis.R",
   "workflows/spatial/12_geomx_roi_validation.R",
   "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R",
+  "workflows/bulk_clinical_validation/cibersortx/01_prepare_inputs.R",
+  "workflows/bulk_clinical_validation/cibersortx/02_import_fractions.R",
   "workflows/bulk_clinical_validation/02_japan_utuc_validation.R",
   "figures/FigXX/01_analysis.R"
 )
@@ -51,7 +53,6 @@ branches <- vapply(scripts, function(script) {
   if (startsWith(script, "workflows/single_cell/")) return("single_cell")
   if (startsWith(script, "workflows/genetics/")) return("genetics")
   if (startsWith(script, "workflows/spatial/")) return("spatial")
-  if (startsWith(script, "workflows/communication/")) return("communication")
   if (startsWith(script, "workflows/bulk_clinical_validation/")) {
     return("bulk_clinical")
   }

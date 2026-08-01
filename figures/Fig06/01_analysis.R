@@ -38,7 +38,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "NicheNet macrophage-derived ligand activity",
-    workflow = "workflows/communication/02_nichenet_tam_to_mycaf.R",
+    workflow = "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
     operation = "select",
     input = "Fig06_D.tsv",
     required = c("ligand", "aupr_corrected", "receiver_group"),
@@ -47,7 +47,7 @@ panel_plan <- list(
   list(
     panel = "E",
     title = "NicheNet ligand-receptor prior interaction potential",
-    workflow = "workflows/communication/02_nichenet_tam_to_mycaf.R",
+    workflow = "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
     operation = "select",
     input = "Fig06_E.tsv",
     required = c("ligand", "receptor", "prior_interaction_potential"),
@@ -56,7 +56,7 @@ panel_plan <- list(
   list(
     panel = "F",
     title = "MI-associated FAP myCAF ligand-target potential",
-    workflow = "workflows/communication/02_nichenet_tam_to_mycaf.R",
+    workflow = "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
     operation = "select",
     input = "Fig06_F.tsv",
     required = c("ligand", "target", "regulatory_potential"),
@@ -74,7 +74,7 @@ panel_plan <- list(
   list(
     panel = "H",
     title = "FAP myCAF receiver-gene overlap across comparisons",
-    workflow = "workflows/communication/02_nichenet_tam_to_mycaf.R",
+    workflow = "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
     operation = "select",
     input = "Fig06_H.tsv",
     required = c("gene_set", "membership", "count"),

@@ -1,12 +1,20 @@
 # Spatial transcriptomic workflows
 
+## Single-cell-reference to spatial deconvolution
+
+- `cell2location/`: the discovery UTUC Visium workflow, including reference
+  signatures, spatial mapping, posterior export and q05 abundance niches.
+- `06_rctd_deconvolution.R`: the external BLCA spatial workflow. GSE299573
+  Visium HD uses `doublet` mode; GSE319536 Visium uses `full` mode.
+
+These workflows estimate cell-state abundance at spatial locations. They are
+separate from bulk CIBERSORTx deconvolution and from downstream spatial
+co-localization scores.
+
 ## Discovery UTUC Visium
 
 - `01_visium_preprocessing.R`: reads Space Ranger outputs, retains raw counts
   for count models and keeps transformed values for visualization.
-- `cell2location/`: reference regression, spatial mapping, posterior export
-  and q05 abundance niches. This directory is the sole public cell2location
-  implementation.
 - `07_cellstate_correlation_colocalization.R`: within-section Spearman
   correlations, the manuscript three-level ordinal co-localization product and
   a separately named continuous joint-abundance score.
@@ -14,7 +22,7 @@
   local kNN cross-neighbor score used for spatial maps.
 - `09_spacet_gene_set_scores.R`: SpaCET quality control and Hallmark,
   CancerCellState, TLS and custom spatial gene-set scores.
-- `../communication/03_cellchat_spatial.R`: spatial-mode CellChat with the
+- `15_cellchat_spatial.R`: spatial-mode CellChat with the
   local coordinate, distance and contact parameters; run once per section.
 
 ## Multiscale ecosystems and boundaries
@@ -41,8 +49,6 @@ only for the declared continuous boundary profile.
 
 ## External validation
 
-- `06_external_rctd.R`: shared RCTD runner. GSE299573 Visium HD uses
-  `doublet`; GSE319536 uses `full`.
 - `10_visiumhd_niche_colocalization.R`: same-bin and kNN SPP1-TAM/FAP-myCAF
   co-enrichment from GSE299573 RCTD proportions.
 - `11a_prepare_external_visium_scores.R`: 22-section GSE319536 contract,
@@ -53,7 +59,7 @@ only for the declared continuous boundary profile.
   Spearman tests and BH correction.
 
 Example RCTD configs are `../../config/rctd_gse299573.example.yaml` and
-`../../config/rctd_gse319536.example.yaml`. Run `06_external_rctd.R` once per
+`../../config/rctd_gse319536.example.yaml`. Run `06_rctd_deconvolution.R` once per
 section, then concatenate the de-identified proportion tables with a `section`
 column before the GSE319536 preparation step.
 

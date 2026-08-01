@@ -28,18 +28,18 @@ spatial	correlation	within-section Spearman	workflows/spatial/07_cellstate_corre
 spatial	ordinal co-localization	three equal-width levels; pairwise product	workflows/spatial/07_cellstate_correlation_colocalization.R	PASS
 spatial	SpaGene	kNN 8; global LR and local cross-neighbor scores	workflows/spatial/08_spagene_lr_colocalization.R	PASS
 spatial	SpaCET	Hallmark CancerCellState TLS and custom gene sets	workflows/spatial/09_spacet_gene_set_scores.R	PASS
-spatial	spatial CellChat	distance 250 um; contact 100 um; scale 3.65; min cells 10	workflows/communication/03_cellchat_spatial.R	PASS
-spatial	GSE299573 RCTD	doublet mode; minimum spot UMI 500	workflows/spatial/06_external_rctd.R	PASS
-spatial	GSE319536 RCTD	full mode; 22-section input contract; normalized weights	workflows/spatial/06_external_rctd.R	PASS
+spatial	spatial CellChat	distance 250 um; contact 100 um; scale 3.65; min cells 10	workflows/spatial/15_cellchat_spatial.R	PASS
+spatial	GSE299573 RCTD	doublet mode; minimum spot UMI 500	workflows/spatial/06_rctd_deconvolution.R	PASS
+spatial	GSE319536 RCTD	full mode; 22-section input contract; normalized weights	workflows/spatial/06_rctd_deconvolution.R	PASS
 spatial	external Basal-luminal axis	UCell gene sets; epithelial anchor 0.20; rings 0-2	workflows/spatial/11a_prepare_external_visium_scores.R	PASS
 spatial	external continuous validation	per-section GAM; paired Wilcoxon; BH	workflows/spatial/11_external_visium_basal_axis.R	PASS
 spatial	GeoMx ROI validation	composite scores; Spearman; BH	workflows/spatial/12_geomx_roi_validation.R	PASS
 spatial	multiscale burden	q05; exact rings 0-2; 500 permutations	workflows/spatial/02_multiscale_pair_burden.py	PASS
 spatial	boundary	posterior mean; Otsu; stGrads 2.0; signed-distance GAM	workflows/spatial/03_prepare_boundary_input.py; workflows/spatial/04_infer_boundary_stgrads.R; workflows/spatial/05_boundary_profiles.R	PASS
-communication	CellChat single-cell	CellChatDB.human; minimum 10 cells	workflows/communication/01_cellchat.R	PASS
-communication	NicheNet	SPP1 TAM sender; FAP myCAF receiver	workflows/communication/02_nichenet_tam_to_mycaf.R	PASS
+single_cell	CellChat single-cell	CellChatDB.human; minimum 10 cells	workflows/single_cell/11_cellchat.R	PASS
+single_cell	NicheNet	SPP1 TAM sender; FAP myCAF receiver	workflows/single_cell/12_nichenet_tam_to_mycaf.R	PASS
 single_cell	scTenifoldKnk	SPP1 knockout only in Cancer_c0-Cancer_c4 malignant epithelial cells; nNet 5; nCells 1000; nComp 5; td_K 3; ma_nDim 2	workflows/single_cell/10_spp1_virtual_knockout.R	PASS
-bulk_clinical	CIBERSORTx	CIBERSORTx proportions are external tool outputs	workflows/bulk_clinical_validation/02_japan_utuc_validation.R	DOCUMENTED_EXTERNAL
+bulk_clinical	CIBERSORTx	scRNA raw-count reference; max 300 cells per state; 158 bulk samples; Job2 relative fractions	workflows/bulk_clinical_validation/cibersortx/01_prepare_inputs.R; workflows/bulk_clinical_validation/cibersortx/02_import_fractions.R	DOCUMENTED_EXTERNAL
 bulk_clinical	ESTIMATE and BASE47 GSVA	ImmuneScore StromalScore; Basal minus Luminal subtype score	workflows/bulk_clinical_validation/00_prepare_bulk_scores.R	PASS
 bulk_clinical	stage interaction	score ~ basal_luminal_score * stage	workflows/bulk_clinical_validation/03_external_blca_validation.R	PASS
 bulk_clinical	survival and ROC	DSS; log-rank; Cox Efron; 60-month timeROC; pROC; maxstat cut point	workflows/bulk_clinical_validation/01_subtype_clinical_analysis.R	PASS

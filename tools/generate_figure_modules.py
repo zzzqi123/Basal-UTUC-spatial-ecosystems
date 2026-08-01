@@ -100,25 +100,25 @@ BOUNDARY = (
     "workflows/spatial/04_infer_boundary_stgrads.R -> "
     "workflows/spatial/05_boundary_profiles.R"
 )
-RCTD = "workflows/spatial/06_external_rctd.R"
+RCTD = "workflows/spatial/06_rctd_deconvolution.R"
 SPATIAL_COLOC = "workflows/spatial/07_cellstate_correlation_colocalization.R"
 SPAGENE = "workflows/spatial/08_spagene_lr_colocalization.R"
 SPACET = "workflows/spatial/09_spacet_gene_set_scores.R"
 VISIUMHD = (
-    "workflows/spatial/06_external_rctd.R -> "
+    "workflows/spatial/06_rctd_deconvolution.R -> "
     "workflows/spatial/10_visiumhd_niche_colocalization.R"
 )
 EXTERNAL_VISIUM = (
-    "workflows/spatial/06_external_rctd.R -> "
+    "workflows/spatial/06_rctd_deconvolution.R -> "
     "workflows/spatial/11a_prepare_external_visium_scores.R -> "
     "workflows/spatial/11_external_visium_basal_axis.R"
 )
 GEOMX = "workflows/spatial/12_geomx_roi_validation.R"
 EFFECTOR_BOUNDARY = "workflows/spatial/13_effector_boundary_profiles.R"
 NICHE_FUNCTION = "workflows/spatial/14_niche_functional_analysis.R"
-CELLCHAT = "workflows/communication/01_cellchat.R"
-NICHENET = "workflows/communication/02_nichenet_tam_to_mycaf.R"
-SPATIAL_CELLCHAT = "workflows/communication/03_cellchat_spatial.R"
+CELLCHAT = "workflows/single_cell/11_cellchat.R"
+NICHENET = "workflows/single_cell/12_nichenet_tam_to_mycaf.R"
+SPATIAL_CELLCHAT = "workflows/spatial/15_cellchat_spatial.R"
 PERTURB = "workflows/single_cell/10_spp1_virtual_knockout.R"
 SCPAGWAS = (
     "workflows/genetics/01_scpagwas.R -> "

@@ -4,7 +4,7 @@
 
 | Panel | Analysis | Source workflow |
 |---|---|---|
-| A | Selected VEGFA TAN-tip EC ligand-receptor probabilities | `workflows/communication/01_cellchat.R` |
+| A | Selected VEGFA TAN-tip EC ligand-receptor probabilities | `workflows/single_cell/11_cellchat.R` |
 | B | VEGFA-VEGFR1 spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
 | C | NAMPT-INSR spatial signal | `workflows/spatial/08_spagene_lr_colocalization.R` |
 | D | NMI-Basal VEGFA TAN-tip EC co-localization | `workflows/spatial/07_cellstate_correlation_colocalization.R` |

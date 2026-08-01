@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Number of inferred interactions",
-    workflow = "workflows/communication/01_cellchat.R",
+    workflow = "workflows/single_cell/11_cellchat.R",
     operation = "select",
     input = "Fig05_A.tsv",
     required = c("source", "target", "count"),
@@ -23,7 +23,7 @@ panel_plan <- list(
   list(
     panel = "B",
     title = "Aggregated interaction strength",
-    workflow = "workflows/communication/01_cellchat.R",
+    workflow = "workflows/single_cell/11_cellchat.R",
     operation = "select",
     input = "Fig05_B.tsv",
     required = c("source", "target", "weight"),
@@ -32,7 +32,7 @@ panel_plan <- list(
   list(
     panel = "C",
     title = "Outgoing and incoming communication centrality",
-    workflow = "workflows/communication/01_cellchat.R",
+    workflow = "workflows/single_cell/11_cellchat.R",
     operation = "select",
     input = "Fig05_C.tsv",
     required = c("cell_state", "outgoing", "incoming"),
@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "Selected SPP1 TAM-myCAF ligand-receptor probabilities",
-    workflow = "workflows/communication/01_cellchat.R",
+    workflow = "workflows/single_cell/11_cellchat.R",
     operation = "select",
     input = "Fig05_D.tsv",
     required = c("source", "target", "ligand", "receptor", "probability", "p_value"),
@@ -68,7 +68,7 @@ panel_plan <- list(
   list(
     panel = "G",
     title = "NMI-Basal SPP1 and TGF-beta spatial communication",
-    workflow = "workflows/communication/03_cellchat_spatial.R",
+    workflow = "workflows/spatial/15_cellchat_spatial.R",
     operation = "select",
     input = "Fig05_G.tsv",
     required = c("stage", "pathway", "source", "target", "probability", "p_value"),
@@ -77,7 +77,7 @@ panel_plan <- list(
   list(
     panel = "H",
     title = "MI-Basal SPP1 and TGF-beta spatial communication",
-    workflow = "workflows/communication/03_cellchat_spatial.R",
+    workflow = "workflows/spatial/15_cellchat_spatial.R",
     operation = "select",
     input = "Fig05_H.tsv",
     required = c("stage", "pathway", "source", "target", "probability", "p_value"),

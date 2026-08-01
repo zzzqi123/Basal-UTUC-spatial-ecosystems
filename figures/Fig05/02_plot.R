@@ -56,11 +56,11 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "A", "Number of inferred interactions", "workflows/communication/01_cellchat.R",
-  "B", "Aggregated interaction strength", "workflows/communication/01_cellchat.R",
-  "D", "Selected SPP1 TAM-myCAF ligand-receptor probabilities", "workflows/communication/01_cellchat.R",
-  "G", "NMI-Basal SPP1 and TGF-beta spatial communication", "workflows/communication/03_cellchat_spatial.R",
-  "H", "MI-Basal SPP1 and TGF-beta spatial communication", "workflows/communication/03_cellchat_spatial.R"
+  "A", "Number of inferred interactions", "workflows/single_cell/11_cellchat.R",
+  "B", "Aggregated interaction strength", "workflows/single_cell/11_cellchat.R",
+  "D", "Selected SPP1 TAM-myCAF ligand-receptor probabilities", "workflows/single_cell/11_cellchat.R",
+  "G", "NMI-Basal SPP1 and TGF-beta spatial communication", "workflows/spatial/15_cellchat_spatial.R",
+  "H", "MI-Basal SPP1 and TGF-beta spatial communication", "workflows/spatial/15_cellchat_spatial.R"
 )
 readr::write_tsv(
   package_native_panels,

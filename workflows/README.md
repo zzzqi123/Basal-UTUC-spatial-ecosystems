@@ -9,17 +9,16 @@ data, large intermediate objects and exploratory notebooks.
 1. `single_cell/`: quality control, integration, annotation, lineage
    reclustering, primary and sensitivity inferCNV, Monocle2/SCOP-Monocle3
    trajectories, SCENIC, marker visualization, composition and functional
-   programs, including the final malignant-epithelial SPP1 virtual knockout.
+   programs, single-cell CellChat/NicheNet and the final malignant-epithelial
+   SPP1 virtual knockout.
 2. `genetics/`: FinnGen GWAS integration using the original `scPagwas_main`
    workflow and SPP1 PheW-MR/SMR-HEIDI result processing.
-3. `spatial/`: Visium processing, cell2location, spatial neighborhoods,
-   correlation/co-localization, SpaGene, SpaCET, spatial CellChat, external
-   RCTD, multiscale pair burden, permutation O/E and signed-distance profiles.
-4. `communication/`: single-cell and spatial CellChat plus the TAM-to-myCAF
-   NicheNet candidate network.
-5. `bulk_clinical_validation/`: ESTIMATE/BASE47 scores, subtype/TME
-   interaction models, survival/ROC analyses and independent Japan-UTUC
-   clinical models.
+3. `spatial/`: Visium processing, single-cell-reference deconvolution by
+   cell2location/RCTD, spatial neighborhoods, SpaGene, SpaCET, spatial
+   CellChat, multiscale pair burden and signed-distance profiles.
+4. `bulk_clinical_validation/`: single-cell-reference CIBERSORTx input/output
+   hand-off, ESTIMATE/BASE47 scores, subtype/TME interaction models,
+   survival/ROC analyses and independent Japan-UTUC clinical models.
 
 The spatial and Japan-UTUC branches are intentionally separate. Japan-UTUC
 bulk scores quantify patient-level cellular-program abundance and clinical

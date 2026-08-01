@@ -70,7 +70,7 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "A", "Selected VEGFA TAN-tip EC ligand-receptor probabilities", "workflows/communication/01_cellchat.R"
+  "A", "Selected VEGFA TAN-tip EC ligand-receptor probabilities", "workflows/single_cell/11_cellchat.R"
 )
 readr::write_tsv(
   package_native_panels,

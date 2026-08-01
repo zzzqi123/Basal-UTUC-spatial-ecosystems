@@ -41,7 +41,7 @@ panel_plan <- list(
   list(
     panel = "D",
     title = "GSE319536 continuous Basal-luminal validation",
-    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
+    workflow = "workflows/spatial/06_rctd_deconvolution.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
     operation = "select",
     input = "Fig10_D.tsv",
     required = c("basal_luminal_percentile", "ring", "pair_score", "mean_curve", "ci_low", "ci_high"),

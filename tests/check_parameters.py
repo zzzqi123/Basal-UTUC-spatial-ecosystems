@@ -81,6 +81,24 @@ for key, value in expected_sctenifoldknk.items():
             f"expected {value!r}"
         )
 
+cibersortx = cfg["cibersortx"]
+expected_cibersortx = {
+    "annotation_column": "second_celltype_byhand",
+    "reference_assay": "RNA",
+    "max_cells_per_state": 300,
+    "bulk_gene_column": "GeneSymbol",
+    "bulk_input_scale": "VST",
+    "expected_bulk_samples": 158,
+    "relative_sum_tolerance": 0.001,
+    "execution_mode": "web_service_default_relative_fractions",
+}
+for key, value in expected_cibersortx.items():
+    if cibersortx.get(key) != value:
+        raise SystemExit(
+            f"CIBERSORTx mismatch: {key}={cibersortx.get(key)!r}, "
+            f"expected {value!r}"
+        )
+
 sctenifold_script = (
     ROOT / "workflows" / "single_cell" / "10_spp1_virtual_knockout.R"
 ).read_text(encoding="utf-8")

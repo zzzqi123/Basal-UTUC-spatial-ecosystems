@@ -15,6 +15,7 @@ python_bin="${PYTHON_BIN:-python3}"
 "$python_bin" -m compileall -q core workflows tests tools
 
 if command -v Rscript >/dev/null 2>&1; then
+  Rscript tests/test_cibersortx_handoff.R
   while IFS= read -r script; do
     Rscript -e "parse(file='$script')" >/dev/null
   done < <(find core workflows figures supplementary -type f -name '*.R' | sort)

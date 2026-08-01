@@ -56,8 +56,7 @@ names(coordinates) <- c("x", "y")
 common_genes <- intersect(rownames(reference_counts), rownames(spatial_counts))
 reference_counts <- reference_counts[common_genes, , drop = FALSE]
 spatial_counts <- spatial_counts[common_genes, , drop = FALSE]
-keep_genes <- Matrix::rowSums(reference_counts) > 0 &
-  Matrix::rowSums(spatial_counts) > 0
+keep_genes <- Matrix::rowSums(reference_counts) > 0 & Matrix::rowSums(spatial_counts) > 0
 reference_counts <- as(reference_counts[keep_genes, , drop = FALSE], "dgCMatrix")
 spatial_counts <- as(spatial_counts[keep_genes, , drop = FALSE], "dgCMatrix")
 reference_counts@x <- round(reference_counts@x)
@@ -117,9 +116,4 @@ if (!is.null(rctd@results$results_df)) {
   write_tsv(results_df, file.path(opts$output_dir, "rctd_spot_assignments.tsv.gz"))
 }
 saveRDS(rctd, file.path(opts$output_dir, "rctd_object.rds"))
-write_run_metadata(
-  opts$output_dir,
-  "external_spatial_rctd",
-  opts,
-  as.list(qc[1, ])
-)
+write_run_metadata(opts$output_dir, "single_cell_reference_to_spatial_rctd", opts, as.list(qc[1, ]))

@@ -58,6 +58,7 @@ required_methods = {
     "SpaGene ligand-receptor co-localization",
     "SpaCET spatial pathway scoring",
     "Spatial CellChat",
+    "CIBERSORTx deconvolution",
     "Visium HD deconvolution",
     "External Visium deconvolution",
     "GeoMx ROI validation",

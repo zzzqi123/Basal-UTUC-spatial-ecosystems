@@ -58,10 +58,10 @@ if (length(plot_plan)) {
 
 package_native_panels <- tibble::tribble(
   ~panel, ~title, ~workflow,
-  "D", "NicheNet macrophage-derived ligand activity", "workflows/communication/02_nichenet_tam_to_mycaf.R",
-  "E", "NicheNet ligand-receptor prior interaction potential", "workflows/communication/02_nichenet_tam_to_mycaf.R",
-  "F", "MI-associated FAP myCAF ligand-target potential", "workflows/communication/02_nichenet_tam_to_mycaf.R",
-  "H", "FAP myCAF receiver-gene overlap across comparisons", "workflows/communication/02_nichenet_tam_to_mycaf.R"
+  "D", "NicheNet macrophage-derived ligand activity", "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
+  "E", "NicheNet ligand-receptor prior interaction potential", "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
+  "F", "MI-associated FAP myCAF ligand-target potential", "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
+  "H", "FAP myCAF receiver-gene overlap across comparisons", "workflows/single_cell/12_nichenet_tam_to_mycaf.R"
 )
 readr::write_tsv(
   package_native_panels,

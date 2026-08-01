@@ -56,6 +56,14 @@ The virtual-knockout output describes network-level perturbation associations.
 Its Z-score sign is not interpreted as pathway up/down-regulation, and the
 analysis does not establish macrophage-to-CAF causality.
 
+## Cell-cell communication
+
+- `11_cellchat.R`: expression-based CellChat over manually annotated
+  single-cell states, using `CellChatDB.human` and at least 10 cells per state.
+- `12_nichenet_tam_to_mycaf.R`: the single-cell NicheNet candidate network
+  from `Macro_c0_SPP1` senders to `CAF_c3_POSTN` receivers. It remains a
+  multi-ligand prioritization analysis rather than spatial or functional proof.
+
 Run the finalized workflow with the manuscript-level parameter file:
 
 ```bash

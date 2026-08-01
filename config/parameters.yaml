@@ -41,6 +41,17 @@ sctenifoldknk:
   dr_raw_p_threshold: 0.05
   enrichment_fdr: 0.05
 
+cibersortx:
+  annotation_column: second_celltype_byhand
+  reference_assay: RNA
+  max_cells_per_state: 300
+  excluded_reference_labels: [B cell, Cycling, T/NK cell, Stromal, Neutrophils, Normal_Epi]
+  bulk_gene_column: GeneSymbol
+  bulk_input_scale: VST
+  expected_bulk_samples: 158
+  relative_sum_tolerance: 0.001
+  execution_mode: web_service_default_relative_fractions
+
 cell2location:
   reference_batch_key: orig.ident
   reference_label_key: second_celltype_byhand

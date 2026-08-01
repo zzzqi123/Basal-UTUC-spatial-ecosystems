@@ -38,7 +38,7 @@ write.csv(
 )
 write_run_metadata(
   opts$output_dir,
-  "cellchat_global",
+  "single_cell_cellchat",
   opts,
   list(database = "CellChatDB.human", min_cells = 10)
 )

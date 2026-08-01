@@ -4,8 +4,9 @@ workflows/single_cell	private project R scripts plus current manuscript Methods	
 workflows/spatial/07_cellstate_correlation_colocalization.R	private project R scripts	curated within-section Spearman and three-level ordinal co-localization
 workflows/spatial/08_spagene_lr_colocalization.R	private project R scripts plus official SpaGene API	curated global SpaGene LR test and local neighbor score; third-party source not copied
 workflows/spatial/09_spacet_gene_set_scores.R	private project R scripts plus official SpaCET API	curated QC and spatial gene-set scoring; third-party source not copied
-workflows/communication/03_cellchat_spatial.R	private project R scripts plus official CellChat spatial API	curated coordinate and distance-aware spatial communication parameters
-workflows/spatial/06_external_rctd.R	private project R scripts plus official spacexr API	reconstructed shared runner for GSE299573 doublet mode and GSE319536 full mode
+workflows/spatial/15_cellchat_spatial.R	private project R scripts plus official CellChat spatial API	curated coordinate and distance-aware spatial communication parameters
+workflows/spatial/06_rctd_deconvolution.R	private project R scripts plus official spacexr API	reconstructed shared runner for GSE299573 doublet mode and GSE319536 full mode
+workflows/bulk_clinical_validation/cibersortx	private single-cell and Japan-UTUC preparation scripts plus CIBERSORTx output schema	curated reference and mixture export plus Job2 fraction validation; registered web-service source not copied
 workflows/spatial/10_visiumhd_niche_colocalization.R	private project R scripts	curated same-bin and kNN external Visium HD co-enrichment
 workflows/spatial/11a_prepare_external_visium_scores.R;workflows/spatial/11_external_visium_basal_axis.R	private project R scripts and final Fig10 Methods	curated 22-section UCell/RCTD preparation, exact rings, section GAM and bootstrap summaries
 workflows/spatial/12_geomx_roi_validation.R	current manuscript Methods	curated prespecified ROI-level program correlations

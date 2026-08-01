@@ -14,7 +14,7 @@ panel_plan <- list(
   list(
     panel = "A",
     title = "Selected VEGFA TAN-tip EC ligand-receptor probabilities",
-    workflow = "workflows/communication/01_cellchat.R",
+    workflow = "workflows/single_cell/11_cellchat.R",
     operation = "select",
     input = "Fig09_A.tsv",
     required = c("source", "target", "ligand", "receptor", "probability", "p_value"),

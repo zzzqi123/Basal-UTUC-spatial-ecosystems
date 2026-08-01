@@ -21,6 +21,8 @@ required_workflows = (
     "workflows/single_cell/08_marker_visualization.R",
     "workflows/single_cell/09_roe_composition.R",
     "workflows/single_cell/10_spp1_virtual_knockout.R",
+    "workflows/single_cell/11_cellchat.R",
+    "workflows/single_cell/12_nichenet_tam_to_mycaf.R",
     "workflows/spatial/07_cellstate_correlation_colocalization.R",
     "workflows/spatial/08_spagene_lr_colocalization.R",
     "workflows/spatial/09_spacet_gene_set_scores.R",
@@ -28,9 +30,12 @@ required_workflows = (
     "workflows/spatial/11a_prepare_external_visium_scores.R",
     "workflows/spatial/11_external_visium_basal_axis.R",
     "workflows/spatial/12_geomx_roi_validation.R",
-    "workflows/communication/03_cellchat_spatial.R",
+    "workflows/spatial/15_cellchat_spatial.R",
+    "workflows/spatial/06_rctd_deconvolution.R",
     "workflows/genetics/03_phewas_mr_spp1.R",
     "workflows/bulk_clinical_validation/00_prepare_bulk_scores.R",
+    "workflows/bulk_clinical_validation/cibersortx/01_prepare_inputs.R",
+    "workflows/bulk_clinical_validation/cibersortx/02_import_fractions.R",
 )
 for relative in required_workflows:
     if not (ROOT / relative).is_file():
@@ -38,6 +43,8 @@ for relative in required_workflows:
 
 if (ROOT / "workflows" / "perturbation").exists():
     raise SystemExit("Obsolete top-level perturbation branch remains")
+if (ROOT / "workflows" / "communication").exists():
+    raise SystemExit("Communication must be assigned to single_cell or spatial")
 
 c2l = ROOT / "workflows" / "spatial" / "cell2location"
 if not c2l.is_dir() or len(list(c2l.glob("*.py"))) != 4:
@@ -74,6 +81,12 @@ for row in rows:
         raise SystemExit(
             f"Virtual knockout mapped outside single_cell: {row['figure']}{row['panel']}"
         )
+    if "spatial communication" in row["title"].lower() and not row[
+        "source_workflow"
+    ].startswith("workflows/spatial/"):
+        raise SystemExit(
+            f"Spatial communication mapped outside spatial: {row['figure']}{row['panel']}"
+        )
 
 for directory in (ROOT / "figures", ROOT / "supplementary"):
     for script in directory.glob("*/*.R"):
@@ -90,7 +103,12 @@ tracked_text = "\n".join(
     for path in ([ROOT / base] if (ROOT / base).is_file() else (ROOT / base).rglob("*"))
     if path.is_file() and path.suffix.lower() in {"", ".md", ".r", ".py", ".sh"}
 )
-if 'file.path("functions"' in tracked_text or "methods/cell2location" in tracked_text:
+if (
+    'file.path("functions"' in tracked_text
+    or "methods/cell2location" in tracked_text
+    or "workflows/communication/" in tracked_text
+    or "06_external_rctd.R" in tracked_text
+):
     raise SystemExit("Legacy functions/methods references remain")
 
 print("PASS: four-layer architecture and method separation are correct")

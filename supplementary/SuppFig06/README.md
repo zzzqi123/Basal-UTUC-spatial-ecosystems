@@ -10,7 +10,7 @@
 | D | Representative regulon activities | `workflows/single_cell/05_pyscenic.sh` |
 | E | Cancer_c3 Hallmark enrichment | `workflows/single_cell/06_functional_enrichment.R` |
 | F | Section-specific Cancer_c3 boundary profiles | `workflows/spatial/03_prepare_boundary_input.py -> workflows/spatial/04_infer_boundary_stgrads.R -> workflows/spatial/05_boundary_profiles.R` |
-| G | Malignant programs along the external Basal-luminal continuum | `workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R` |
+| G | Malignant programs along the external Basal-luminal continuum | `workflows/spatial/06_rctd_deconvolution.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R` |
 | H | Japan-UTUC Cancer_c3 muscle-invasion models | `workflows/bulk_clinical_validation/02_japan_utuc_validation.R` |
 
 `01_analysis.R` declares each panel's input table and required columns. It

@@ -50,7 +50,7 @@ write_tsv(ligand_activity, file.path(opts$output_dir, "tam_to_mycaf_ligand_activ
 write_tsv(receiver_markers, file.path(opts$output_dir, "mycaf_receiver_markers.tsv"))
 write_run_metadata(
   opts$output_dir,
-  "nichenet_tam_to_mycaf",
+  "single_cell_nichenet_tam_to_mycaf",
   opts,
   list(sender = sender, receiver = receiver, interpretation = "multi-ligand candidate network")
 )

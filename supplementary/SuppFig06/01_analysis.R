@@ -68,7 +68,7 @@ panel_plan <- list(
   list(
     panel = "G",
     title = "Malignant programs along the external Basal-luminal continuum",
-    workflow = "workflows/spatial/06_external_rctd.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
+    workflow = "workflows/spatial/06_rctd_deconvolution.R -> workflows/spatial/11a_prepare_external_visium_scores.R -> workflows/spatial/11_external_visium_basal_axis.R",
     operation = "select",
     input = "SuppFig06_G.tsv",
     required = c("cell_state", "basal_luminal_percentile", "mean_curve", "ci_low", "ci_high"),

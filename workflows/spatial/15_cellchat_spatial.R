@@ -36,10 +36,7 @@ names(coordinates) <- c("x", "y")
 image <- object@images[[1]]
 ratio <- image@scale.factors$hires
 if (!is.finite(ratio) || ratio <= 0) stop("Valid hires scale factor is required")
-spatial_factors <- data.frame(
-  ratio = ratio,
-  tol = 32.5
-)
+spatial_factors <- data.frame(ratio = ratio, tol = 32.5)
 
 cellchat <- createCellChat(
   object = data_input,
@@ -75,7 +72,7 @@ write_tsv(communication, file.path(opts$output_dir, "spatial_cellchat_interactio
 saveRDS(cellchat, file.path(opts$output_dir, "spatial_cellchat_object.rds"))
 write_run_metadata(
   opts$output_dir,
-  "cellchat_spatial_niche_communication",
+  "spatial_niche_cellchat",
   opts,
   list(
     database = cfg$database,
